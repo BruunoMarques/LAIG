@@ -200,7 +200,6 @@ MySceneGraph.prototype.parseGlobalsLights= function(rootElement){
 
 	var elems = rootElement.getElementsByTagName('lights')[0];
 
-	console.log(elems);
 
 
 	var omnis = elems.getElementsByTagName('omni');
@@ -215,12 +214,28 @@ MySceneGraph.prototype.parseGlobalsLights= function(rootElement){
 			tempOmni.ambient_omni = [];
 			tempOmni.diffuse_omni = [];
 			tempOmni.specular_omni = [];
+
 			
 			var locationref= templight.getElementsByTagName('location')[0];
 			var localcoords = this.getXYZ(locationref,true);
+			tempOmni.welement = this.reader.getFloat(locationref,'w',true);
+			tempOmni.location_omni.push(localcoords);
+
+			var ambientref= templight.getElementsByTagName('ambient')[0];
+			var ambientcomps = this.getRGBA(ambientref,true);
+			tempOmni.ambient_omni.push(ambientcomps);
+
+			var difuseref= templight.getElementsByTagName('diffuse')[0];
+			var diffusecomps = this.getRGBA(difuseref,true);
+			tempOmni.diffuse_omni.push(diffusecomps);
+
+			var specularref= templight.getElementsByTagName('specular')[0];
+			var specularcomps = this.getRGBA(specularref,true);
+			tempOmni.specular_omni.push(specularcomps);
 			
-		
-			console.log(tempOmni);
+			this.lightsList.push(tempOmni);
+			
+			console.log(this.lightsList);
 	}
 		
 }
@@ -624,7 +639,7 @@ MySceneGraph.prototype.parseGlobalsComponents = function(rootElement) {
 
 			}
 
-			console.log(this.ComponentsList);
+		
 }
 
 
