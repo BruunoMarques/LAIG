@@ -54,7 +54,8 @@ MySceneGraph.prototype.initiateParse= function(rootElement){
 
 	this.parseGlobalsIllumination(rootElement);
 
-	this.lightsList = [];
+	this.OmnilightsList = [];
+	this.SpotlightsList = [];
 	this.parseGlobalsLights(rootElement);
 
 	this.texturesList = [];//check
@@ -233,12 +234,54 @@ MySceneGraph.prototype.parseGlobalsLights= function(rootElement){
 			var specularcomps = this.getRGBA(specularref,true);
 			tempOmni.specular_omni.push(specularcomps);
 			
-			this.lightsList.push(tempOmni);
+			this.OmnilightsList.push(tempOmni);
 			
-			console.log(this.lightsList);
 	}
 		
+	var spots = elems.getElementsByTagName('spot');
+	for(var j = 0; j<spots.length ;j++){
+
+		var templight = spots[j];
+		
+		var tempSpot = {};
+			tempSpot.id_spot = this.reader.getString(templight, 'id', true);
+			tempSpot.enabled_spot = this.reader.getBoolean(templight, 'enabled', true);	
+			tempSpot.angle = this.reader.getFloat(templight, 'angle', true)* Math.PI/180;
+			tempSpot.exponent = this.reader.getFloat(templight, 'exponent', true);		
+			tempSpot.location_spot = [];
+			tempSpot.ambient_spot = [];
+			tempSpot.diffuse_spot = [];
+			tempSpot.specular_spot = [];
+			
+
+			var targetref= templight.getElementsByTagName('location')[0];
+			var targetcoords = this.getXYZ(locationref,true);
+			tempSpot.location_spot.push(localcoords);
+			
+			var locationref= templight.getElementsByTagName('location')[0];
+			var localcoords = this.getXYZ(locationref,true);
+			tempSpot.location_spot.push(localcoords);
+
+			var ambientref= templight.getElementsByTagName('ambient')[0];
+			var ambientcomps = this.getRGBA(ambientref,true);
+			tempSpot.ambient_spot.push(ambientcomps);
+
+			var difuseref= templight.getElementsByTagName('diffuse')[0];
+			var diffusecomps = this.getRGBA(difuseref,true);
+			tempSpot.diffuse_spot.push(diffusecomps);
+
+			var specularref= templight.getElementsByTagName('specular')[0];
+			var specularcomps = this.getRGBA(specularref,true);
+			tempSpot.specular_spot.push(specularcomps);
+			
+			this.SpotlightsList.push(tempSpot);
+			
+	
+	}
+
 }
+
+
 
 MySceneGraph.prototype.parseGlobalsTextures= function(rootElement) {
 	var elems = rootElement.getElementsByTagName('textures');
@@ -261,10 +304,10 @@ MySceneGraph.prototype.parseGlobalsTextures= function(rootElement) {
 		this.texturesList.push(tempTexture);
 	}
 
-/*
+
 	console.log("textures");
 	console.log(this.texturesList);
-*/
+
 }
 
 MySceneGraph.prototype.parseGlobalsMaterials= function(rootElement) {

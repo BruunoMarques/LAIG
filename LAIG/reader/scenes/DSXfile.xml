@@ -53,6 +53,14 @@
             <diffuse r="0.52" g="0.5" b="0.5" a="1" />
             <specular r="0.5" g="0.5" b="0.5" a="1" />
         </omni>
+		
+		
+		<omni id="luz omnizita" enabled="1" >
+            <location x="3" y="3" z="3" w="3" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.52" g="0.5" b="0.5" a="1" />
+            <specular r="0.5" g="0.5" b="0.5" a="1" />
+        </omni>
 
         <spot id="luz spot" enabled="1" angle="90" exponent="69">
             <!-- atencao, "target" e' diferente de "direction" -->
@@ -62,6 +70,18 @@
             <diffuse r="0.5" g="0.5" b="0.5" a="1" />
             <specular r="0.5" g="0.5" b="0.5" a="1" />
         </spot>
+		
+		
+		<spot id="luz spot2" enabled="1" angle="90" exponent="69">
+            <!-- atencao, "target" e' diferente de "direction" -->
+            <target x="0" y="0" z="0" />
+            <location x="3" y="0" z="0" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="1" />
+            <specular r="0.5" g="0.5" b="0.5" a="1" />
+        </spot>
+		
+		
     </lights>
 
 
@@ -80,7 +100,7 @@
         <!-- Nao necessario aplicar fatores de escala em  -->
         <!-- quadricas (esfera, ciclindro...) -->
 
-      <!--  <texture id="ss" file="ss" length_s="ff" length_t="ff" /> -->
+        <texture id="ss" file="ss/aouyta" length_s="123" length_t="3" /> 
 
     </textures>
 
