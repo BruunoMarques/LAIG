@@ -83,7 +83,7 @@ MySceneGraph.prototype.initiateParse= function(rootElement){
 
 	this.parseGlobalsScene(rootElement);
 
-	this.viewsList = [];//check
+	this.viewsList = [];
 	this.parseGlobalsViews(rootElement);
 
 	this.parseGlobalsIllumination(rootElement);
@@ -92,27 +92,24 @@ MySceneGraph.prototype.initiateParse= function(rootElement){
 	this.SpotlightsList = [];
 	this.parseGlobalsLights(rootElement);
 
-	this.texturesList = [];//check
+	this.texturesList = [];
 	this.parseGlobalsTextures(rootElement);
 
-	this.materialsList = [];//check
+	this.materialsList = [];
 	this.parseGlobalsMaterials(rootElement);
 
-	this.rotatesList = [];//check
-	this.translatesList = [];//check
-	this.scalesList = [];//check
+	this.rotatesList = [];
+	this.translatesList = [];
+	this.scalesList = [];
 	this.parseGlobalsTransformations(rootElement);
 
-	this.primitivesList = [];//check
+	this.primitivesList = [];
 	this.parseGlobalsPrimitives(rootElement);
 
 	this.ComponentsList = [];
 	this.parseGlobalsComponents(rootElement);
 }
 
-/*
- * Example of method that parses elements of one block and stores information in a specific data structure
- */
 
 MySceneGraph.prototype.parseGlobalsScene= function(rootElement){
 	var elems = rootElement.getElementsByTagName('scene');
@@ -188,10 +185,7 @@ MySceneGraph.prototype.parseGlobalsViews= function(rootElement){
 
 	this.viewsList.push(tempView);
 	}
-/*
-	console.log("views");
-	console.log(this.viewsList);
-*/
+
 }
 
 
@@ -241,8 +235,8 @@ MySceneGraph.prototype.parseGlobalsLights= function(rootElement){
 	for(var j = 0; j<omnis.length ;j++){
 
 		var templight = omnis[j];
-
 		var tempOmni = {};
+		
 			tempOmni.id_omni = this.reader.getString(templight, 'id', true);
 			tempOmni.enabled_omni = this.reader.getBoolean(templight, 'enabled', true);
 			tempOmni.location_omni = [];
@@ -310,7 +304,6 @@ MySceneGraph.prototype.parseGlobalsLights= function(rootElement){
 
 			this.SpotlightsList.push(tempSpot);
 
-
 	}
 
 }
@@ -338,9 +331,6 @@ MySceneGraph.prototype.parseGlobalsTextures= function(rootElement) {
 		this.texturesList.push(tempTexture);
 	}
 
-
-	console.log("textures");
-	console.log(this.texturesList);
 
 }
 
@@ -427,10 +417,7 @@ MySceneGraph.prototype.parseGlobalsMaterials= function(rootElement) {
 		this.materialsList.push(tempMaterial);
 
 	}
-/*
-	console.log("materials");
-	console.log(this.materialsList);
-*/
+
 }
 
 
@@ -494,14 +481,7 @@ MySceneGraph.prototype.parseGlobalsTransformations= function(rootElement) {
 		}
 
 	}
-/*
-	console.log("Rotates");
-	console.log(this.rotatesList);
-	console.log("Translates");
-	console.log(this.translatesList);
-	console.log("Scales");
-	console.log(this.scalesList);
-*/
+
 }
 
 MySceneGraph.prototype.parseGlobalsPrimitives= function(rootElement) {
@@ -587,7 +567,6 @@ MySceneGraph.prototype.parseGlobalsPrimitives= function(rootElement) {
 		this.primitivesList.push(tempPrimitive);
 	}
 
-	//console.log(this.primitivesList);
 }
 
 
@@ -745,13 +724,6 @@ MySceneGraph.prototype.getColorFromRGBA = function (object, required) {
 	colour.a = this.reader.getFloat(object, 'a', required);
 	return colour;
 };
-
-
-/*
- * Callback to be executed on any read error
- */
-
-
 
 
 
