@@ -28,15 +28,8 @@ MyInterface.prototype.init = function(application) {
     return true;
 };
 
-/*
-MyInterface.prototype.addLight = function(type, i, name) {
-    if (type == "omni")
-        this.omni.add(this.scene.lightsStatus, i, this.scene.lightsStatus[i]).name(name);
-    else
-        this.spot.add(this.scene.lightsStatus, i, this.scene.lightsStatus[i]).name(name);
 
-}
-*/
+
 
 MyInterface.prototype.processKeyDown = function(event) {
 
