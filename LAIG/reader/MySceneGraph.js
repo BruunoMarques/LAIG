@@ -1,6 +1,6 @@
 
 function MySceneGraph(filename, scene) {
-	this.loadedOk = true;
+	this.loadedOk = null;
 
 	// Establish bidirectional references between scene and graph
 	this.scene = scene;
@@ -756,7 +756,92 @@ MySceneGraph.prototype.getColorFromRGBA = function (object, required) {
 
 
 
+MySceneGraph.prototype.getPrimitives=function(i){
 
+	var primitive;
+
+	
+		if(this.primitivesList[i].rectangle != null)
+		{
+			var x1 = this.primitivesList[i].rectangle[0].x1;
+			var x2 = this.primitivesList[i].rectangle[0].x2;
+			var y1 = this.primitivesList[i].rectangle[0].y1;
+			var y2 = this.primitivesList[i].rectangle[0].y2;
+
+			primitive = new MyRectangle(this.scene,x1,x2,y1,y2);
+
+		}
+
+		if(this.primitivesList[i].triangle != null)
+		{
+			var p1 = [];
+			var p2 = [];
+			var p3 = [];
+
+			p1.x = this.primitivesList[i].triangle[0].x1;
+			p1.y = this.primitivesList[i].triangle[0].y1;
+			p1.z = this.primitivesList[i].triangle[0].z1;
+			p2.x = this.primitivesList[i].triangle[0].x2;
+			p2.y = this.primitivesList[i].triangle[0].y2;
+			p2.z = this.primitivesList[i].triangle[0].z2;
+			p3.x = this.primitivesList[i].triangle[0].x3;
+			p3.y = this.primitivesList[i].triangle[0].y3;
+			p3.z = this.primitivesList[i].triangle[0].z3;
+
+			primitive = new MyTriangle(this.scene,p1,p2,p3);
+		}
+
+		if(this.primitivesList[i].cylinder != null)
+		{
+			var base = this.primitivesList[i].cylinder[0].base;
+			var top = this.primitivesList[i].cylinder[0].top;
+			var height = this.primitivesList[i].cylinder[0].height;
+			var slices = this.primitivesList[i].cylinder[0].slices;
+			var stacks = this.primitivesList[i].cylinder[0].stacks;
+
+			primitive = new MyCylinderWithTops(this.scene,base,top,height,slices,stacks);
+		}	
+
+		if(this.primitivesList[i].sphere != null)
+		{
+			var radius = this.primitivesList[i].sphere[0].radius;
+			var slices = this.primitivesList[i].sphere[0].slices;
+			var stacks = this.primitivesList[i].sphere[0].stacks;
+
+			primitive = new MySphere(this.scene,radius,slices,stacks);
+		}
+
+		if(this.primitivesList[i].torus != null)
+		{
+			var inner = this.primitivesList[i].torus[0].inner;
+			var outer = this.primitivesList[i].torus[0].outer;
+			var slices = this.primitivesList[i].torus[0].slices;
+			var loops = this.primitivesList[i].torus[0].loops;
+
+			primitive = new MyTorus(this.scene,inner,outer,slices,loops);
+		}
+
+
+	
+	return primitive;
+
+}
+
+MySceneGraph.prototype.displayGraph=function(){
+
+	var primitive;
+	var size = this.primitivesList.length;
+	
+	this.scene.pushMatrix();
+
+	for(var i = 0; i < size; i++){
+		primitive = this.getPrimitives(i);
+		primitive.display();
+	}
+
+	this.scene.popMatrix();
+	
+}
 
 MySceneGraph.prototype.onXMLError=function (message) {
 	console.error("XML Loading Error: "+message);

@@ -112,8 +112,6 @@ XMLscene.prototype.startLights = function(){
 	}
 
 
-	
-	console.log(this.lights);
 		
 };
 
@@ -148,7 +146,10 @@ XMLscene.prototype.display = function () {
 		for (var i = 0; i < this.lights.length ; i++ ) {
 			this.lights[i].update();
 		}
+		this.graph.displayGraph();
 	};	
+
+	
 };
 
 
