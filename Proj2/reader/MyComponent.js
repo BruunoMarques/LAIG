@@ -14,6 +14,9 @@ function MyComponent() {
 	this.rotates = [];
 	this.scales = [];
 	
+	this.animations = [];
+	
+	
 	this.primitivess = [];
 	this.compRef = [];
 	this.childrenRef = [];

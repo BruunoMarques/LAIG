@@ -352,7 +352,6 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		var numRef = this.reader.getString(e,'id',true);
 		if(this.animationsList.indexOf(numRef) != -1)return "numRef repeated!";
 
-		this.animationsList[i] = numRef;
 
 		var span = this.reader.getString(e,'span',true);
 		var type = this.reader.getString(e,'type',true);
@@ -362,18 +361,17 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var size1 = elems1.length;
 			this.controlPoints = [];
 
-			for(var j = 0; i < size1; j++){
+			for(var j = 0; j < size1; j++){
 				this.cp = [];
 
-				this.getControlPoint(this.cp,elems1[i]);
+				this.getControlPoint(this.cp,elems1[j]);
 				console.log(this.cp);
 				this.controlPoints.push(this.cp);
-				break;
 			}
 
 
-
-			//this.animationsList[i] = new MyLinearAnimation(numRef,span,type,this.controlPoints);
+			console.log(numRef);
+			var thing = new MyLinearAnimation(numRef,span,type,this.controlPoints);
 		}else if(type == "circular"){
 
 			var radius = this.reader.getFloat(e,'radius',true);
@@ -383,7 +381,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var startang = this.reader.getFloat(e,'startang',true);
 			var rotang = this.reader.getFloat(e,'rotang',true);
 
- 			//this.animationsList[i] = new MyCircularAnimation(numRef,span,type,radius,centerx,centery,centerz,startang,rotang);
+ 			this.animationsList[i] = new MyCircularAnimation(numRef,span,type,radius,centerx,centery,centerz,startang,rotang);
 		}else
 			return "animation type invalid!";
 	}
@@ -606,6 +604,14 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
                     }
 
 				}
+				
+				if(child.nodeName == "animation"){
+					var obj_id = this.reader.getString(transf,"id",true);
+					if(transf.nodeName == "animationref")
+						type.animations.push(obj_id);
+				console.log(obj_id);
+				}
+				
 			}
 		}
 		vertex.component = type;

@@ -4,6 +4,7 @@ class MyAnimation {
 
 class MyLinearAnimation extends MyAnimation{
 	constructor(id,span,type,controlPoints){
+		console.log(id);
 		this.id = id;
 		this.span = span;
 		this.type = type;

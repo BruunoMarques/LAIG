@@ -136,9 +136,9 @@
     <!-- o valor "linear" ou "circular"; na animacao circular -->
     <!-- os angulos sao expressos em graus  -->
 
-    <animation id="ss" span="ff" type="linear">
-         <controlpoint xx="ff" yy="ff" zz="ff" />
-         <controlpoint xx="ff" yy="ff" zz="ff" />
+    <animation id="linanime" span="6" type="linear">
+         <controlpoint xx="1" yy="1" zz="1" />
+         <controlpoint xx="2" yy="2" zz="2" />
    </animation>
 
     <animation id="animation1orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="15" startang="0" rotang="Math.PI*2" />
@@ -751,6 +751,10 @@
             <children>
                 <primitiveref id="electron" />
             </children>
+			
+			<animation>
+				  <animationref id="animation1orbital1" />
+			</animation>
 
         </component>
 

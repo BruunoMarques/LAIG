@@ -25,9 +25,8 @@ MyGraph.prototype.addEdges = function(){
 }
 
 MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
-    var prim;
-	console.log(info);
-	console.log(primitive);
+	console.log(vertex);
+    var prim;	
     switch(info){
         case "rectangle":
             prim = new MyRectangle(this.scene, primitive[1], primitive[2], primitive[3], primitive[4]);
@@ -45,7 +44,6 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
             prim = new MyTorus(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);
             break;
     }
-	console.log(prim);
     vertex.component.primitivess.push(prim);
 }
 
