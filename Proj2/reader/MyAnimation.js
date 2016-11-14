@@ -12,11 +12,13 @@ class MyLinearAnimation extends MyAnimation{
 }
 
 class MyCircularAnimation extends MyAnimation{
-	constructor(id,span,type,center,radius,startang,rotang){
+	constructor(id,span,type,centerx,centery,centerz,radius,startang,rotang){
 		this.id = id;
 		this.span = span;
 		this.type = type;
-		this.center = center;
+		this.centerx = centerx;
+		this.centery = centery;
+		this.centerz = centerz;
 		this.radius = radius;
 		this.startang = startang;
 		this.rotang = rotang;

@@ -46,7 +46,8 @@ MySceneGraph.prototype.parseFunctionStart = function(rootElement) {
 
 MySceneGraph.prototype.checkTagOrder= function(rootElement){
 	var tempChildren = rootElement.children;
-	if(tempChildren.length != 9){
+	//console.log(tempChildren);
+	if(tempChildren.length != 10){
 		return 1;
 	}
 
@@ -357,15 +358,32 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		var type = this.reader.getString(e,'type',true);
 
 		if(type == "linear"){
+			var elems1 = elems[0].getElementsByTagName('controlpoint');
+			var size1 = elems1.length;
+			this.controlPoints = [];
 
-			//falta ler o control point com uma função getControlPoint e criar o objeto da class linearAnimation
+			for(var j = 0; i < size1; j++){
+				this.cp = [];
+
+				this.getControlPoint(this.cp,elems1[i]);
+				console.log(this.cp);
+				this.controlPoints.push(this.cp);
+				break;
+			}
+
+
+
+			//this.animationsList[i] = new MyLinearAnimation(numRef,span,type,this.controlPoints);
 		}else if(type == "circular"){
 
-			//	var center =
 			var radius = this.reader.getFloat(e,'radius',true);
+			var centerx = this.reader.getFloat(e,'centerx',true);
+			var centery = this.reader.getFloat(e,'centery',true);
+			var centerz = this.reader.getFloat(e,'centerz',true);
 			var startang = this.reader.getFloat(e,'startang',true);
 			var rotang = this.reader.getFloat(e,'rotang',true);
- 			//falta ler o center e criar o objeto da class circularAnimation
+
+ 			//this.animationsList[i] = new MyCircularAnimation(numRef,span,type,radius,centerx,centery,centerz,startang,rotang);
 		}else
 			return "animation type invalid!";
 	}
@@ -685,4 +703,13 @@ MySceneGraph.prototype.getRGBA = function(comp, transf){
     comp.push(g);
     comp.push(b);
     comp.push(aaa);
+}
+
+MySceneGraph.prototype.getControlPoint = function(cp,transf){
+	var xx = this.reader.getFloat(transf,"xx",true);
+	var yy = this.reader.getFloat(transf,"yy",true);
+	var zz = this.reader.getFloat(transf,"zz",true);
+	this.cp.push(xx);
+	this.cp.push(yy);
+	this.cp.push(zz);
 }

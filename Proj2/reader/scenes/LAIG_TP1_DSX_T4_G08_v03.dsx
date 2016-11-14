@@ -136,11 +136,18 @@
     <!-- o valor "linear" ou "circular"; na animacao circular -->
     <!-- os angulos sao expressos em graus  -->
 
-    <animation id="animation1orbital1" span="5" type="circular" center="2 4 4.5" radius="15" startang="0" rotang="Math.PI*2" />
-    <animation id="animation2orbital1" span="5" type="circular" center="2 4 4.5" radius="14.4" startang="0" rotang="Math.PI*2" />
-    <animation id="animation1orbital2" span="5" type="circular" center="2 4 4.5" radius="25.2" startang="0" rotang="Math.PI*2" />
-    <animation id="animation2orbital2" span="5" type="circular" center="2 4 4.5" radius="26" startang="0" rotang="Math.PI*2" />
-    <animation id="animation1orbital3" span="5" type="circular" center="2 4 4.5" radius="36.3" startang="0" rotang="Math.PI*2" />
+    <animation id="ss" span="ff" type="linear">
+         <controlpoint xx="ff" yy="ff" zz="ff" />
+         <controlpoint xx="ff" yy="ff" zz="ff" />
+   </animation>
+
+    <animation id="animation1orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="15" startang="0" rotang="Math.PI*2" />
+    <animation id="animation2orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="14.4" startang="0" rotang="Math.PI*2" />
+    <animation id="animation1orbital2" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="25.2" startang="0" rotang="Math.PI*2" />
+    <animation id="animation2orbital2" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="26" startang="0" rotang="Math.PI*2" />
+    <animation id="animation1orbital3" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="36.3" startang="0" rotang="Math.PI*2" />
+
+
 
 </animations>
 
