@@ -1,9 +1,0 @@
-Turma4:
-Grupo 08
-Bruno Monteiro Marques				201405781	up201405781@fe.up.pt
-José Miguel Matos Lopes da Costa		201402717	up201402717@fe.up.pt
-
-Por vezes o parser faz com que a interface grafica se comporte da maneira algo inesperada, produzindo alguns "breaks" problema cujo não foi possível resolver.
-Ainda a acrescentar que (embora não seja de todo justificação para tal, visto a própria data de entrega ser facilitadora destas situações) 
-o atraso foi causado devido a alguns problemas técnicos de conexão á internet por parte de um dos membros do grupo, esperamos no entanto que esta situação não desvalorize
-em demasia o trabalho realizado pelo grupo.
