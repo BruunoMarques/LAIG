@@ -169,6 +169,17 @@
             <rectangle x1="0" y1="0" x2="2" y2="2" />
         </primitive>
 
+        <primitive id="plane">
+         <plane dimX="2" dimY="3" partsX="2" partsY="2"/>
+         </primitive>
+
+
+          <primitive id="patch">
+         <patch orderU="1" orderV="2" partsU="3" partsV="4" >
+            <controlpoint x="1" y="1" z="1" />
+          </patch>
+          </primitive>
+
     </primitives>
 
 
@@ -751,7 +762,7 @@
             <children>
                 <primitiveref id="electron" />
             </children>
-			
+
 			<animation>
 				  <animationref id="animation1orbital1" />
 			</animation>

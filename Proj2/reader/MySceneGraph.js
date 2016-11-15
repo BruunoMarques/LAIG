@@ -402,13 +402,17 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.cylinders = [];
 	this.spheres = [];
 	this.donuts = [];
+	this.planes = [];
+	this.patches = [];
 
 	var obj = {
 		size_r : 0,
 		size_t : 0,
 		size_c : 0,
 		size_s : 0,
-		size_d : 0
+		size_d : 0,
+		size_pt : 0,
+		size_pl : 0
 	};
 
 
@@ -495,6 +499,28 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			this.donuts[obj.size_d][4] = this.reader.getFloat(e.children[index],'loops',true);
 			obj.size_d+=1;
 			break;
+
+		case "plane":
+			this.planes[obj.size_pl] = [];
+			this.planes[obj.size_pl][0] = id;
+			this.planes[obj.size_pl][1] = this.reader.getFloat(e.children[index],'dimX',true);
+			this.planes[obj.size_pl][2] = this.reader.getFloat(e.children[index],'dimY',true);
+			this.planes[obj.size_pl][3] = this.reader.getFloat(e.children[index],'partsX',true);
+			this.planes[obj.size_pl][4] = this.reader.getFloat(e.children[index],'partsY',true);
+			console.log(id);
+			obj.size_pl+=1;
+			break;
+
+		case "patch":
+			this.patches[obj.size_pt] = [];
+			this.patches[obj.size_pt][0] = id;
+			this.patches[obj.size_pt][1] = this.reader.getFloat(e.children[index],'orderU',true);
+			this.patches[obj.size_pt][2] = this.reader.getFloat(e.children[index],'orderV',true);
+			this.patches[obj.size_pt][3] = this.reader.getFloat(e.children[index],'partsU',true);
+			this.patches[obj.size_pt][4] = this.reader.getFloat(e.children[index],'partsV',true);
+			console.log(id);
+			obj.size_pt+=1;
+			break;
 	}
 
 }
@@ -507,6 +533,8 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
     if((emptyvar = this.isPrimitive(types[2], id, vertex, "cylinder")) == null)
     if((emptyvar = this.isPrimitive(types[3], id, vertex, "sphere")) == null)
     if((emptyvar = this.isPrimitive(types[4], id, vertex, "torus")) == null)
+		if((emptyvar = this.isPrimitive(types[5], id, vertex, "plane")) == null)
+		if((emptyvar = this.isPrimitive(types[6], id, vertex, "patch")) == null)
                         return;
 
 
@@ -542,7 +570,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 
 
     var types = [];
-    types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
+    types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);	types.push(this.planes);	types.push(this.patches);
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];
