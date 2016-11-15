@@ -518,6 +518,8 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			this.patches[obj.size_pt][2] = this.reader.getFloat(e.children[index],'orderV',true);
 			this.patches[obj.size_pt][3] = this.reader.getFloat(e.children[index],'partsU',true);
 			this.patches[obj.size_pt][4] = this.reader.getFloat(e.children[index],'partsV',true);
+			console.log(e.children[index].children[0]);
+			this.patches[obj.size_pt][5] = this.getControlPointPatch(e.children[index].children[0]);
 			console.log(id);
 			obj.size_pt+=1;
 			break;
@@ -745,4 +747,16 @@ MySceneGraph.prototype.getControlPoint = function(cp,transf){
 	this.cp.push(xx);
 	this.cp.push(yy);
 	this.cp.push(zz);
+}
+
+MySceneGraph.prototype.getControlPointPatch = function(transf){
+	this.pt = [];
+	var xx = this.reader.getFloat(transf,"x",true);
+	var yy = this.reader.getFloat(transf,"y",true);
+	var zz = this.reader.getFloat(transf,"z",true);
+	this.pt.push(xx);
+	this.pt.push(yy);
+	this.pt.push(zz);
+	console.log(this.pt);
+	return this.pt;
 }

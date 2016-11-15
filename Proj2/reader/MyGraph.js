@@ -1,10 +1,10 @@
 function MyGraph() {
 	CGFscene.call(this);
-	
+
 	this.vertexIDs = [];
 	this.vertexSet = [];
-	
-	
+
+
 }
 
 MyGraph.prototype = Object.create(CGFscene.prototype);
@@ -25,7 +25,7 @@ MyGraph.prototype.addEdges = function(){
 }
 
 MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
-    var prim;	
+    var prim;
     switch(info){
         case "rectangle":
             prim = new MyRectangle(this.scene, primitive[1], primitive[2], primitive[3], primitive[4]);
@@ -42,6 +42,12 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
         case "torus":
             prim = new MyTorus(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);
             break;
+				case "plane":
+						prim = new MyPlane(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);
+						break;
+				case "patch":
+						prim = new MyPatch(this.scene, primitive[1],primitive[2], primitive[3], primitive[4],primitive[5]);
+						break;
     }
     vertex.component.primitivess.push(prim);
 }
@@ -55,19 +61,18 @@ MyGraph.prototype.initiatePrimitives = function (vertex) {
         this.initiatePrimitives(vertex.derivates[i]);
     }
  }
-  
-  
+
+
 MyGraph.prototype.DepthSearch = function(vertexID,scene){
 	var indice = this.vertexIDs.indexOf(vertexID);
 	if(indice == -1){
-		
+
 		return -1;
 	}
 	this.scene = scene;
 	for(var i = 0; i< this.vertexSet.length; i++)
 	    this.vertexSet[i].visited = false;
 
-  
+
 	this.initiatePrimitives(this.vertexSet[indice]);
 }
-
