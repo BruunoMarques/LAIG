@@ -365,13 +365,12 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 				this.cp = [];
 
 				this.getControlPoint(this.cp,elems1[j]);
-				console.log(this.cp);
 				this.controlPoints.push(this.cp);
 			}
 
-
-			console.log(numRef);
+			console.log(this.controlPoints);
 			var thing = new MyLinearAnimation(numRef,span,type,this.controlPoints);
+			console.log(thing);
 		}else if(type == "circular"){
 
 			var radius = this.reader.getFloat(e,'radius',true);

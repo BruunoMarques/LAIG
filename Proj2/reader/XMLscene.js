@@ -9,7 +9,9 @@ XMLscene.prototype.constructor = XMLscene;
 
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
-
+	
+	this.time = 0;
+	
     this.initCameras();
 
     this.initLights();
@@ -312,4 +314,23 @@ XMLscene.prototype.display = function () {
 		}
 	};
 };
+
+XMLscene.prototype.update = function(currTime){
+	if (this.time == 0){
+		this.actualTime = 0;
+	}
+	else{
+			this.actualTime = (currTime - this.time)/1000;
+	}
+
+
+	this.time = currTime;  
+	this.totalTime += this.actualTime;
+	
+	if( this.stop_anim && this.totalTime > this.waitTime){
+		this.stop_anim = true;
+		this.totalTime = 0;
+		this.time = 0;	
+		}
+}
 

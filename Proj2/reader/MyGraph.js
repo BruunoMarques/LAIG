@@ -25,7 +25,6 @@ MyGraph.prototype.addEdges = function(){
 }
 
 MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
-	console.log(vertex);
     var prim;	
     switch(info){
         case "rectangle":
