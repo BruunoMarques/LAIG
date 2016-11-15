@@ -369,7 +369,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			}
 
 			console.log(this.controlPoints);
-			var thing = new MyLinearAnimation(numRef,span,type,this.controlPoints);
+			var thing = new MyLinearAnimation(numRef,type,this.controlPoints);
 			console.log(thing);
 		}else if(type == "circular"){
 
@@ -380,7 +380,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var startang = this.reader.getFloat(e,'startang',true);
 			var rotang = this.reader.getFloat(e,'rotang',true);
 
- 			this.animationsList[i] = new MyCircularAnimation(numRef,span,type,radius,centerx,centery,centerz,startang,rotang);
+ 			this.animationsList[i] = new MyCircularAnimation(numRef,span,radius,centerx,centery,centerz,startang,rotang);
 		}else
 			return "animation type invalid!";
 	}
@@ -603,14 +603,14 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
                     }
 
 				}
-				
+
 				if(child.nodeName == "animation"){
 					var obj_id = this.reader.getString(transf,"id",true);
 					if(transf.nodeName == "animationref")
 						type.animations.push(obj_id);
 				console.log(obj_id);
 				}
-				
+
 			}
 		}
 		vertex.component = type;

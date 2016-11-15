@@ -1,24 +1,21 @@
 class MyAnimation {
-	constructor(id){
+	constructor(id,span){
 		this.id = id;
+		this.span = id;
 	}
-}	
+}
 
 class MyLinearAnimation extends MyAnimation{
-	constructor(id,span,type,controlPoints){
+	constructor(id,span,controlPoints){
 		console.log(id);
-		super(id);
-		this.span = span;
-		this.type = type;
+		super(id,span);
 		this.controlPoints = controlPoints;
 	}
 }
 
 class MyCircularAnimation extends MyAnimation{
-	constructor(id,span,type,centerx,centery,centerz,radius,startang,rotang){
-		super(id);
-		this.span = span;
-		this.type = type;
+	constructor(id,span,centerx,centery,centerz,radius,startang,rotang){
+		super(id,span)
 		this.centerx = centerx;
 		this.centery = centery;
 		this.centerz = centerz;
