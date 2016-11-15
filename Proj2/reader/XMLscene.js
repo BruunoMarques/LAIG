@@ -10,7 +10,11 @@ XMLscene.prototype.constructor = XMLscene;
 XMLscene.prototype.init = function (application) {
     CGFscene.prototype.init.call(this, application);
 	
-	this.time = 0;
+	this.time = 0
+	this.totalTime = 0;
+	this.actualTime =0;
+	this.waitTime = 1;
+	this.stop_anim = true;
 	
     this.initCameras();
 
@@ -24,6 +28,8 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 
     this.enableTextures(true);
+	this.setUpdatePeriod(1);
+	
 
 	this.axis=new CGFaxis(this);
 };
@@ -322,7 +328,7 @@ XMLscene.prototype.update = function(currTime){
 	else{
 			this.actualTime = (currTime - this.time)/1000;
 	}
-
+	console.log("fazendo o amor");
 
 	this.time = currTime;  
 	this.totalTime += this.actualTime;
@@ -332,5 +338,10 @@ XMLscene.prototype.update = function(currTime){
 		this.totalTime = 0;
 		this.time = 0;	
 		}
+	if(this.init_anim){
+		for(var i =0; i <this.anim_component.lenght; i++){
+			this.anim_component[i].update(this.actualTime);
+		}
+	}	
 }
 
