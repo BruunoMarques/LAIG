@@ -2,6 +2,8 @@ function MyVehicle(scene) {
 	CGFobject.call(this, scene);
 
 
+	
+
 	this.initBuffers();
 };
 

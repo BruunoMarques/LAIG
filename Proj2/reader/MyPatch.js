@@ -32,6 +32,7 @@ MyPatch.prototype.makeSurface = function () {
 	var knots1 = this.getKnotsVector(this.orderU); // to be built inside webCGF in later versions ()
 	var knots2 = this.getKnotsVector(this.orderV); // to be built inside webCGF in later versions
 
+
 	var nurbsSurface = new CGFnurbsSurface(this.orderU, this.orderV, knots1, knots2, this.controlPoints); // TODO  (CGF 0.19.3): remove knots1 and knots2 from CGFnurbsSurface method call. Calculate inside method.
 	getSurfacePoint = function(u, v) {
 		return nurbsSurface.getPoint(u, v);
