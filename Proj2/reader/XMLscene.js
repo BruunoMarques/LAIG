@@ -14,7 +14,8 @@ XMLscene.prototype.init = function (application) {
 	this.totalTime = 0;
 	this.actualTime =0;
 	this.waitTime = 1;
-	this.stop_anim = true;
+	this.stop_anim = false;
+	this.animComps = [];
 	
     this.initCameras();
 
@@ -250,7 +251,9 @@ XMLscene.prototype.RecursiveSearch = function (vertex) {
     var matCheck = this.displayMaterial(vertex);
     var texCheck = this.displayTexture(vertex);
 	
-	
+	if (vertex.component.animations.lenght > 0){
+		this.animation(vertex);
+	}
     this.multMatrix(vertex.component.matrix);
 	
     var searchvar = false;
@@ -328,20 +331,46 @@ XMLscene.prototype.update = function(currTime){
 	else{
 			this.actualTime = (currTime - this.time)/1000;
 	}
-	console.log("fazendo o amor");
+
 
 	this.time = currTime;  
 	this.totalTime += this.actualTime;
 	
 	if( this.stop_anim && this.totalTime > this.waitTime){
-		this.stop_anim = true;
+		this.stop_anim = false;
 		this.totalTime = 0;
 		this.time = 0;	
 		}
-	if(this.init_anim){
-		for(var i =0; i <this.anim_component.lenght; i++){
-			this.anim_component[i].update(this.actualTime);
+	if(!this.stop_anim){
+		for(var i =0; i <this.animComps.lenght; i++){
+			this.animComps[i].update(this.actualTime);
 		}
 	}	
+}
+
+
+XMLscene.prototype.animation = function(vertex){
+	var originPoint = vertex.component.origin;
+	var index = vertex.component.currAnimation;
+	if(indice == vertex.component.animations.length){
+		index--;
+	}
+	var animate = vertex.component.animations[index];
+	
+	if(animate instanceof LinearAnimation){
+        this.translate(animate.translate.x,animate.translate.y,animate.translate.z);
+        this.translate(originPoint.x,originPoint.y,originPoint.z);
+        this.rotate(animate.rotate,0,1,0);
+        this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
+    }
+	
+	
+    else if(animate instanceof CircularAnimation){
+        this.translate(animate.center.x,animate.center.y,animate.center.z);
+        this.rotate(animate.angle_temp,0,1,0);
+        this.translate(animate.xi,animate.yi,animate.zi);
+        this.rotate(Math.PI/2 + animate.angle_temp,0,1,0);
+        this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
+    }
 }
 
