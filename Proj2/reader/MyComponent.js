@@ -45,10 +45,13 @@ MyComponent.prototype.update = function(timeset){
                         animate.translate.y += animate.walk_d[j][1] * timeset;
                         animate.translate.z += animate.walk_d[j][2] * timeset;
                     }
+					
                     else if(animate.times[j] <= this.totalTime){
+						
                         animate.next_anim[j+1]= true;
                         if(j+1 != animate.cPoints.length)animate.rotate = animate.angles[j+1];
                         else{
+							
                             this.currAnimation++;
                             this.totalTime = 0;
                             if(this.currAnimation < this.animations.length)
@@ -58,10 +61,13 @@ MyComponent.prototype.update = function(timeset){
                 }
             }
             else if(animate instanceof CircularAnimation){
+				
                 if(animate.time > this.totalTime){
                     animate.ang_ant = animate.angle_temp;
                     animate.angle_temp += (animate.angle_per_it) * timeset;
                 }
+				
+				
                 else {
 					this.currAnimation++;
                     this.totalTime = 0;

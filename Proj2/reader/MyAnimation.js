@@ -3,6 +3,19 @@ class MyAnimation {
 		this.id = id;
 		this.span = id;
 	}
+	
+	
+	
+AngleCalc(x,z,dirZ){
+	var anglevec = vec3.fromValues(x,0,z);
+	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( Math.dot([x,z],[x,z]));
+	var angle = Math.acos(cosvar);
+	if (x < 0){
+		angle = Math.PI*2-angle;
+	}
+	
+	return angle;
+}
 }
 
 class MyLinearAnimation extends MyAnimation{
@@ -24,3 +37,7 @@ class MyCircularAnimation extends MyAnimation{
 		this.rotang = rotang;
 	}
 }
+
+
+
+
