@@ -169,16 +169,73 @@
             <rectangle x1="0" y1="0" x2="2" y2="2" />
         </primitive>
 
-        <primitive id="plane">
-         <plane dimX="2" dimY="3" partsX="2" partsY="2"/>
-         </primitive>
+         <primitive id="patch">
+			<patch orderU="2" orderV="3" partsU="20" partsV="20" >
+				<controlpoint x="-1.5" y="-1.5" z="0" />
+				<controlpoint x="-2" y="-2" z="2" />
+				<controlpoint x="-2" y="2" z="2" />
+				<controlpoint x="-1.5" y="1.5" z="0" />
 
+				<controlpoint x="0" y="0" z="3" />
+				<controlpoint x="0" y="-2" z="3" />
+				<controlpoint x="0" y="2" z="3" />
+				<controlpoint x="0" y="0" z="3" />
 
-          <primitive id="patch">
-         <patch orderU="1" orderV="2" partsU="3" partsV="4" >
-            <controlpoint x="1" y="1" z="1" />
-          </patch>
-          </primitive>
+				<controlpoint x="1.5" y="-1.5" z="0" />
+				<controlpoint x="2" y="-2" z="2" />
+				<controlpoint x="2" y="2" z="2" />
+				<controlpoint x="1.5" y="1.5" z="0" />
+			</patch>
+		</primitive>
+
+    <primitive id="patch1">
+      <patch orderU="5" orderV="5" partsU="20" partsV="20" >
+        <controlpoint x="-0.190" y="0.087" z="-1.033" />
+        <controlpoint x="-0.188" y="0.088" z="-1.033" />
+        <controlpoint x="-0.191" y="0.091" z="-1.029" />
+        <controlpoint x="-0.172" y="0.123" z="-1.020" />
+        <controlpoint x="-0.189" y="0.088" z="-1.030" />
+        <controlpoint x="-0.191" y="0.090" z="-1.021" />
+        <controlpoint x="-0.133" y="-1.112" z="-1.305" />
+        <controlpoint x="-1.755" y="-1.133" z="-1.224" />
+        <controlpoint x="-1.539" y="1.842" z="-1.129" />
+        <controlpoint x="1.372" y="1.821" z="-1.275" />
+        <controlpoint x="1.641" y="-1.110" z="-1.174" />
+        <controlpoint x="-0.133" y="-1.105" z="-1.293" />
+        <controlpoint x="0.000" y="-1.000" z="0.800" />
+        <controlpoint x="-1.000" y="-1.000" z="0.800" />
+        <controlpoint x="-1.000" y="1.000" z="0.800" />
+        <controlpoint x="1.000" y="1.000" z="0.800" />
+        <controlpoint x="1.000" y="-1.000" z="0.800" />
+        <controlpoint x="0.000" y="-1.000" z="0.800" />
+        <controlpoint x="0.000" y="-1.000" z="1.200" />
+        <controlpoint x="-1.000" y="-1.000" z="1.200" />
+        <controlpoint x="-1.000" y="1.000" z="1.200" />
+        <controlpoint x="1.000" y="1.000" z="1.200" />
+        <controlpoint x="1.000" y="-1.000" z="1.200" />
+        <controlpoint x="0.000" y="-1.000" z="1.200" />
+        <controlpoint x="0.000" y="-1.000" z="1.600" />
+        <controlpoint x="-1.000" y="-1.000" z="1.600" />
+        <controlpoint x="-1.000" y="1.000" z="1.600" />
+        <controlpoint x="1.000" y="1.000" z="1.600" />
+        <controlpoint x="1.000" y="-1.000" z="1.600" />
+        <controlpoint x="0.000" y="-1.000" z="1.600" />
+        <controlpoint x="0.015" y="-0.616" z="1.559" />
+        <controlpoint x="0.015" y="-0.614" z="1.561" />
+        <controlpoint x="0.016" y="-0.630" z="1.582" />
+        <controlpoint x="0.015" y="-0.632" z="1.584" />
+        <controlpoint x="0.015" y="-0.620" z="1.564" />
+        <controlpoint x="0.012" y="-0.612" z="1.554" />
+      </patch>
+    </primitive>
+
+      <primitive id="plane">
+    			 <plane dimX="3" dimY="2" partsX="10" partsY="7"/>
+    		</primitive>
+
+        <primitive id="vehicle">
+      			 <vehicle />
+      		</primitive>
 
     </primitives>
 
@@ -203,717 +260,12 @@
 
             <children>
 
-				<componentref id="core" />
-				<componentref id="orbitals" />
-				<componentref id="Square" />
+  				<primitiveref id="vehicle" />
 
             </children>
 
         </component>
 
-
-
-		<component id="core">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
-
-				<componentref id="protons" />
-				<componentref id="neutrons" />
-
-            </children>
-
-        </component>
-
-
-				<component id="protons">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="positive" />
-
-            <children>
-
-				<componentref id="Proton1" />
-				<componentref id="Proton2" />
-				<componentref id="Proton3" />
-				<componentref id="Proton4" />
-				<componentref id="Proton5" />
-
-            </children>
-
-        </component>
-
-
-				<component id="neutrons">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="neutral" />
-
-            <children>
-
-				<componentref id="Neutron1" />
-				<componentref id="Neutron2" />
-				<componentref id="Neutron3" />
-				<componentref id="Neutron4" />
-				<componentref id="Neutron5" />
-
-            </children>
-
-        </component>
-
-
-		<component id="orbitals">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="orbitmat" />
-            </materials>
-
-
-            <texture id="orbit" />
-
-            <children>
-
-				<componentref id="Orbital1" />
-				<componentref id="Orbital2" />
-				<componentref id="Orbital3" />
-				<componentref id="Orbital4" />
-				<componentref id="Orbital5" />
-				<componentref id="eletrons" />
-
-            </children>
-
-        </component>
-
-			<component id="eletrons">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="orbitmat" />
-            </materials>
-
-
-            <texture id="negative" />
-
-            <children>
-
-				<componentref id="Eletron1" />
-				<componentref id="Eletron2" />
-				<componentref id="Eletron3" />
-				<componentref id="Eletron4" />
-				<componentref id="Eletron5" />
-
-            </children>
-
-        </component>
-
-        <component id="Square" >
-
-            <transformation>
-            	<translate x="-50" y="-50" z="-50" />
-				<scale x= "50" y="50" z="50" />
-            </transformation>
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-            <texture id="backgroundtex" />
-
-            <children>
-                <componentref id="side1" />
-				<componentref id="side2" />
-				<componentref id="side3" />
-				<componentref id="side4" />
-				<componentref id="side5" />
-				<componentref id="side6" />
-            </children>
-
-        </component>
-
-		 <component id="Proton1" >
-
-            <transformation>
-                <translate x="2" y="5" z="5" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-		 <component id="Neutron1" >
-
-            <transformation>
-                <translate x="2" y="5" z="4" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Proton2" >
-
-            <transformation>
-                <translate x="2" y="4" z="3" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Neutron2" >
-
-            <transformation>
-                <translate x="1" y="4" z="4" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Proton3" >
-
-            <transformation>
-                <translate x="1" y="4" z="5" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Neutron3" >
-
-            <transformation>
-                <translate x="3" y="4" z="4" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-		<component id="Proton4" >
-
-            <transformation>
-                <translate x="3" y="4" z="5" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Neutron4" >
-
-            <transformation>
-                <translate x="2" y="4" z="6" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Proton5" >
-
-            <transformation>
-                <translate x="2" y="3" z="4" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-        <component id="Neutron5" >
-
-            <transformation>
-                <translate x="2" y="3" z="5" />
-				<scale x= "2" y="2" z="2" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="proton" />
-            </children>
-
-        </component>
-
-   		<component id="Orbital1" >
-
-            <transformation>
-
-				 <translate x="2" y="3" z="4.5" />
-				 <scale x= "1.5" y="1.5" z="1.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="ring" />
-            </children>
-
-        </component>
-
-        <component id="Orbital2" >
-
-            <transformation>
-
-				<translate x="2" y="4" z="5" />
-				<rotate axis="x" angle="90" />
-				<scale x= "1.5" y="1.5" z="1.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="ring" />
-            </children>
-
-        </component>
-
-        <component id="Orbital3" >
-
-            <transformation>
-
-				<translate x="2" y="3" z="4.5" />
-				<rotate axis="y" angle="60" />
-				<scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="ring" />
-            </children>
-
-        </component>
-
-        <component id="Orbital4" >
-
-            <transformation>
-            <translate x="2" y="4" z="5" />
-				<rotate axis="x" angle="60" />
-				<scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="ring" />
-            </children>
-
-        </component>
-
-        <component id="Orbital5" >
-
-            <transformation>
-           		<translate x="2" y="4" z="5" />
-           		<rotate axis="x" angle="100" />
-				<scale x= "3" y="4" z="3" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="ring" />
-            </children>
-
-        </component>
-
-         <component id="Eletron1" >
-
-            <transformation>
-                <translate x="14" y="4" z="13.5" />
-                <scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="electron" />
-            </children>
-
-        </component>
-
-		 <component id="Eletron2" >
-
-            <transformation>
-                <translate x="-10" y="12" z="4.5" />
-				<scale x="2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="electron" />
-            </children>
-
-        </component>
-
-        <component id="Eletron3" >
-
-            <transformation>
-                <translate x="25.3" y="8.5" z="12.5" />
-				<scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="electron" />
-            </children>
-
-        </component>
-
-        <component id="Eletron4" >
-
-            <transformation>
-                <translate x="2" y="-22" z="4" />
-				<scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="electron" />
-            </children>
-
-        </component>
-
-        <component id="Eletron5" >
-
-            <transformation>
-                <translate x="-17.8" y="9" z="-24.5" />
-				<scale x= "2.5" y="2.5" z="2.5" />
-            </transformation>
-
-            <materials>
-                <material id="inherit" />
-            </materials>
-
-            <texture id="inherit" />
-
-            <children>
-                <primitiveref id="electron" />
-            </children>
-
-			<animation>
-				  <animationref id="animation1orbital1" />
-			</animation>
-
-        </component>
-
-
-        <component id="side1">
-
-            <transformation>
-
-                <transformationref id="side1" />
-
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
-
-        <component id="side2">
-
-            <transformation>
-
-                <transformationref id="side2" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-              <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
-
-        <component id="side3">
-
-            <transformation>
-
-				 <transformationref id="side3" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-           <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
-
-        <component id="side4">
-
-            <transformation>
-
-                <transformationref id="side4" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-          <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
-
-        <component id="side5">
-
-          <transformation>
-
-                <transformationref id="side5" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-          <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
-
-        <component id="side6">
-
-            <transformation>
-
-                <transformationref id="side6" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-          <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
 
     </components>
 
