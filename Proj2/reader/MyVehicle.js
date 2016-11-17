@@ -61,7 +61,7 @@ MyVehicle.prototype.initBuffers = function() {
 MyVehicle.prototype.display = function(){
 
 	this.scene.pushMatrix();
-	this.scene.scale(4,4,4);
+	this.scene.scale(4,4,8);
 	this.patch.display();
 	this.scene.popMatrix();
 
@@ -72,7 +72,7 @@ MyVehicle.prototype.display = function(){
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
-	this.scene.translate(1.75,-3,4);
+	this.scene.translate(1.75,-3,8);
 	this.scene.rotate(Math.PI/2,0,1,0);
 	this.wheel.display();
 	this.scene.popMatrix();
@@ -84,7 +84,7 @@ MyVehicle.prototype.display = function(){
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
-	this.scene.translate(-3.50,-3,4);
+	this.scene.translate(-3.50,-3,8);
 	this.scene.rotate(Math.PI/2,0,1,0);
 	this.wheel.display();
 	this.scene.popMatrix();
