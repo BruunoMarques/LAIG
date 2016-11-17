@@ -38,17 +38,17 @@ MyComponent.prototype.update = function(timeset){
             var animate = this.animations[i];
 			
 			
-            if(animate instanceof LinearAnimation){
+            if(animate instanceof MyLinearAnimation){
                 for(var j =0; j< animate.cPoints.length;j++){
-                    if(animate.times[j] > this.totalTime && animate.next_anim[j]){
-                        animate.translate.x += animate.walk_d[j][0] * timeset;
-                        animate.translate.y += animate.walk_d[j][1] * timeset;
-                        animate.translate.z += animate.walk_d[j][2] * timeset;
+                    if(animate.intervals[j] > this.totalTime && animate.animRefBool[j]){
+                        animate.translate.x += animate.moveDistance[j][0] * timeset;
+                        animate.translate.y += animate.moveDistance[j][1] * timeset;
+                        animate.translate.z += animate.moveDistance[j][2] * timeset;
                     }
 					
-                    else if(animate.times[j] <= this.totalTime){
+                    else if(animate.intervals[j] <= this.totalTime){
 						
-                        animate.next_anim[j+1]= true;
+                        animate.animRefBool[j+1]= true;
                         if(j+1 != animate.cPoints.length)animate.rotate = animate.angles[j+1];
                         else{
 							
@@ -60,11 +60,11 @@ MyComponent.prototype.update = function(timeset){
                     }
                 }
             }
-            else if(animate instanceof CircularAnimation){
+            else if(animate instanceof MyCircularAnimation){
 				
                 if(animate.time > this.totalTime){
-                    animate.ang_ant = animate.angle_temp;
-                    animate.angle_temp += (animate.angle_per_it) * timeset;
+                    animate.prevAngle = animate.currAngle;
+                    animate.currAngle += (animate.rotspeed) * timeset;
                 }
 				
 				
@@ -73,7 +73,7 @@ MyComponent.prototype.update = function(timeset){
                     this.totalTime = 0;
                     if(this.currAnimation < this.animations.length)
                         if(this.animations[i+1] instanceof LinearAnimation)
-                            this.animations[i+1].translate = new Point(animate.final_point.x-this.origin.x, animate.final_point.y-this.origin.y, animate.final_point.z-this.origin.z);
+                            this.animations[i+1].translate = new Point(animate.lastpoint.x-this.origin.x, animate.lastpoint.y-this.origin.y, animate.lastpoint.z-this.origin.z);
 				}
             }
 

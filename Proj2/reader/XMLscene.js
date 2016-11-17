@@ -357,7 +357,7 @@ XMLscene.prototype.animation = function(vertex){
 	}
 	var animate = vertex.component.animations[index];
 	
-	if(animate instanceof LinearAnimation){
+	if(animate instanceof MyLinearAnimation){
         this.translate(animate.translate.x,animate.translate.y,animate.translate.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
         this.rotate(animate.rotate,0,1,0);
@@ -365,11 +365,11 @@ XMLscene.prototype.animation = function(vertex){
     }
 	
 	
-    else if(animate instanceof CircularAnimation){
+    else if(animate instanceof MyCircularAnimation){
         this.translate(animate.center.x,animate.center.y,animate.center.z);
-        this.rotate(animate.angle_temp,0,1,0);
-        this.translate(animate.xi,animate.yi,animate.zi);
-        this.rotate(Math.PI/2 + animate.angle_temp,0,1,0);
+        this.rotate(animate.currangle,0,1,0);
+        this.translate(animate.x1,animate.y1,animate.z1);
+        this.rotate(Math.PI/2 + animate.currangle,0,1,0);
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
     }
 }
