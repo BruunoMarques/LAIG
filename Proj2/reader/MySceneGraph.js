@@ -545,7 +545,7 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
     if((emptyvar = this.isPrimitive(types[4], id, vertex, "torus")) == null)
 		if((emptyvar = this.isPrimitive(types[5], id, vertex, "plane")) == null)
 		if((emptyvar = this.isPrimitive(types[6], id, vertex, "patch")) == null)
-		if((emptyvar = this.isPrimitive(types[6], id, vertex, "vehicle")) == null)
+		if((emptyvar = this.isPrimitive(types[7], id, vertex, "vehicle")) == null)
                         return;
 
 

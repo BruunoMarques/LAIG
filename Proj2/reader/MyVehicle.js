@@ -44,7 +44,7 @@ function MyVehicle(scene) {
 											[0.015,	-0.620,	1.564],
 											[0.012,	-0.612,	1.554]];
 
-
+console.log(this.controlPoints);
 
 	this.initBuffers();
 };
@@ -53,13 +53,40 @@ MyVehicle.prototype = Object.create(CGFobject.prototype);
 MyVehicle.prototype.constructor=MyVehicle;
 
 MyVehicle.prototype.initBuffers = function() {
+
 	this.patch = new MyPatch(this.scene, 5, 5, 20, 20, this.controlPoints);
+	this.wheel = new MyCylinder(this.scene,1.75,1.75,1.5,30,20);
 }
 
 MyVehicle.prototype.display = function(){
 
 	this.scene.pushMatrix();
+	this.scene.scale(4,4,4);
 	this.patch.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.translate(2,-3,-2);
+	this.scene.rotate(Math.PI/2,0,1,0);
+	this.wheel.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.translate(1.75,-3,4);
+	this.scene.rotate(Math.PI/2,0,1,0);
+	this.wheel.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.translate(-3.75,-3,-2);
+	this.scene.rotate(Math.PI/2,0,1,0);
+	this.wheel.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.translate(-3.50,-3,4);
+	this.scene.rotate(Math.PI/2,0,1,0);
+	this.wheel.display();
 	this.scene.popMatrix();
 
 
