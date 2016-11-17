@@ -169,16 +169,28 @@
             <rectangle x1="0" y1="0" x2="2" y2="2" />
         </primitive>
 
-        <primitive id="plane">
-         <plane dimX="2" dimY="3" partsX="2" partsY="2"/>
-         </primitive>
+         <primitive id="patch">
+			<patch orderU="2" orderV="3" partsU="20" partsV="20" >
+				<controlpoint x="-1.5" y="-1.5" z="0" />
+				<controlpoint x="-2" y="-2" z="2" />
+				<controlpoint x="-2" y="2" z="2" />
+				<controlpoint x="-1.5" y="1.5" z="0" />
 
+				<controlpoint x="0" y="0" z="3" />
+				<controlpoint x="0" y="-2" z="3" />
+				<controlpoint x="0" y="2" z="3" />
+				<controlpoint x="0" y="0" z="3" />
 
-          <primitive id="patch">
-         <patch orderU="1" orderV="2" partsU="3" partsV="4" >
-            <controlpoint x="1" y="1" z="1" />
-          </patch>
-          </primitive>
+				<controlpoint x="1.5" y="-1.5" z="0" />
+				<controlpoint x="2" y="-2" z="2" />
+				<controlpoint x="2" y="2" z="2" />
+				<controlpoint x="1.5" y="1.5" z="0" />
+			</patch>
+		</primitive>
+
+      <primitive id="plane">
+    			 <plane dimX="3" dimY="2" partsX="10" partsY="7"/>
+    		</primitive>
 
     </primitives>
 
@@ -203,7 +215,7 @@
 
             <children>
 
-  				<primitiveref id="patch" />
+  				<primitiveref id="plane" />
 
             </children>
 

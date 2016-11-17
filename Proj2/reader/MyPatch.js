@@ -5,7 +5,21 @@ function MyPatch(scene, orderU, orderV, partsU, partsV, controlPoints) {
 	this.orderV = orderV;
 	this.partsU = partsU;
 	this.partsV = partsV;
-	this.controlPoints = controlPoints;
+	this.ControlPoints = [];
+
+	console.log(controlPoints);
+
+	for(var i = 0; i <= this.orderU; i++)
+	{
+		var temp = [];
+		for(var j = 0; j <= this.orderV; j++)
+		{
+			var newControlPoint = controlPoints[i*(this.orderV + 1) + j];
+			newControlPoint.push(1);
+			temp.push(newControlPoint);
+		}
+		this.ControlPoints.push(temp);
+	}
 
 	this.patch = this.makeSurface();
 
@@ -33,7 +47,7 @@ MyPatch.prototype.makeSurface = function () {
 	var knots2 = this.getKnotsVector(this.orderV); // to be built inside webCGF in later versions
 
 
-	var nurbsSurface = new CGFnurbsSurface(this.orderU, this.orderV, knots1, knots2, this.controlPoints); // TODO  (CGF 0.19.3): remove knots1 and knots2 from CGFnurbsSurface method call. Calculate inside method.
+	var nurbsSurface = new CGFnurbsSurface(this.orderU, this.orderV, knots1, knots2, this.ControlPoints); // TODO  (CGF 0.19.3): remove knots1 and knots2 from CGFnurbsSurface method call. Calculate inside method.
 	getSurfacePoint = function(u, v) {
 		return nurbsSurface.getPoint(u, v);
 	};

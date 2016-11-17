@@ -1,28 +1,51 @@
-function MyPlane(scene, dimX, dimY, partsX, partsY) {
-	CGFobject.call(this, scene);
+/**
+ *  Class containing a list of vertices, indices, normals and texCoords to draw a plane (using nurbsSurface).
+ */
 
-	this.dimX = dimX;
-	this.dimY = dimY;
-	this.partsX = partsX;
-	this.partsY = partsY;
-
-	this.controlPoints = [
-                        [-this.dimX/2,-this.dimY/2, 0],
-                        [-this.dimX/2,this.dimY/2, 0],
-                        [this.dimX/2,-this.dimY/2, 0],
-                        [this.dimX/2,this.dimY/2, 0]
-                      ];
+/**
+ * Creates a MyPlane object.
+ */
+function MyPlane(scene, dimX, dimY, partsX, partsY)
+{
+	CGFobject.call(this,scene);
+	this.scene = scene;
+	this.dimX = dimX; //plane length along the x axis
+	this.dimY = dimY; //plane length along the y axis
+	this.partsX = partsX; //number of divisions along the x axis
+	this.partsY = partsY; //number of division along the y axis
+	this.controlPoints = this.getControlPoints();
 
 	this.patch = new MyPatch(this.scene,1,1,partsX,partsY,this.controlPoints);
-
-	this.initBuffers();
 };
 
 MyPlane.prototype = Object.create(CGFobject.prototype);
 MyPlane.prototype.constructor=MyPlane;
 
-MyPlane.prototype.display = function(){
+/**
+ * Returns a list of the (x,y,z) control points coordinates needed to draw the plane surface.
+ */
+MyPlane.prototype.getControlPoints = function () {
 
+	var controlPoints = [];
+
+	var halfDimX = this.dimX / 2;
+	var halfDimY = this.dimY / 2;
+
+	//For U = 0
+	controlPoints.push([-halfDimX, -halfDimY, 0]);
+	controlPoints.push([-halfDimX, halfDimY, 0]);
+
+	//For U = 1
+	controlPoints.push([halfDimX, -halfDimY, 0]);
+	controlPoints.push([halfDimX, halfDimY, 0]);
+
+	return controlPoints;
+};
+
+/**
+* Displays the MyPlane object.
+*/
+MyPlane.prototype.display = function ()
+{
 	this.patch.display();
-
-}
+};

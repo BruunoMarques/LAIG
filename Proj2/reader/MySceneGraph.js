@@ -507,7 +507,6 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			this.planes[obj.size_pl][2] = this.reader.getFloat(e.children[index],'dimY',true);
 			this.planes[obj.size_pl][3] = this.reader.getFloat(e.children[index],'partsX',true);
 			this.planes[obj.size_pl][4] = this.reader.getFloat(e.children[index],'partsY',true);
-			console.log(id);
 			obj.size_pl+=1;
 			break;
 
@@ -518,9 +517,10 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			this.patches[obj.size_pt][2] = this.reader.getFloat(e.children[index],'orderV',true);
 			this.patches[obj.size_pt][3] = this.reader.getFloat(e.children[index],'partsU',true);
 			this.patches[obj.size_pt][4] = this.reader.getFloat(e.children[index],'partsV',true);
-			console.log(e.children[index].children[0]);
-			this.patches[obj.size_pt][5] = this.getControlPointPatch(e.children[index].children[0]);
-			console.log(id);
+			this.patches[obj.size_pt][5] = [];
+			for(var i = 0; i < e.children[index].children.length; i++ ){
+				this.patches[obj.size_pt][5][i] = this.getControlPointPatch(e.children[index].children[i]);
+			}
 			obj.size_pt+=1;
 			break;
 	}
@@ -757,6 +757,5 @@ MySceneGraph.prototype.getControlPointPatch = function(transf){
 	this.pt.push(xx);
 	this.pt.push(yy);
 	this.pt.push(zz);
-	console.log(this.pt);
 	return this.pt;
 }
