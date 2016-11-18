@@ -634,7 +634,6 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 					}
 					console.log(type.animations);
 					if (type.animations.length == 0){
-					console.log("tat");	
 					type.startOrigin();
 					}
 					if (animationref instanceof MyLinearAnimation){
@@ -645,7 +644,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 					}
 				else{
-					
+					console.log(type.animations[type.animations.length -1 ]);
 				}
 				type.animations.push(animationref);
 				}
