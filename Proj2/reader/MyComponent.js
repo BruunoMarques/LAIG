@@ -28,6 +28,16 @@ function MyComponent() {
 MyComponent.prototype = Object.create(CGFscene.prototype);
 MyComponent.prototype.constructor = MyComponent;
 
+MyComponent.prototype.startOrigin = function(){
+	console.log("did me");
+	var originvalue = vec3.fromValues(0,0,0);
+	var v0 = vec3.fromValues(1, 0, 0);
+    var v1 = vec3.fromValues(0, 1, 0);
+    var v2 = vec3.fromValues(0, 0, 1);
+	vec3.transformMat4(originvalue,vec3.fromValues(0,0,0), this.matrix);
+	this.origin = new MyPoint(vec3.dot(originvalue,v0),vec3.dot(originvalue,v1),vec3.dot(originvalue,v2));
+}
+
 
 MyComponent.prototype.update = function(timeset){
     this.totalTime += timeset;

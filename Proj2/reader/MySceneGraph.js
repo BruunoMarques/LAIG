@@ -339,6 +339,8 @@ MySceneGraph.prototype.parseTransformations = function(rootElement){
 
 MySceneGraph.prototype.parseAnimations = function(rootElement){
 	var elems = rootElement.getElementsByTagName('animations');
+	
+	this.animationsList = [];
 
 	var size = elems[0].children.length;
 	if(size == 0)
@@ -347,8 +349,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 	for(var i = 0; i < size; i++){
 		var e = elems[0].children[i];
 
-		this.animationsList = [];
-
+	
 		var numRef = this.reader.getString(e,'id',true);
 		if(this.animationsList.indexOf(numRef) != -1)return "numRef repeated!";
 
@@ -368,9 +369,9 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 				this.controlPoints.push(this.cp);
 			}
 
-			console.log(this.controlPoints);
-			var thing = new MyLinearAnimation(numRef,type,this.controlPoints);
-			console.log(thing);
+			var object = new MyLinearAnimation(numRef,type,this.controlPoints);
+			this.animationsList.push(object);
+
 		}else if(type == "circular"){
 
 			var radius = this.reader.getFloat(e,'radius',true);
@@ -380,11 +381,12 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var startang = this.reader.getFloat(e,'startang',true);
 			var rotang = this.reader.getFloat(e,'rotang',true);
 
- 			this.animationsList[i] = new MyCircularAnimation(numRef,span,radius,centerx,centery,centerz,startang,rotang);
+ 			var object = new MyCircularAnimation(numRef,span,radius,centerx,centery,centerz,startang,rotang);
+			this.animationsList.push(object);
 		}else
 			return "animation type invalid!";
 	}
-
+		console.log(this.animationsList);
 	return 	this.parsePrimitives(rootElement);
 }
 
@@ -619,6 +621,34 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
                         if(type.matrix == -1) return  type.transformation_ref;
 					}
 				}
+				
+				
+				if(child.nodeName == "animation"){
+					console.log("this");
+					var obj_id = this.reader.getString(transf,"id",true);
+					console.log(obj_id);
+					for (i = 0; i < this.animationsList.length; i++){
+						if(obj_id == this.animationsList[i].id) {
+							var animationref = this.animationsList[i].duplicate();
+							} 
+					}
+					console.log(type.animations);
+					if (type.animations.length == 0){
+					console.log("tat");	
+					type.startOrigin();
+					}
+					if (animationref instanceof MyLinearAnimation){
+						var originalvec = vec3.fromValues(type.origin.x,type.origin.y,type.origin.z);
+						var startpoint = animationref.controlPoints[0];
+						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint.x,startpoint.y,startpoint.z), originalvec);
+						animationref.speed = animationref.distance/animationref.span;
+						animationref.duration(originalvec);
+					}
+				else{
+					
+				}
+				type.animations.push(animationref);
+				}
 
 				if(child.nodeName == "materials"){
 					if(child.children.length < 1)
@@ -643,12 +673,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 
 				}
 
-				if(child.nodeName == "animation"){
-					var obj_id = this.reader.getString(transf,"id",true);
-					if(transf.nodeName == "animationref")
-						type.animations.push(obj_id);
-				console.log(obj_id);
-				}
+
 
 			}
 		}
@@ -711,6 +736,9 @@ MySceneGraph.prototype.getMatrix = function (e) {
     return matrix;
 }
 
+
+
+
 MySceneGraph.prototype.degConverter = function(degrees) {
     return degrees * Math.PI / 180;
 };
@@ -768,3 +796,4 @@ MySceneGraph.prototype.getControlPointPatch = function(transf){
 	this.pt.push(zz);
 	return this.pt;
 }
+

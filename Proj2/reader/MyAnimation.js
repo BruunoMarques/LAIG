@@ -7,7 +7,7 @@ class MyAnimation {
 	
 AngleCalc(x,z,dirZ){
 	var anglevec = vec3.fromValues(x,0,z);
-	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( Math.dot([x,z],[x,z]));
+	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( x*x,z*z);
 	var angle = Math.acos(cosvar);
 	if (x < 0){
 		angle = Math.PI*2-angle;
@@ -19,7 +19,7 @@ AngleCalc(x,z,dirZ){
 
 class MyLinearAnimation extends MyAnimation{
 	constructor(id,span,controlPoints){
-		console.log(id);
+		
 		super(id,span);
 		this.controlPoints = controlPoints;
 		this.speed = 0;
@@ -37,7 +37,7 @@ class MyLinearAnimation extends MyAnimation{
 		
 		this.animRefBool = [];
 		this.animRefBool[0] = true;
-		
+		console.log(this.controlPoints);
 		for(var i = 0; i < this.controlPoints.length -1; i++){
           var OriginPoint= this.controlPoints[i+1];
           var destination = vec3.fromValues(this.controlPoints[i].x,this.controlPoints[i].y,this.controlPoints[i].z);
@@ -73,7 +73,7 @@ duration(matrix){
           var move = [(x/interval), (y/interval), (z/interval)];
 		  
           this.moveDistance.push(move);
-          origin = vec3.fromValues(currpoint.x,currpoint.y,currpoint.z);
+          this.origin = vec3.fromValues(currpoint.x,currpoint.y,currpoint.z);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
       }
@@ -85,7 +85,7 @@ duration(matrix){
 
 	
 duplicate(){
-      var dup = new MyLinearAnimation(this.id, this.span, this.cPoints);
+      var dup = new MyLinearAnimation(this.id, this.span, this.controlPoints);
       return dup;
   }
 }
