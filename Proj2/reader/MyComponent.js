@@ -29,6 +29,7 @@ MyComponent.prototype = Object.create(CGFscene.prototype);
 MyComponent.prototype.constructor = MyComponent;
 
 MyComponent.prototype.startOrigin = function(){
+	console.log("executing");
 	var originvalue = vec3.fromValues(0,0,0);
 	var v0 = vec3.fromValues(1, 0, 0);
     var v1 = vec3.fromValues(0, 1, 0);

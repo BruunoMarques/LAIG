@@ -369,7 +369,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 				this.controlPoints.push(this.cp);
 			}
 
-			var object = new MyLinearAnimation(numRef,type,this.controlPoints);
+			var object = new MyLinearAnimation(numRef,span,this.controlPoints);
 			this.animationsList.push(object);
 
 		}else if(type == "circular"){
@@ -386,7 +386,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		}else
 			return "animation type invalid!";
 	}
-		console.log(this.animationsList);
+		
 	return 	this.parsePrimitives(rootElement);
 }
 
@@ -624,22 +624,23 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 				
 				
 				if(child.nodeName == "animation"){
-					console.log("this");
+
 					var obj_id = this.reader.getString(transf,"id",true);
-					console.log(obj_id);
+
 					for (i = 0; i < this.animationsList.length; i++){
 						if(obj_id == this.animationsList[i].id) {
 							var animationref = this.animationsList[i].duplicate();
 							} 
 					}
-					console.log(type.animations);
+					console.log(type.animations.length);
 					if (type.animations.length == 0){
 					type.startOrigin();
 					}
 					if (animationref instanceof MyLinearAnimation){
 						var originalvec = vec3.fromValues(type.origin.x,type.origin.y,type.origin.z);
+						console.log(originalvec);
 						var startpoint = animationref.controlPoints[0];
-						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint.x,startpoint.y,startpoint.z), originalvec);
+						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint[0],startpoint[1],startpoint[2]), originalvec);
 						animationref.speed = animationref.distance/animationref.span;
 						animationref.duration(originalvec);
 					}
@@ -647,6 +648,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 					console.log(type.animations[type.animations.length -1 ]);
 				}
 				type.animations.push(animationref);
+				console.log(type.animations);
 				}
 
 				if(child.nodeName == "materials"){

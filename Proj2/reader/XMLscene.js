@@ -199,7 +199,7 @@ XMLscene.prototype.displayMaterial = function (vertex) {
     else if(indice == "inherit")
         return false;
     else
-        console.log("smthing is wrong with materials, and shouldnt be by this point");
+        console.log("abort mission");
     return false;
 }
 
@@ -250,8 +250,9 @@ XMLscene.prototype.RecursiveSearch = function (vertex) {
 	
     var matCheck = this.displayMaterial(vertex);
     var texCheck = this.displayTexture(vertex);
-	
-	if (vertex.component.animations.lenght > 0){
+
+	if (vertex.component.animations.length > 0){
+
 		this.animation(vertex);
 	}
     this.multMatrix(vertex.component.matrix);
@@ -350,15 +351,16 @@ XMLscene.prototype.update = function(currTime){
 
 
 XMLscene.prototype.animation = function(vertex){
+
 	var originPoint = vertex.component.origin;
 	var index = vertex.component.currAnimation;
-	if(indice == vertex.component.animations.length){
+	if(index == vertex.component.animations.length){
 		index--;
 	}
 	var animate = vertex.component.animations[index];
 	
 	if(animate instanceof MyLinearAnimation){
-        this.translate(animate.translate.x,animate.translate.y,animate.translate.z);
+        this.translate(animate.translation.x,animate.translation.y,animate.translation.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
         this.rotate(animate.rotate,0,1,0);
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);

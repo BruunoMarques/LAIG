@@ -1,7 +1,7 @@
 class MyAnimation {
 	constructor(id,span){
 		this.id = id;
-		this.span = id;
+		this.span = span;
 	}
 		
 	
@@ -37,16 +37,16 @@ class MyLinearAnimation extends MyAnimation{
 		
 		this.animRefBool = [];
 		this.animRefBool[0] = true;
-		console.log(this.controlPoints);
 		for(var i = 0; i < this.controlPoints.length -1; i++){
           var OriginPoint= this.controlPoints[i+1];
-          var destination = vec3.fromValues(this.controlPoints[i].x,this.controlPoints[i].y,this.controlPoints[i].z);
-          var origin = vec3.fromValues(OriginPoint.x,OriginPoint.y,OriginPoint.z);
+          var destination = vec3.fromValues(this.controlPoints[i][0],this.controlPoints[i][1],this.controlPoints[i][2]);
+		  var origin = vec3.fromValues(OriginPoint[0],OriginPoint[1],OriginPoint[2]);
+
           this.distance += vec3.distance(destination, origin);
           this.animRefBool.push(false);
       }
 		
-		
+		console.log(this);
 	}
 
 duration(matrix){
@@ -58,9 +58,10 @@ duration(matrix){
 	
 	for(var i = 0;i < this.controlPoints.length;i++){
           var currpoint = this.controlPoints[i];
-          var nextpoint = vec3.fromValues(currpoint.x,currpoint.y,currpoint.z);
+          var nextpoint = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var distance = vec3.distance(nextpoint, original);
           this.distances.push(distance);
+		  console.log(distance);
           var interval = distance/this.speed;
           time += interval;
           this.intervals.push(time);
@@ -73,7 +74,7 @@ duration(matrix){
           var move = [(x/interval), (y/interval), (z/interval)];
 		  
           this.moveDistance.push(move);
-          this.origin = vec3.fromValues(currpoint.x,currpoint.y,currpoint.z);
+          this.origin = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
       }
