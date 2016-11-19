@@ -51,22 +51,21 @@ MyComponent.prototype.update = function(timeset){
             if(animate instanceof MyLinearAnimation){
                 for(var j =0; j< animate.controlPoints.length;j++){
                     if(animate.intervals[j] > this.totalTime && animate.animRefBool[j]){
-						console.log("sets");
+						
                         animate.translation.x += animate.moveDistance[j][0] * timeset;
                         animate.translation.y += animate.moveDistance[j][1] * timeset;
                         animate.translation.z += animate.moveDistance[j][2] * timeset;
                     }
 					
                     else if(animate.intervals[j] <= this.totalTime){
-						console.log("does else if");
+
                         animate.animRefBool[j+1]= true;
                         if(j+1 != animate.controlPoints.length)animate.rotate = animate.angles[j+1];
                         else{
-							console.log("does else");
                             this.currAnimation++;
                             this.totalTime = 0;
                             if(this.currAnimation < this.animations.length)
-                                if(this.animations[i+1] instanceof LinearAnimation)this.animations[i+1].translation = animate.translation;
+                                if(this.animations[i+1] instanceof MyLinearAnimation)this.animations[i+1].translation = animate.translation;
                         }
                     }
                 }

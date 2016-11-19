@@ -658,18 +658,27 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 					type.startOrigin();
 					}
 					if (animationref instanceof MyLinearAnimation){
+						if (type.animations.length < 1){
 						var originalvec = vec3.fromValues(type.origin.x,type.origin.y,type.origin.z);
 						console.log(originalvec);
 						var startpoint = animationref.controlPoints[0];
 						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint[0],startpoint[1],startpoint[2]), originalvec);
 						animationref.speed = animationref.distance/animationref.span;
 						animationref.duration(originalvec);
+						}
+						else{
+						var previousref = type.animations[type.animations.length -1].controlPoints;
+						var originalvec = vec3.fromValues(previousref[previousref.length-1][0],
+						previousref[previousref.length-1][1],
+						previousref[previousref.length-1][2]);
+						var startpoint = animationref.controlPoints[0];
+						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint[0],startpoint[1],startpoint[2]), originalvec);
+						animationref.speed = animationref.distance/animationref.span;
+						animationref.duration(originalvec);
 					}
-				else{
-					console.log(type.animations[type.animations.length -1 ]);
 				}
+				
 				type.animations.push(animationref);
-				console.log(type.animations);
 				}
 
 				if(child.nodeName == "materials"){

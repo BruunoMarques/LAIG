@@ -340,9 +340,8 @@ XMLscene.prototype.update = function(currTime){
 		this.totalTime = 0;
 		this.time = 0;	
 		}
-		console.log(!this.stop_anim);
+
 	if(!this.stop_anim){
-		console.log(this.animComps.length);
 		for(var i =0; i <this.animComps.length; i++){
 			this.animComps[i].update(this.actualTime);
 		}
@@ -361,7 +360,7 @@ XMLscene.prototype.animation = function(vertex){
 	var animate = vertex.component.animations[index];
 	
 	if(animate instanceof MyLinearAnimation){
-		console.log(animate);
+
         this.translate(animate.translation.x,animate.translation.y,animate.translation.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
         this.rotate(animate.rotangle,0,1,0);
