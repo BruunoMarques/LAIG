@@ -340,8 +340,10 @@ XMLscene.prototype.update = function(currTime){
 		this.totalTime = 0;
 		this.time = 0;	
 		}
+		console.log(!this.stop_anim);
 	if(!this.stop_anim){
-		for(var i =0; i <this.animComps.lenght; i++){
+		console.log(this.animComps.length);
+		for(var i =0; i <this.animComps.length; i++){
 			this.animComps[i].update(this.actualTime);
 		}
 	}	

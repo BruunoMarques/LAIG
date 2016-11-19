@@ -49,7 +49,7 @@ MyComponent.prototype.update = function(timeset){
 			
 			
             if(animate instanceof MyLinearAnimation){
-                for(var j =0; j< animate.cPoints.length;j++){
+                for(var j =0; j< animate.controlPoints.length;j++){
                     if(animate.intervals[j] > this.totalTime && animate.animRefBool[j]){
 						console.log("sets");
                         animate.translation.x += animate.moveDistance[j][0] * timeset;
@@ -60,7 +60,7 @@ MyComponent.prototype.update = function(timeset){
                     else if(animate.intervals[j] <= this.totalTime){
 						console.log("does else if");
                         animate.animRefBool[j+1]= true;
-                        if(j+1 != animate.cPoints.length)animate.rotate = animate.angles[j+1];
+                        if(j+1 != animate.controlPoints.length)animate.rotate = animate.angles[j+1];
                         else{
 							console.log("does else");
                             this.currAnimation++;
