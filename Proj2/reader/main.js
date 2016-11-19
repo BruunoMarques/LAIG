@@ -12,7 +12,9 @@ function getUrlVars() {
 }
 
 
-serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyComponent.js', 'Node.js', 'MyGraph.js', 'MyRectangle.js', 'MyCylinder.js' , 'MySphere.js' , 'MyTriangle.js', 'MyTorus.js',  'MyCylinderWithTops.js', 'MyCircle.js', 'MyAnimation.js', 'MyPlane.js', 'MyPatch.js','MyPoint.js','MyVehicle.js','MyChessboard.js',
+serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyComponent.js', 'Node.js', 'MyGraph.js',
+    'MyRectangle.js', 'MyCylinder.js' , 'MySphere.js' , 'MyTriangle.js', 'MyTorus.js',  'MyCylinderWithTops.js', 'MyCircle.js',
+     'MyAnimation.js', 'MyPlane.js', 'MyPatch.js','MyPoint.js','MyVehicle.js','MyChessboard.js',
 
 
 main=function()
@@ -32,7 +34,7 @@ main=function()
 	// get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml
 	// or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor)
 
-	var filename=getUrlVars()['file'] || "LAIG_TP1_DSX_T4_G08_v03 - bicho.dsx";
+	var filename=getUrlVars()['file'] || "LAIG_TP1_DSX_T4_G08_v03 - salsicha.dsx";
 
 	// create and load graph, and associate it to scene.
 	// Check console for loading errors

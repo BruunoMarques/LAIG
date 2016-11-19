@@ -339,7 +339,7 @@ MySceneGraph.prototype.parseTransformations = function(rootElement){
 
 MySceneGraph.prototype.parseAnimations = function(rootElement){
 	var elems = rootElement.getElementsByTagName('animations');
-	
+
 	this.animationsList = [];
 
 	var size = elems[0].children.length;
@@ -349,7 +349,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 	for(var i = 0; i < size; i++){
 		var e = elems[0].children[i];
 
-	
+
 		var numRef = this.reader.getString(e,'id',true);
 		if(this.animationsList.indexOf(numRef) != -1)return "numRef repeated!";
 
@@ -386,7 +386,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		}else
 			return "animation type invalid!";
 	}
-		
+
 	return 	this.parsePrimitives(rootElement);
 }
 
@@ -407,6 +407,7 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.planes = [];
 	this.patches = [];
 	this.vehicles = [];
+	this.chessboards = [];
 
 	var obj = {
 		size_r : 0,
@@ -416,7 +417,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 		size_d : 0,
 		size_pt : 0,
 		size_pl : 0,
-		size_v : 0
+		size_v : 0,
+		size_ch : 0
 	};
 
 
@@ -533,6 +535,23 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 				this.vehicles[obj.size_v][0] = id;
 				obj.size_v+=1;
 				break;
+
+			case "chessboard":
+				this.chessboards[obj.size_ch] = [];
+				this.chessboards[obj.size_ch][0] = id;
+				this.chessboards[obj.size_ch][1] = this.reader.getFloat(e.children[index],'du',true);
+				this.chessboards[obj.size_ch][2] = this.reader.getFloat(e.children[index],'dv',true);
+				this.chessboards[obj.size_ch][3] = this.reader.getString(e.children[index],'textureref',true);
+				this.chessboards[obj.size_ch][4] = this.reader.getFloat(e.children[index],'su',true);
+				this.chessboards[obj.size_ch][5] = this.reader.getFloat(e.children[index],'sv',true);
+				this.chessboards[obj.size_ch][6] = [];
+				this.getRGBA(this.chessboards[obj.size_ch][6], e.children[index].children[0]);
+				this.chessboards[obj.size_ch][7] = [];
+				this.getRGBA(this.chessboards[obj.size_ch][7], e.children[index].children[1]);
+				this.chessboards[obj.size_ch][8] = [];
+				this.getRGBA(this.chessboards[obj.size_ch][8], e.children[index].children[2]);
+				obj.size_ch+=1;
+				break;
 	}
 
 }
@@ -548,6 +567,7 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
 		if((emptyvar = this.isPrimitive(types[5], id, vertex, "plane")) == null)
 		if((emptyvar = this.isPrimitive(types[6], id, vertex, "patch")) == null)
 		if((emptyvar = this.isPrimitive(types[7], id, vertex, "vehicle")) == null)
+		if((emptyvar = this.isPrimitive(types[8], id, vertex, "chessboard")) == null)
                         return;
 
 
@@ -583,7 +603,8 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 
 
     var types = [];
-    types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);	types.push(this.planes);	types.push(this.patches); types.push(this.vehicles);
+    types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
+		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards);
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];
@@ -621,8 +642,8 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
                         if(type.matrix == -1) return  type.transformation_ref;
 					}
 				}
-				
-				
+
+
 				if(child.nodeName == "animation"){
 
 					var obj_id = this.reader.getString(transf,"id",true);
@@ -630,7 +651,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 					for (i = 0; i < this.animationsList.length; i++){
 						if(obj_id == this.animationsList[i].id) {
 							var animationref = this.animationsList[i].duplicate();
-							} 
+							}
 					}
 					console.log(type.animations.length);
 					if (type.animations.length == 0){
@@ -797,4 +818,3 @@ MySceneGraph.prototype.getControlPointPatch = function(transf){
 	this.pt.push(zz);
 	return this.pt;
 }
-

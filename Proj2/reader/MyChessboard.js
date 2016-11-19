@@ -10,8 +10,14 @@ function MyChessboard(scene, du, dv, textureref, su, sv, c1, c2, cs) {
 	this.c2 = c2;
 	this.cs = cs;
 
+	this.plane = new MyPlane(this.scene,1,1,this.du,this.dv);
+
 	this.initBuffers();
 };
 
 MyChessboard.prototype = Object.create(CGFobject.prototype);
 MyChessboard.prototype.constructor=MyChessboard;
+
+MyChessboard.prototype.display = function(){
+
+}
