@@ -10,7 +10,8 @@ function MyChessboard(scene, du, dv, textureref, su, sv, c1, c2, cs) {
 	this.c2 = c2;
 	this.cs = cs;
 
-	this.plane = new MyPlane(this.scene,1,1,this.du,this.dv);
+	this.plane = new MyPlane(this.scene,1,1,this.du*10,this.dv*10);
+	this.texture = new CGFtexture(this.scene, textureref);
 
 	this.initBuffers();
 };
