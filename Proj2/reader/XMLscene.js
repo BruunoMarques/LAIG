@@ -14,7 +14,7 @@ XMLscene.prototype.init = function (application) {
 	this.totalTime = 0;
 	this.actualTime =0;
 	this.waitTime = 1;
-	this.stop_anim = false;
+	this.stop_anim = true;
 	this.animComps = [];
 	
     this.initCameras();
@@ -326,13 +326,11 @@ XMLscene.prototype.display = function () {
 };
 
 XMLscene.prototype.update = function(currTime){
+
+	this.actualTime = (currTime - this.time) /1000;
 	if (this.time == 0){
 		this.actualTime = 0;
 	}
-	else{
-			this.actualTime = (currTime - this.time)/1000;
-	}
-
 
 	this.time = currTime;  
 	this.totalTime += this.actualTime;
@@ -351,8 +349,9 @@ XMLscene.prototype.update = function(currTime){
 
 
 XMLscene.prototype.animation = function(vertex){
-
+	
 	var originPoint = vertex.component.origin;
+	console.log(originPoint);
 	var index = vertex.component.currAnimation;
 	if(index == vertex.component.animations.length){
 		index--;
@@ -360,9 +359,10 @@ XMLscene.prototype.animation = function(vertex){
 	var animate = vertex.component.animations[index];
 	
 	if(animate instanceof MyLinearAnimation){
+		console.log(animate);
         this.translate(animate.translation.x,animate.translation.y,animate.translation.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
-        this.rotate(animate.rotate,0,1,0);
+        this.rotate(animate.rotangle,0,1,0);
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
     }
 	

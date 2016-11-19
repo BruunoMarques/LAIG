@@ -214,9 +214,8 @@
 	 <component id="Orbital5" >
 
             <transformation>
-           		<translate x="2" y="4" z="5" />
-           		<rotate axis="x" angle="100" />
-				<scale x= "3" y="4" z="3" />
+			<scale x="6" y ="6" z ="6" />
+			<translate x="1" y="3" z="1" />
             </transformation>
 			
 			
@@ -234,7 +233,7 @@
             <texture id="inherit" />
 
             <children>
-                <primitiveref id="ring" />
+                <primitiveref id="electron" />
             </children>
 
         </component>

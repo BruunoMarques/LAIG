@@ -7,12 +7,12 @@ class MyAnimation {
 	
 AngleCalc(x,z,dirZ){
 	var anglevec = vec3.fromValues(x,0,z);
-	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( x*x,z*z);
+	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( x*x+z*z);
 	var angle = Math.acos(cosvar);
 	if (x < 0){
 		angle = Math.PI*2-angle;
 	}
-	
+
 	return angle;
 }
 }
@@ -45,8 +45,6 @@ class MyLinearAnimation extends MyAnimation{
           this.distance += vec3.distance(destination, origin);
           this.animRefBool.push(false);
       }
-		
-		console.log(this);
 	}
 
 duration(matrix){
@@ -74,7 +72,8 @@ duration(matrix){
           var move = [(x/interval), (y/interval), (z/interval)];
 		  
           this.moveDistance.push(move);
-          this.origin = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
+		  console.log(original);
+          original = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
       }
