@@ -39,7 +39,6 @@ MyComponent.prototype.startOrigin = function(){
 
 
 MyComponent.prototype.update = function(timeset){
-	console.log("does me");
     this.totalTime += timeset;
     if(this.animations.length != 0){
         if(this.currAnimation < this.animations.length){
@@ -71,18 +70,19 @@ MyComponent.prototype.update = function(timeset){
                 }
             }
             else if(animate instanceof MyCircularAnimation){
-				
-                if(animate.time > this.totalTime){
-                    animate.prevAngle = animate.currAngle;
-                    animate.currAngle += (animate.rotspeed) * timeset;
+				console.log("is instance");
+                if(animate.span > this.totalTime){
+                    animate.prevAngle = animate.currangle;
+                    animate.currangle += (animate.rotspeed) * timeset;
                 }
 				
 				
                 else {
+					console.log("is reket");
 					this.currAnimation++;
                     this.totalTime = 0;
                     if(this.currAnimation < this.animations.length)
-                        if(this.animations[i+1] instanceof LinearAnimation)
+                        if(this.animations[i+1] instanceof MyLinearAnimation)
                             this.animations[i+1].translate = new Point(animate.lastpoint.x-this.origin.x, animate.lastpoint.y-this.origin.y, animate.lastpoint.z-this.origin.z);
 				}
             }

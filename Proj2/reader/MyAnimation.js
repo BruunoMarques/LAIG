@@ -59,7 +59,6 @@ duration(matrix){
           var nextpoint = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var distance = vec3.distance(nextpoint, original);
           this.distances.push(distance);
-		  console.log(distance);
           var interval = distance/this.speed;
           time += interval;
           this.intervals.push(time);
@@ -72,7 +71,6 @@ duration(matrix){
           var move = [(x/interval), (y/interval), (z/interval)];
 		  
           this.moveDistance.push(move);
-		  console.log(original);
           original = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
@@ -91,15 +89,17 @@ duplicate(){
 }
 
 class MyCircularAnimation extends MyAnimation{
-	constructor(id,span,centerx,centery,centerz,radius,startang,rotang){
+	constructor(id,span,radius,centerx,centery,centerz,startang,rotang){
 		super(id,span)
-		
+
 		this.center = new MyPoint(centerx,centery,centerz);
 
 		this.radius = radius;
 		this.startang = startang;
 		this.rotang = rotang;
 		
+		console.log(this.center);
+
 		this.prevAngle =0;
 		this.currangle = 0;
 		
@@ -117,15 +117,16 @@ class MyCircularAnimation extends MyAnimation{
 	  
       var x = this.center.x + Math.cos(this.rotang+this.startang) * this.radius;
       var z = this.center.z + Math.sin(-this.rotang+this.startang) * this.radius;
-	  
+	
 	  
       this.lastpoint = new MyPoint(x,this.center.y, z);
       this.controlPts.push(this.lastpoint);
 	}
 	
 	duplicate(){
-      var dup = new MyCircularAnimation(this.id, this.span, this.centerx,this.centery,this.centerz,this.radius,this.startang,this.rotang);
-      return dup;
+      var dup = new MyCircularAnimation(this.id, this.span,this.radius,this.center.x,this.center.y,this.center.z,this.startang,this.rotang);
+      console.log(dup);
+	  return dup;
   }
 }
 

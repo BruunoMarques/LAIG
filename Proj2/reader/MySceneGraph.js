@@ -380,8 +380,9 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var centerz = this.reader.getFloat(e,'centerz',true);
 			var startang = this.reader.getFloat(e,'startang',true);
 			var rotang = this.reader.getFloat(e,'rotang',true);
-
- 			var object = new MyCircularAnimation(numRef,span,radius,centerx,centery,centerz,startang,rotang);
+			var fixstartang = this.degConverter(startang);
+			var fixrotang = this.degConverter(rotang);
+ 			var object = new MyCircularAnimation(numRef,span,radius,centerx,centery,centerz,fixstartang,fixrotang);
 			this.animationsList.push(object);
 		}else
 			return "animation type invalid!";
@@ -653,14 +654,12 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 							var animationref = this.animationsList[i].duplicate();
 							}
 					}
-					console.log(type.animations.length);
 					if (type.animations.length == 0){
 					type.startOrigin();
 					}
 					if (animationref instanceof MyLinearAnimation){
 						if (type.animations.length < 1){
 						var originalvec = vec3.fromValues(type.origin.x,type.origin.y,type.origin.z);
-						console.log(originalvec);
 						var startpoint = animationref.controlPoints[0];
 						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint[0],startpoint[1],startpoint[2]), originalvec);
 						animationref.speed = animationref.distance/animationref.span;
@@ -827,3 +826,4 @@ MySceneGraph.prototype.getControlPointPatch = function(transf){
 	this.pt.push(zz);
 	return this.pt;
 }
+
