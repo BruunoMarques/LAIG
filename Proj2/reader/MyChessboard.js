@@ -12,16 +12,15 @@ function MyChessboard(scene, du, dv, textureref, su, sv, c1, c2, cs) {
 
 	this.plane = new MyPlane(this.scene,this.du,this.dv,this.du*10,this.dv*10);
 	this.texture = new CGFtexture(this.scene, textureref);
-	this.shader = new CGFshader(this.scene.gl, "shaders/shader.vert", "shaders/shader.frag");
-	this.shader.setUniformsValues({ uSample : 0,
-																 c1 : this.c1,
-																 c2 : this.c2,
-																 cs : this.cs,
-																 du : parseInt(this.du)*1.0,
-																 dv: parseInt(this.dv)*1.0,
-																 su: parseInt(this.su)*1.0,
-																 sv: parseInt(this.sv)*1.0
-																 });
+	this.shader = new CGFshader(this.scene.gl, "shaders/chessboard.vert", "shaders/chessboard.frag");
+
+	this.shader.setUniformsValues({du : this.du});
+	this.shader.setUniformsValues({dv: this.dv});
+	this.shader.setUniformsValues({su: this.su});
+	this.shader.setUniformsValues({sv: this.sv});
+	this.shader.setUniformsValues({c1 : this.c1});
+	this.shader.setUniformsValues({c2 : this.c2});
+	this.shader.setUniformsValues({cs : this.cs});
 
 	this.initBuffers();
 };
