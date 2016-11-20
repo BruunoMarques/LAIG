@@ -63,12 +63,13 @@
 
     <textures>
 
-		<texture id="backgroundtex"  file= "./resources/images/space.jpg" length_s="1" length_t="1" />
+		<texture id="space"  file= "./resources/images/space.jpg" length_s="1" length_t="1" />
 		<texture id="positive" file="./resources/images/positive.png" length_s="1" length_t="1" />
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
     <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
+    <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
 
     </textures>
 
@@ -154,23 +155,23 @@
     <primitives>
 
     <primitive id="chess1">
-      <chessboard du="8" dv="8" textureref="wood" su="1" sv="1">
-                     <c1 r="1.0" g="1.0" b="1.0" a="1" />
-                     <c2 r="0.0" g="0.0" b="0.0" a="1" />
+      <chessboard du="8" dv="8" textureref="wood" su="3" sv="6">
+                     <c1 r="1.0" g="0.75" b="0.5" a="1" />
+                     <c2 r="0.33" g="0.17" b="0.07" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
                     </chessboard>
     </primitive>
 
     <primitive id="chess2">
-      <chessboard du="8" dv="8" textureref="wood" su="1" sv="1">
+      <chessboard du="12" dv="12" textureref="orbit" su="1" sv="5">
                      <c1 r="0.0" g="0.0" b="0.0" a="1" />
-                     <c2 r="1.0" g="1.0" b="1.0" a="1" />
+                     <c2 r="0.0" g="0.0" b="1.0" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
                     </chessboard>
     </primitive>
 
     <primitive id="chess3">
-      <chessboard du="8" dv="8" textureref="wood" su="1" sv="1">
+      <chessboard du="8" dv="8" textureref="marble" su="7" sv="2">
                      <c1 r="0.0" g="0.0" b="0.0" a="1" />
                      <c2 r="1.0" g="1.0" b="1.0" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
@@ -200,11 +201,85 @@
 
             <children>
 
-  				<primitiveref id="chess1" />
+    				<componentref id="chess1" />
+          	<componentref id="chess2" />
+            <componentref id="chess3" />
+            </children>
+
+        </component>
+
+        <component id="chess1">
+
+            <transformation>
+
+                <translate x="10" y="0" z="0" />
+
+            </transformation>
+
+
+            <materials>
+                <material id="base" />
+            </materials>
+
+
+            <texture id="none" />
+
+            <children>
+
+            <primitiveref id="chess1" />
 
             </children>
 
         </component>
+
+        <component id="chess2">
+
+            <transformation>
+
+                <translate x="0" y="0" z="15" />
+
+            </transformation>
+
+
+            <materials>
+                <material id="base" />
+            </materials>
+
+
+            <texture id="none" />
+
+            <children>
+
+            <primitiveref id="chess2" />
+
+            </children>
+
+        </component>
+
+        <component id="chess3">
+
+            <transformation>
+
+                <scale x="1" y="1" z="1" />
+
+            </transformation>
+
+
+            <materials>
+                <material id="base" />
+            </materials>
+
+
+            <texture id="none" />
+
+            <children>
+
+            <primitiveref id="chess3" />
+
+            </children>
+
+        </component>
+
 
 
     </components>
