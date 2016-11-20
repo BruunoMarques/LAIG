@@ -542,7 +542,9 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 				this.chessboards[obj.size_ch][0] = id;
 				this.chessboards[obj.size_ch][1] = this.reader.getFloat(e.children[index],'du',true);
 				this.chessboards[obj.size_ch][2] = this.reader.getFloat(e.children[index],'dv',true);
-				this.chessboards[obj.size_ch][3] = this.reader.getString(e.children[index],'textureref',true);
+				var texture = this.reader.getString(e.children[index],'textureref',true);
+				var it = this.textID.indexOf(texture);
+				this.chessboards[obj.size_ch][3] = this.TextureList[it][0];
 				this.chessboards[obj.size_ch][4] = this.reader.getFloat(e.children[index],'su',true);
 				this.chessboards[obj.size_ch][5] = this.reader.getFloat(e.children[index],'sv',true);
 				this.chessboards[obj.size_ch][6] = [];
@@ -676,7 +678,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 					}
 				}
-				
+
 				type.animations.push(animationref);
 				}
 
@@ -826,4 +828,3 @@ MySceneGraph.prototype.getControlPointPatch = function(transf){
 	this.pt.push(zz);
 	return this.pt;
 }
-

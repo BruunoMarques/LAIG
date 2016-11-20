@@ -1,7 +1,7 @@
 <dsx>
 
 
-    <scene root="root" axis_length="0" />
+    <scene root="root" axis_length="4" />
 
 
     <views default="view1" >
@@ -155,8 +155,8 @@
 
     <primitive id="chess1">
       <chessboard du="8" dv="8" textureref="wood" su="1" sv="1">
-                     <c1 r="0.0" g="0.0" b="0.0" a="1" />
-                     <c2 r="1.0" g="1.0" b="1.0" a="1" />
+                     <c1 r="1.0" g="1.0" b="1.0" a="1" />
+                     <c2 r="0.0" g="0.0" b="0.0" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
                     </chessboard>
     </primitive>

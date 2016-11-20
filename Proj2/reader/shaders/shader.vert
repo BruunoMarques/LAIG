@@ -16,5 +16,13 @@ uniform float sv;
 
 void main(){
 
+  if ((aTextureCoord.x > (su/du)) && (aTextureCoord.x < ((su+1.0)/du)) && ( (1.0 - aTextureCoord.y) > (sv/dv)) && ((1.0 - aTextureCoord.y) < ((sv+1.0)/dv)))
+   {
+         gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition.x, aVertexPosition.y , aVertexPosition.z + 0.05, 1.0);
+   }
+   else{
+       gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+   }
+
   vTextureCoord = aTextureCoord;
 }
