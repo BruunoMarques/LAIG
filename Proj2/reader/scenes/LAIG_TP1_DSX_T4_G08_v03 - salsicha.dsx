@@ -141,7 +141,7 @@
          <controlpoint xx="0" yy="0" zz="10" />
       </animation>
 
-      <animation id="linanime1" span="6" type="linear">
+      <animation id="linanime2" span="6" type="linear">
            <controlpoint xx="5" yy="0" zz="15" />
            <controlpoint xx="15" yy="0" zz="15" />
         </animation>
@@ -251,6 +251,11 @@
 
             </transformation>
 
+            <animation>
+                <animationref id="linanime1" />
+                <animationref id="circanime" />
+                <animationref id="linanime2" />
+            </animation>
 
             <materials>
                 <material id="base" />
