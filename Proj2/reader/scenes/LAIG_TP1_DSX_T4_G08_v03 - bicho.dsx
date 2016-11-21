@@ -1,7 +1,7 @@
 <dsx>
 
 
-    <scene root="root" axis_length="0" />
+    <scene root="root" axis_length="5" />
 
 
     <views default="view1" >
@@ -84,9 +84,9 @@
         </material>
 
          <material id="orbitmat" >
-            <emission r="0.3" g="0.3" b="0.3" a="1" />
-            <ambient r="0" g="0.2" b="0.8" a="1" />
-            <diffuse r="1" g="0.5" b="1" a="1" />
+            <emission r="0.9" g="0.2" b="0.2" a="1" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1" />
+            <diffuse r="1" g="0" b="0" a="1" />
             <specular r="1" g="1" b="1" a="1" />
             <shininess value="200" />
         </material>
@@ -146,7 +146,7 @@
 		 
    </animation>
 
-    <animation id="animation1orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="15" startang="15" rotang="180" />
+    <animation id="animation1orbital1" span="5" type="circular" centerx="3" centery="3" centerz="3" radius="3" startang="15" rotang="-360" />
    
 
 </animations>
@@ -214,16 +214,16 @@
 
             <transformation>
 			<scale x="1" y ="1" z ="1" />
+			<translate x="8" y="0" z="0" />
             </transformation>
 			
 			
             <animation>
-					<animationref id="linanime" />
 				<animationref id="animation1orbital1" />
             </animation>
 			
             <materials>
-                <material id="inherit" />
+                <material id="orbitmat" />
             </materials>
 
             <texture id="inherit" />
@@ -231,8 +231,7 @@
             <children>
                 <primitiveref id="electron" />
             </children>
-
-        </component>
+</component>
 
 
 

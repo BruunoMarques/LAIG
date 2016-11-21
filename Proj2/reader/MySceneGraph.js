@@ -650,13 +650,14 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 				if(child.nodeName == "animation"){
 
 					var obj_id = this.reader.getString(transf,"id",true);
-
-					for (i = 0; i < this.animationsList.length; i++){
-						if(obj_id == this.animationsList[i].id) {
-							var animationref = this.animationsList[i].duplicate();
+					console.log(obj_id);
+					if (obj_id == -1) return;
+					for (l = 0; l < this.animationsList.length; l++){
+						if(obj_id == this.animationsList[l].id) {
+							var animationref = this.animationsList[l].duplicate();
 							}
 					}
-					if (type.animations.length == 0){
+					if (type.animations.length < 1){
 					type.startOrigin();
 					}
 					if (animationref instanceof MyLinearAnimation){
@@ -668,7 +669,9 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 						}
 						else{
+							console.log("did me");
 						var previousref = type.animations[type.animations.length -1].controlPoints;
+						console.log(previousref.length-1);
 						var originalvec = vec3.fromValues(previousref[previousref.length-1][0],
 						previousref[previousref.length-1][1],
 						previousref[previousref.length-1][2]);

@@ -374,7 +374,7 @@ XMLscene.prototype.animation = function(vertex){
         this.translate(animate.center.x,animate.center.y,animate.center.z);
         this.rotate(animate.currangle,0,1,0);
         this.translate(animate.x1,animate.y1,animate.z1);
-        this.rotate(Math.PI/2 + animate.currangle,0,1,0);
+        this.rotate(animate.startang,0,1,0);
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
     }
 }

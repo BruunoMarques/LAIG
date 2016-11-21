@@ -93,7 +93,6 @@ class MyCircularAnimation extends MyAnimation{
 		super(id,span)
 
 		this.center = new MyPoint(centerx,centery,centerz);
-
 		this.radius = radius;
 		this.startang = startang;
 		this.rotang = rotang;
@@ -103,7 +102,7 @@ class MyCircularAnimation extends MyAnimation{
 		this.prevAngle =0;
 		this.currangle = 0;
 		
-		this.controlPts = [];
+		this.controlPoints = [];
 		this.rotspeed = this.rotang / span;
 		this.lastpoint = new MyPoint(0,0,0);
 		this.getLastPoint();
@@ -111,8 +110,8 @@ class MyCircularAnimation extends MyAnimation{
 	}
 	
 	getLastPoint(){
+	  this.y1 = 0;			
 	  this.x1 = Math.cos(this.currangle) * this.radius;
-      this.y1 = 0;
       this.z1 = Math.sin(this.currangle) * this.radius;
 	  
       var x = this.center.x + Math.cos(this.rotang+this.startang) * this.radius;
@@ -120,7 +119,8 @@ class MyCircularAnimation extends MyAnimation{
 	
 	  
       this.lastpoint = new MyPoint(x,this.center.y, z);
-      this.controlPts.push(this.lastpoint);
+	  console.log(this.lastpoint);
+      this.controlPoints.push(this.lastpoint);
 	}
 	
 	duplicate(){

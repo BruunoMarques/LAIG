@@ -45,7 +45,7 @@ MyTorus.prototype.initBuffers = function() {
       }
   }
 
-
+		
       this.primitiveType = this.scene.gl.TRIANGLES;
       this.initGLBuffers();
 };
