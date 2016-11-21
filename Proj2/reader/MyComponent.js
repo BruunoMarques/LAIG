@@ -70,7 +70,7 @@ MyComponent.prototype.update = function(timeset){
                 }
             }
             else if(animate instanceof MyCircularAnimation){
-				console.log("is instance");
+	
                 if(animate.span > this.totalTime){
                     animate.prevAngle = animate.currangle;
                     animate.currangle += (animate.rotspeed) * timeset;
@@ -78,12 +78,12 @@ MyComponent.prototype.update = function(timeset){
 				
 				
                 else {
-					console.log("is reket");
+	
 					this.currAnimation++;
                     this.totalTime = 0;
                     if(this.currAnimation < this.animations.length)
                         if(this.animations[i+1] instanceof MyLinearAnimation)
-                            this.animations[i+1].translate = new Point(animate.lastpoint.x-this.origin.x, animate.lastpoint.y-this.origin.y, animate.lastpoint.z-this.origin.z);
+                            this.animations[i+1].translate = new MyPoint(animate.lastpoint.x-this.origin.x, animate.lastpoint.y-this.origin.y, animate.lastpoint.z-this.origin.z);
 				}
             }
 

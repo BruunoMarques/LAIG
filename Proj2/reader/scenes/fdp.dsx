@@ -68,6 +68,8 @@
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
+		<texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
+		<texture id="spacesp" file="./resources/images/spaceship.png" length_s="1" length_t="1" />
 
 
     </textures>
@@ -135,15 +137,25 @@
     <!-- o valor "linear" ou "circular"; na animacao circular -->
     <!-- os angulos sao expressos em graus  -->
 
-    <animation id="linanime" span="6" type="linear">
-         <controlpoint xx="6" yy="0" zz="0" />
-         <controlpoint xx="0" yy="0" zz="0" />
-		 <controlpoint xx="0" yy="0" zz="10" />
-		 <controlpoint xx="0" yy="0" zz="0" />
-		 <controlpoint xx="0" yy="6" zz="0" />
-		 <controlpoint xx="0" yy="0" zz="0" />
-		 
+    <animation id="quark" span="5" type="linear">
+			<controlpoint xx="30" yy="-30" zz="0"/>
+        	<controlpoint xx="-10" yy="-30" zz="0"/>
+			<controlpoint xx="10" yy="-15" zz="0"/>
+			<controlpoint xx="10" yy="-15" zz="8"/> 
+			<controlpoint xx="-70" yy="25" zz="-70"/> 
+			<controlpoint xx="15" yy="15" zz="15"/> 
    </animation>
+       <animation id="quark2" span="5" type="linear">
+			<controlpoint xx="30" yy="-30" zz="0"/>
+        	<controlpoint xx="-10" yy="-30" zz="0"/>
+			<controlpoint xx="10" yy="-15" zz="0"/>
+			<controlpoint xx="10" yy="-15" zz="8"/> 
+			<controlpoint xx="-70" yy="25" zz="-70"/> 
+			<controlpoint xx="15" yy="15" zz="15"/> 
+   </animation>
+   
+   
+
 
     <animation id="orbit1" span="20" type="circular" centerx="0" centery="0" centerz="0" radius="0" startang="0" rotang="-6000" />
 	 <animation id="orbit2" span="20" type="circular" centerx="0" centery="0" centerz="0" radius="0" startang="0" rotang="5000" />
@@ -151,8 +163,8 @@
 	   <animation id="orbit4" span="20" type="circular" centerx="0" centery="0" centerz="0" radius="0" startang="0" rotang="4000" />
 	    <animation id="orbit5" span="20" type="circular" centerx="0" centery="0" centerz="0" radius="0" startang="0" rotang="-3500" />
 		<animation id="corerotation" span="20" type="circular" centerx="0" centery="0" centerz="0" radius="0" startang="0" rotang="10000" />
-   
-
+		<animation id="quarkrot" span="5" type="circular" centerx="15" centery="15" centerz="15" radius="0" startang="0" rotang="10000" />
+		
 </animations>
 
     <primitives>
@@ -211,11 +223,18 @@
 		   <component id="cy">
 
             <transformation>
-
-                <scale x="1" y="0.2" z="1" />
+				
+                <scale x="0.1" y="0.1" z="0.1" />
+				<translate x="30" y="-30" z="0" />
+				
 
             </transformation>
 			 
+			 <animation>
+			 
+			 <animationref id ="quark" />
+			 <animationref id ="quarkrot" /> 
+            </animation>
 
 
             <materials>
@@ -223,7 +242,7 @@
             </materials>
 
 
-            <texture id="none" />
+            <texture id="spacesp" />
 
             <children>
 			<primitiveref id="spaceship"/>

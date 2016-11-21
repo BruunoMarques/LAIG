@@ -669,7 +669,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 						}
 						else{
-							console.log("did me");
+					
 						var previousref = type.animations[type.animations.length -1].controlPoints;
 						console.log(previousref.length-1);
 						var originalvec = vec3.fromValues(previousref[previousref.length-1][0],

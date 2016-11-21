@@ -219,7 +219,7 @@
 			
 			
             <animation>
-				<animationref id="animation1orbital1" />
+				<animationref id="linanime" />
             </animation>
 			
             <materials>

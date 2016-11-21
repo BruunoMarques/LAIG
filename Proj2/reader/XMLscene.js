@@ -369,7 +369,7 @@ XMLscene.prototype.animation = function(vertex){
 	
 	
     else if(animate instanceof MyCircularAnimation){
-		console.log("detected");
+
 		console.log(animate);
         this.translate(animate.center.x,animate.center.y,animate.center.z);
         this.rotate(animate.currangle,0,1,0);
