@@ -650,7 +650,6 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 				if(child.nodeName == "animation"){
 
 					var obj_id = this.reader.getString(transf,"id",true);
-					console.log(obj_id);
 					if (obj_id == -1) return;
 					for (l = 0; l < this.animationsList.length; l++){
 						if(obj_id == this.animationsList[l].id) {

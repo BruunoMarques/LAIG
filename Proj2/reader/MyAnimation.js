@@ -24,7 +24,7 @@ class MyLinearAnimation extends MyAnimation{
 		this.controlPoints = controlPoints;
 		this.speed = 0;
 		this.distance = 0;
-		this.rotangle = 0;
+		this.rotate = 0;
 		this.translation = new MyPoint(0,0,0);
 		
 		this.angles = [];
@@ -34,17 +34,16 @@ class MyLinearAnimation extends MyAnimation{
 		
 		
 		
-		
 		this.animRefBool = [];
-		this.animRefBool[0] = true;
-		for(var i = 0; i < this.controlPoints.length -1; i++){
-          var OriginPoint= this.controlPoints[i+1];
+		for(var i = 1; i < this.controlPoints.length ; i++){
+          var OriginPoint= this.controlPoints[i-1];
           var destination = vec3.fromValues(this.controlPoints[i][0],this.controlPoints[i][1],this.controlPoints[i][2]);
 		  var origin = vec3.fromValues(OriginPoint[0],OriginPoint[1],OriginPoint[2]);
-
           this.distance += vec3.distance(destination, origin);
           this.animRefBool.push(false);
       }
+	  
+		this.animRefBool[0] = true;
 	}
 
 duration(matrix){
@@ -55,6 +54,7 @@ duration(matrix){
 	var time = 0;
 	
 	for(var i = 0;i < this.controlPoints.length;i++){
+		
           var currpoint = this.controlPoints[i];
           var nextpoint = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var distance = vec3.distance(nextpoint, original);
@@ -74,8 +74,9 @@ duration(matrix){
           original = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
+		  console.log(this.angles);
       }
-      this.rotangle = this.angles[0];
+			 this.rotate = this.angles[0];     
 	
 	
 }	
@@ -96,8 +97,7 @@ class MyCircularAnimation extends MyAnimation{
 		this.radius = radius;
 		this.startang = startang;
 		this.rotang = rotang;
-		
-		console.log(this.center);
+	
 
 		this.prevAngle =0;
 		this.currangle = 0;
@@ -119,13 +119,11 @@ class MyCircularAnimation extends MyAnimation{
 	
 	  
       this.lastpoint = new MyPoint(x,this.center.y, z);
-	  console.log(this.lastpoint);
       this.controlPoints.push(this.lastpoint);
 	}
 	
 	duplicate(){
       var dup = new MyCircularAnimation(this.id, this.span,this.radius,this.center.x,this.center.y,this.center.z,this.startang,this.rotang);
-      console.log(dup);
 	  return dup;
   }
 }

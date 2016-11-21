@@ -352,7 +352,6 @@ XMLscene.prototype.update = function(currTime){
 XMLscene.prototype.animation = function(vertex){
 	
 	var originPoint = vertex.component.origin;
-	console.log(originPoint);
 	var index = vertex.component.currAnimation;
 	if(index == vertex.component.animations.length){
 		index--;
@@ -360,17 +359,16 @@ XMLscene.prototype.animation = function(vertex){
 	var animate = vertex.component.animations[index];
 	
 	if(animate instanceof MyLinearAnimation){
-
+		console.log(animate.rotangle);
         this.translate(animate.translation.x,animate.translation.y,animate.translation.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
-        this.rotate(animate.rotangle,0,1,0);
+        this.rotate(animate.rotate,0,1,0);
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
     }
 	
 	
     else if(animate instanceof MyCircularAnimation){
 
-		console.log(animate);
         this.translate(animate.center.x,animate.center.y,animate.center.z);
         this.rotate(animate.currangle,0,1,0);
         this.translate(animate.x1,animate.y1,animate.z1);

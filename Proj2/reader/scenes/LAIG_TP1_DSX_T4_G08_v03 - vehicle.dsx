@@ -1,7 +1,7 @@
 <dsx>
 
 
-    <scene root="root" axis_length="4" />
+    <scene root="root" axis_length="5" />
 
 
     <views default="view1" >
@@ -68,8 +68,7 @@
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
-    <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
-    <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
+		<texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
 
     </textures>
 
@@ -137,56 +136,113 @@
     <!-- o valor "linear" ou "circular"; na animacao circular -->
     <!-- os angulos sao expressos em graus  -->
 
-    <animation id="linanime" span="6" type="linear">
-         <controlpoint xx="1" yy="1" zz="1" />
-         <controlpoint xx="2" yy="2" zz="2" />
+    <animation id="linanime" span="2" type="linear">
+         <controlpoint xx="6" yy="0" zz="0" />
+		 <controlpoint xx="5" yy="9" zz="5" />
+		 <controlpoint xx="0" yy="0" zz="0" />
+		 <controlpoint xx="9" yy="0" zz="0" />
+		 
    </animation>
 
-    <animation id="animation1orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="15" startang="0" rotang="Math.PI*2" />
-    <animation id="animation2orbital1" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="14.4" startang="0" rotang="Math.PI*2" />
-    <animation id="animation1orbital2" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="25.2" startang="0" rotang="Math.PI*2" />
-    <animation id="animation2orbital2" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="26" startang="0" rotang="Math.PI*2" />
-    <animation id="animation1orbital3" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="36.3" startang="0" rotang="Math.PI*2" />
+    <animation id="animation1orbital1" span="5" type="circular" centerx="9" centery="0" centerz="0" radius="0" startang="90" rotang="360" />
+   
 
 
 
 </animations>
 
     <primitives>
-	
-	      <primitive id="back">
+
+		<primitive id="proton">
+            <sphere radius="0.5" slices="15" stacks="15" />
+        </primitive>
+
+		<primitive id="electron">
+            <sphere radius="0.25" slices="15" stacks="15" />
+        </primitive>
+
+        <primitive id="ring">
+             <torus inner="9.9" outer="10.2" slices="60" loops="30" />
+        </primitive>
+
+        <primitive id="back">
             <rectangle x1="0" y1="0" x2="2" y2="2" />
         </primitive>
-		
-    <primitive id="chess1">
-      <chessboard du="8" dv="8" textureref="wood" su="3" sv="6">
-                     <c1 r="1.0" g="0.75" b="0.5" a="1" />
-                     <c2 r="0.33" g="0.17" b="0.07" a="1" />
-                     <cs r="1.0" g="0.0" b="0.0" a="1" />
-                    </chessboard>
+
+         <primitive id="patch">
+			<patch orderU="2" orderV="3" partsU="20" partsV="20" >
+				<controlpoint x="-1.5" y="-1.5" z="0" />
+				<controlpoint x="-2" y="-2" z="2" />
+				<controlpoint x="-2" y="2" z="2" />
+				<controlpoint x="-1.5" y="1.5" z="0" />
+
+				<controlpoint x="0" y="0" z="3" />
+				<controlpoint x="0" y="-2" z="3" />
+				<controlpoint x="0" y="2" z="3" />
+				<controlpoint x="0" y="0" z="3" />
+
+				<controlpoint x="1.5" y="-1.5" z="0" />
+				<controlpoint x="2" y="-2" z="2" />
+				<controlpoint x="2" y="2" z="2" />
+				<controlpoint x="1.5" y="1.5" z="0" />
+			</patch>
+		</primitive>
+
+    <primitive id="patch1">
+      <patch orderU="5" orderV="5" partsU="20" partsV="20" >
+        <controlpoint x="-0.190" y="0.087" z="-1.033" />
+        <controlpoint x="-0.188" y="0.088" z="-1.033" />
+        <controlpoint x="-0.191" y="0.091" z="-1.029" />
+        <controlpoint x="-0.172" y="0.123" z="-1.020" />
+        <controlpoint x="-0.189" y="0.088" z="-1.030" />
+        <controlpoint x="-0.191" y="0.090" z="-1.021" />
+        <controlpoint x="-0.133" y="-1.112" z="-1.305" />
+        <controlpoint x="-1.755" y="-1.133" z="-1.224" />
+        <controlpoint x="-1.539" y="1.842" z="-1.129" />
+        <controlpoint x="1.372" y="1.821" z="-1.275" />
+        <controlpoint x="1.641" y="-1.110" z="-1.174" />
+        <controlpoint x="-0.133" y="-1.105" z="-1.293" />
+        <controlpoint x="0.000" y="-1.000" z="0.800" />
+        <controlpoint x="-1.000" y="-1.000" z="0.800" />
+        <controlpoint x="-1.000" y="1.000" z="0.800" />
+        <controlpoint x="1.000" y="1.000" z="0.800" />
+        <controlpoint x="1.000" y="-1.000" z="0.800" />
+        <controlpoint x="0.000" y="-1.000" z="0.800" />
+        <controlpoint x="0.000" y="-1.000" z="1.200" />
+        <controlpoint x="-1.000" y="-1.000" z="1.200" />
+        <controlpoint x="-1.000" y="1.000" z="1.200" />
+        <controlpoint x="1.000" y="1.000" z="1.200" />
+        <controlpoint x="1.000" y="-1.000" z="1.200" />
+        <controlpoint x="0.000" y="-1.000" z="1.200" />
+        <controlpoint x="0.000" y="-1.000" z="1.600" />
+        <controlpoint x="-1.000" y="-1.000" z="1.600" />
+        <controlpoint x="-1.000" y="1.000" z="1.600" />
+        <controlpoint x="1.000" y="1.000" z="1.600" />
+        <controlpoint x="1.000" y="-1.000" z="1.600" />
+        <controlpoint x="0.000" y="-1.000" z="1.600" />
+        <controlpoint x="0.015" y="-0.616" z="1.559" />
+        <controlpoint x="0.015" y="-0.614" z="1.561" />
+        <controlpoint x="0.016" y="-0.630" z="1.582" />
+        <controlpoint x="0.015" y="-0.632" z="1.584" />
+        <controlpoint x="0.015" y="-0.620" z="1.564" />
+        <controlpoint x="0.012" y="-0.612" z="1.554" />
+      </patch>
     </primitive>
 
-    <primitive id="chess2">
-      <chessboard du="12" dv="12" textureref="orbit" su="1" sv="5">
-                     <c1 r="0.0" g="0.0" b="0.0" a="1" />
-                     <c2 r="0.0" g="0.0" b="1.0" a="1" />
-                     <cs r="1.0" g="0.0" b="0.0" a="1" />
-                    </chessboard>
-    </primitive>
+    <primitive id="plane">
+    	 <plane dimX="3" dimY="2" partsX="10" partsY="7"/>
+  	</primitive>
 
-    <primitive id="chess3">
-      <chessboard du="6" dv="6" textureref="marble" su="5" sv="2">
-                     <c1 r="0.0" g="0.0" b="0.0" a="1" />
-                     <c2 r="1.0" g="1.0" b="1.0" a="1" />
-                     <cs r="1.0" g="0.0" b="0.0" a="1" />
-                    </chessboard>
-    </primitive>
+    <primitive id="vehicle">
+    	 <vehicle />
+  	</primitive>
 
     </primitives>
 
 
     <components>
 
+	
         <component id="root">
 
             <transformation>
@@ -194,101 +250,54 @@
                 <scale x="1" y="1" z="1" />
 
             </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
 			
-			<componentref id="Square" />
-    		<componentref id="chess1" />
-          	<componentref id="chess2" />
-            <componentref id="chess3" />
-			 
-            </children>
-
-        </component>
-
-        <component id="chess1">
-
-            <transformation>
-
-                <translate x="10" y="0" z="0" />
-
-            </transformation>
-
+			
 
             <materials>
                 <material id="base" />
             </materials>
 
 
-            <texture id="none" />
+            <texture id="wood" />
 
             <children>
+				<componentref id="helper" />
+				<componentref id="Square" />
 
-            <primitiveref id="chess1" />
 
             </children>
-
-        </component>
-
-        <component id="chess2">
-
-            <transformation>
-
-                <translate x="0" y="0" z="15" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
-
-            <primitiveref id="chess2" />
-
-            </children>
-
-        </component>
-
-        <component id="chess3">
+       </component>
+	
+        <component id="helper">
 
             <transformation>
 
                 <scale x="1" y="1" z="1" />
 
             </transformation>
+			
+			<animation>
+         
+				<animationref id ="linanime"/>
+				<animationref id ="animation1orbital1"/>
 
+            </animation>           
 
             <materials>
                 <material id="base" />
             </materials>
 
 
-            <texture id="none" />
+            <texture id="wood" />
 
             <children>
-
-            <primitiveref id="chess3" />
+			
+  				<primitiveref id="vehicle" />
 
             </children>
 
         </component>
-
-
-
-  <component id="Square" >
+	     <component id="Square" >
 
             <transformation>
             	<translate x="-50" y="-50" z="-50" />

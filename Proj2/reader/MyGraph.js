@@ -13,11 +13,8 @@ MyGraph.prototype.constructor = MyGraph;
 MyGraph.prototype.addEdges = function(){
 	for(var i = 0;i< this.vertexSet.length; i++){
 		var childs = this.vertexSet[i].component.compRef
-		console.log(childs);
-		console.log(this.vertexIDs);
 		for(var j = 0; j < childs.length; j++){
 			var indice = this.vertexIDs.indexOf(childs[j]);
-			console.log(indice);
 			if(indice == -1){
 				console.log(childs[j] + "wrong name");
 				return -1;
