@@ -68,9 +68,10 @@
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
-    <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
+    <texture id="wood" file="./resources/images/wood2.jpg" length_s="1" length_t="1" />
     <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
     <texture id="floor" file="./resources/images/floor.jpg" length_s="1" length_t="1" />
+    <texture id="wall" file="./resources/images/wall2.jpg" length_s="1" length_t="1" />
 
     </textures>
 
@@ -171,7 +172,7 @@
     </primitive>
 
     <primitive id="cube">
-      <cube x="10" y="10" z="10" dim="5" />
+        <cube dim="5" />
     </primitive>
 
     </primitives>
@@ -201,7 +202,7 @@
     		    <componentref id="chess1" />
           	<componentref id="chess2" />
             <componentref id="chess3" />
-            <primitiveref id="square" />
+            <primitiveref id="cube" />
             </children>
 
         </component>
@@ -365,7 +366,7 @@
             </materials>
 
 
-          <texture id="wood" />
+          <texture id="wall" />
 
             <children>
 
