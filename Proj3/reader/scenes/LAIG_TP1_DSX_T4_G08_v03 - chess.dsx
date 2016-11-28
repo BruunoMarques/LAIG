@@ -98,19 +98,10 @@
 
     <transformations>
 
-        <transformation id="side1">
-        	<translate x="0" y="2" z="2"/>
-        	<rotate axis="x" angle="180" />
 
-        </transformation>
 
 		<transformation id="side2">
 			<translate x="0" y="0" z="0" />
-		</transformation>
-
-		<transformation id="side3">
-			<translate x="0" y="2" z="0" />
-			<rotate axis="x" angle="90" />
 		</transformation>
 
 		<transformation id="side4">
@@ -123,10 +114,6 @@
 		 	<rotate axis="y" angle="90" />
 		</transformation>
 
-		<transformation id="side6">
-			<translate x="2" y="0" z="0" />
-			<rotate axis="y" angle="-90" />
-		</transformation>
 
     </transformations>
 
@@ -184,7 +171,7 @@
     </primitive>
 
     <primitive id="cube">
-      <cube x="0" y="0" z="0" dim="5" />
+      <cube x="10" y="10" z="10" dim="5" />
     </primitive>
 
     </primitives>
@@ -210,11 +197,11 @@
 
             <children>
 
-			<componentref id="Square" />
-    		<componentref id="chess1" />
+			      <componentref id="Square" />
+    		    <componentref id="chess1" />
           	<componentref id="chess2" />
             <componentref id="chess3" />
-
+            <primitiveref id="square" />
             </children>
 
         </component>
@@ -296,8 +283,8 @@
   <component id="Square" >
 
             <transformation>
-            	<translate x="-50" y="-50" z="-50" />
-				<scale x= "50" y="50" z="50" />
+
+				          <scale x= "50" y="30" z="50" />
             </transformation>
 
             <materials>
@@ -307,40 +294,13 @@
             <texture id="backgroundtex" />
 
             <children>
-                <componentref id="side1" />
 				<componentref id="side2" />
-				<componentref id="side3" />
 				<componentref id="side4" />
 				<componentref id="side5" />
-				<componentref id="side6" />
             </children>
 
         </component>
 
-		       <component id="side1">
-
-            <transformation>
-
-                <transformationref id="side1" />
-
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
 
         <component id="side2">
 
@@ -356,7 +316,7 @@
             </materials>
 
 
-              <texture id="inherit" />
+              <texture id="wood" />
 
             <children>
 
@@ -366,29 +326,6 @@
 
         </component>
 
-        <component id="side3">
-
-            <transformation>
-
-				 <transformationref id="side3" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-           <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
 
         <component id="side4">
 
@@ -428,7 +365,7 @@
             </materials>
 
 
-          <texture id="inherit" />
+          <texture id="wood" />
 
             <children>
 
@@ -438,29 +375,7 @@
 
         </component>
 
-        <component id="side6">
 
-            <transformation>
-
-                <transformationref id="side6" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-          <texture id="inherit" />
-
-            <children>
-
-                <primitiveref id="back" />
-
-            </children>
-
-        </component>
 
     </components>
 
