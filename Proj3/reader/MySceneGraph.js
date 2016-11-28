@@ -583,6 +583,8 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
 		if((emptyvar = this.isPrimitive(types[6], id, vertex, "patch")) == null)
 		if((emptyvar = this.isPrimitive(types[7], id, vertex, "vehicle")) == null)
 		if((emptyvar = this.isPrimitive(types[8], id, vertex, "chessboard")) == null)
+		if((emptyvar = this.isPrimitive(types[9], id, vertex, "cube")) == null)
+
                         return;
 
 
@@ -619,7 +621,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 
     var types = [];
     types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
-		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards);
+		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards); types.push(this.cubes);
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];
