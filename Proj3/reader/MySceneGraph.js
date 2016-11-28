@@ -409,6 +409,7 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.patches = [];
 	this.vehicles = [];
 	this.chessboards = [];
+	this.cubes = [];
 
 	var obj = {
 		size_r : 0,
@@ -419,7 +420,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 		size_pt : 0,
 		size_pl : 0,
 		size_v : 0,
-		size_ch : 0
+		size_ch : 0,
+		size_cs : 0
 	};
 
 
@@ -555,6 +557,16 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 				this.getRGBA(this.chessboards[obj.size_ch][8], e.children[index].children[2]);
 				obj.size_ch+=1;
 				break;
+
+				case "cube":
+					this.rectangles[obj.size_r] = [];
+					this.rectangles[obj.size_r][0] = id;
+					this.rectangles[obj.size_r][1] = this.reader.getFloat(e.children[index],'x',true);
+					this.rectangles[obj.size_r][2] = this.reader.getFloat(e.children[index],'y',true);
+					this.rectangles[obj.size_r][3] = this.reader.getFloat(e.children[index],'z',true);
+					this.rectangles[obj.size_r][4] = this.reader.getFloat(e.children[index],'dim',true);
+					obj.size_r+=1;
+					break;
 	}
 
 }
@@ -668,7 +680,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 						}
 						else{
-					
+
 						var previousref = type.animations[type.animations.length -1].controlPoints;
 						console.log(previousref.length-1);
 						var originalvec = vec3.fromValues(previousref[previousref.length-1][0],
