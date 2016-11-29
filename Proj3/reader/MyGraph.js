@@ -55,7 +55,7 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 						prim = new MyChessboard(this.scene, primitive[1], primitive[2], primitive[3], primitive[4], primitive[5], primitive[6], primitive[7], primitive[8]);
 						break;
 				case "cube":
-						prim = new MyCube(this.scene, primitive[1], primitive[2], primitive[3], primitive[4]);
+						prim = new MyCube(this.scene, primitive[1]);
 						break;
     }
     vertex.component.primitivess.push(prim);

@@ -559,13 +559,10 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 				break;
 
 				case "cube":
-					this.rectangles[obj.size_r] = [];
-					this.rectangles[obj.size_r][0] = id;
-					this.rectangles[obj.size_r][1] = this.reader.getFloat(e.children[index],'x',true);
-					this.rectangles[obj.size_r][2] = this.reader.getFloat(e.children[index],'y',true);
-					this.rectangles[obj.size_r][3] = this.reader.getFloat(e.children[index],'z',true);
-					this.rectangles[obj.size_r][4] = this.reader.getFloat(e.children[index],'dim',true);
-					obj.size_r+=1;
+					this.cubes[obj.size_cs] = [];
+					this.cubes[obj.size_cs][0] = id;
+					this.cubes[obj.size_cs][1] = this.reader.getFloat(e.children[index],'dim',true);
+					obj.size_cs+=1;
 					break;
 	}
 
