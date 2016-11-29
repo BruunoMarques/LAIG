@@ -37,3 +37,21 @@ MyInterface.prototype.addLightsGroup = function(){
     }
 }
 
+MyInterface.prototype.changeView = function (){
+	this.scene.cam += 1;
+    if(this.scene.cam == this.scene.cameras.length)
+    this.scene.cam = 0;
+    this.scene.changeCamera();
+    this.setActiveCamera(this.scene.camera);
+    console.log("Key pressed V");
+}
+
+MyInterface.prototype.processKeyboard = function(event) {
+		CGFinterface.prototype.processKeyboard.call(this,event);
+		switch (event.keyCode || event.which)
+	{
+		    case 118:
+            this.changeView();
+            break;
+	}
+};

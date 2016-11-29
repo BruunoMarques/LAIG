@@ -58,7 +58,7 @@ XMLscene.prototype.setDefaultAppearance = function () {
 XMLscene.prototype.onGraphLoaded = function () 
 {
 	this.SetInitialStatus();
-	//this.SetViews();
+	this.startViews();
 	this.StartLights();
 	this.StartMats();
 	
@@ -72,6 +72,23 @@ XMLscene.prototype.SetInitialStatus = function (){
 	
 	this.axis = new CGFaxis(this,this.graph.axis_length);//0.2 e' o default
 };
+
+
+XMLscene.prototype.startViews = function (){
+	this.cameras = this.graph.views;
+	this.camNum = this.cameras.length;
+	this.cam = this.graph.first_view;
+	this.changeCamera();
+};
+
+
+XMLscene.prototype.changeCamera = function(){
+	this.camera = new CGFcamera(this.cameras[this.cam][3],this.cameras[this.cam][1],this.cameras[this.cam][2],
+								vec3.fromValues(this.cameras[this.cam][4],this.cameras[this.cam][5],this.cameras[this.cam][6]),
+								vec3.fromValues(this.cameras[this.cam][7],this.cameras[this.cam][8],this.cameras[this.cam][9]));
+	this.myInterface.setActiveCamera(this.camera);
+};
+
 
 XMLscene.prototype.StartLights = function () {
 	var OmniCount = this.graph.OmniLightsList.length;
