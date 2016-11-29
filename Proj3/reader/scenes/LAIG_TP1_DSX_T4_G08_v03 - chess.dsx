@@ -68,7 +68,8 @@
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
-    <texture id="wood" file="./resources/images/wood2.jpg" length_s="1" length_t="1" />
+    <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
+    <texture id="wood2" file="./resources/images/wood2.jpg" length_s="1" length_t="1" />
     <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
     <texture id="floor" file="./resources/images/floor.jpg" length_s="1" length_t="1" />
     <texture id="wall" file="./resources/images/wall2.jpg" length_s="1" length_t="1" />
@@ -148,7 +149,7 @@
         </primitive>
 
     <primitive id="chess1">
-      <chessboard du="8" dv="8" textureref="wood" su="3" sv="6">
+      <chessboard du="9" dv="9" textureref="wood" su="3" sv="6">
                      <c1 r="1.0" g="0.75" b="0.5" a="1" />
                      <c2 r="0.33" g="0.17" b="0.07" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
@@ -175,6 +176,11 @@
         <cube dim="5" />
     </primitive>
 
+    <primitive id="cil">
+        <cylinder base="1.75" top="2" height="5" slices="15" stacks="15" />
+    </primitive>
+
+
     </primitives>
 
 
@@ -200,19 +206,147 @@
 
 			      <componentref id="Square" />
     		    <componentref id="chess1" />
-          	<componentref id="chess2" />
-            <componentref id="chess3" />
-            <primitiveref id="cube" />
+            <componentref id="table" />
             </children>
 
         </component>
+
+        <component id="table">
+
+          <transformation>
+            <translate x="37.5" y="0" z="37.5" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="wood" />
+
+          <children>
+
+          <componentref id="tableup" />
+          <componentref id="tableleg1" />
+          <componentref id="tableleg2" />
+          <componentref id="tableleg3" />
+          <componentref id="tableleg4" />
+
+          </children>
+
+        </component>
+
+        <component id="tableup">
+
+          <transformation>
+            <scale x="5" y="2" z="5" />
+            <translate x="0" y="1.5" z="0" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="inherit" />
+
+          <children>
+
+          <primitiveref id="cube" />
+
+          </children>
+
+        </component>
+
+        <component id="tableleg1">
+
+          <transformation>
+            <translate x="5" y="5" z="5" />
+            <rotate axis="x" angle="90" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="inherit" />
+
+          <children>
+
+          <primitiveref id="cil" />
+
+          </children>
+
+        </component>
+
+        <component id="tableleg2">
+
+          <transformation>
+            <translate x="20" y="5" z="5" />
+            <rotate axis="x" angle="90" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="inherit" />
+
+          <children>
+
+          <primitiveref id="cil" />
+
+          </children>
+
+        </component>
+
+        <component id="tableleg3">
+
+          <transformation>
+            <translate x="20" y="5" z="20" />
+            <rotate axis="x" angle="90" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="inherit" />
+
+          <children>
+
+          <primitiveref id="cil" />
+
+          </children>
+
+        </component>
+
+        <component id="tableleg4">
+
+          <transformation>
+            <translate x="5" y="5" z="20" />
+            <rotate axis="x" angle="90" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="inherit" />
+
+          <children>
+
+          <primitiveref id="cil" />
+
+          </children>
+
+        </component>
+
 
         <component id="chess1">
 
             <transformation>
 
-                <translate x="10" y="0" z="0" />
-
+                <translate x="50" y="13.1" z="50" />
+                <scale x="2.5" y="1" z="2.5" />
             </transformation>
 
 
@@ -230,55 +364,6 @@
             </children>
 
         </component>
-
-        <component id="chess2">
-
-            <transformation>
-
-                <translate x="0" y="0" z="15" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
-
-            <primitiveref id="chess2" />
-
-            </children>
-
-        </component>
-
-        <component id="chess3">
-
-            <transformation>
-
-                <scale x="1" y="1" z="1" />
-
-            </transformation>
-
-
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
-
-            <primitiveref id="chess3" />
-
-            </children>
-
-        </component>
-
 
 
   <component id="Square" >
@@ -317,7 +402,7 @@
             </materials>
 
 
-              <texture id="wood" />
+              <texture id="wood2" />
 
             <children>
 
