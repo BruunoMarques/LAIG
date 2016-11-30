@@ -7,7 +7,7 @@
     <views default="view1" >
 
         <perspective id="view1" near="0.4" far="200" angle="60">
-            <from x="150" y="100" z="100" />
+            <from x="50" y="50" z="50" />
             <to x="0" y="0" z="0" />
         </perspective>
 
@@ -138,9 +138,9 @@
 
     <animation id="linanime" span="2" type="linear">
          <controlpoint xx="6" yy="0" zz="0" />
-		 <controlpoint xx="5" yy="9" zz="5" />
-		 <controlpoint xx="0" yy="0" zz="0" />
-		 <controlpoint xx="9" yy="0" zz="0" />
+		 <controlpoint xx="5" yy="0" zz="1" />
+		 <controlpoint xx="4" yy="0" zz="2" />
+		 <controlpoint xx="3" yy="0" zz="3" />
 		 
    </animation>
 
@@ -280,6 +280,7 @@
          
 				<animationref id ="linanime"/>
 				<animationref id ="animation1orbital1"/>
+				<animationref id ="linanime"/>
 
             </animation>           
 

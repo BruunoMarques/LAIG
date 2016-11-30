@@ -86,6 +86,7 @@ XMLscene.prototype.changeCamera = function(){
 	this.camera = new CGFcamera(this.cameras[this.cam][3],this.cameras[this.cam][1],this.cameras[this.cam][2],
 								vec3.fromValues(this.cameras[this.cam][4],this.cameras[this.cam][5],this.cameras[this.cam][6]),
 								vec3.fromValues(this.cameras[this.cam][7],this.cameras[this.cam][8],this.cameras[this.cam][9]));
+
 	this.myInterface.setActiveCamera(this.camera);
 };
 

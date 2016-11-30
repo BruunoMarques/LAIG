@@ -44,6 +44,7 @@ class MyLinearAnimation extends MyAnimation{
       }
 	  
 		this.animRefBool[0] = true;
+		this.animRefBool.push(false);
 	}
 
 duration(matrix){
@@ -74,7 +75,6 @@ duration(matrix){
           original = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
-		  console.log(this.angles);
       }
 			 this.rotate = this.angles[0];     
 	

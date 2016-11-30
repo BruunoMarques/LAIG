@@ -6,7 +6,7 @@
 
     <views default="view1" >
 
-        <perspective id="view1" near="0.4" far="200" angle="60">
+        <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
             <to x="0" y="0" z="0" />
         </perspective>
@@ -21,7 +21,7 @@
 
     <illumination doublesided="1" local="1" >
 
-        <ambient r="0.5" g="0.5" b="0.5" a="0.8" />
+        <ambient r="1" g="0" b="0" a="1" />
         <background r="0" g="0" b="0" a="1" />
 
     </illumination>

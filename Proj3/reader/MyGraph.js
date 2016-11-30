@@ -71,6 +71,7 @@ MyGraph.prototype.initiatePrimitives = function (vertex) {
         this.getPrimitives(vertex,vertex.primitives[i],vertex.primitive_types[i]);
     }
     for(var i = 0; i < vertex.derivates.length; i++){
+		console.log(vertex.derivates[i]);
         this.initiatePrimitives(vertex.derivates[i]);
     }
  }

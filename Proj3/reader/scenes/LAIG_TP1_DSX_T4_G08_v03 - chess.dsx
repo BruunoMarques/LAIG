@@ -6,14 +6,14 @@
 
     <views default="view1" >
 
-        <perspective id="view1" near="0.4" far="200" angle="60">
+        <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
             <to x="0" y="0" z="0" />
         </perspective>
 
-		<perspective id="perspective2" near="0.4" far="200" angle="60">
-            <from x="35" y="35" z="35" />
-            <to x="10" y="10" z="10" />
+		<perspective id="perspective2" near="1" far="250" angle="30">
+            <from x="100" y="40" z="80" />
+            <to x="30" y="10" z="30" />
         </perspective>
 
     </views>
@@ -21,7 +21,7 @@
 
     <illumination doublesided="1" local="1" >
 
-        <ambient r="0.5" g="0.5" b="0.5" a="0.8" />
+        <ambient r="1" g="0" b="0" a="0.8" />
         <background r="0" g="0" b="0" a="1" />
 
     </illumination>
@@ -50,7 +50,7 @@
             <specular r="1" g="1" b="1" a="1" />
         </omni>
 
-		 <spot id="luz4" enabled="1" angle="240" exponent="0.1">
+		 <spot id="luz4" enabled="1" angle="0" exponent="0.1">
 			<target z="0" y="2" x="2"/>
 			<location x="5" y="-10"  z="-10"/>
 			<ambient a="1" b="0.5" g="0.5" r="0.5"/>

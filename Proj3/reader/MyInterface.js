@@ -43,7 +43,7 @@ MyInterface.prototype.changeView = function (){
     this.scene.cam = 0;
     this.scene.changeCamera();
     this.setActiveCamera(this.scene.camera);
-    console.log("Key pressed V");
+    console.log("Switched Camera");
 }
 
 MyInterface.prototype.processKeyboard = function(event) {
