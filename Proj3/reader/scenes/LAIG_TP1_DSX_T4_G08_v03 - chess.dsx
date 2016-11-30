@@ -95,6 +95,22 @@
             <shininess value="200" />
         </material>
 
+        <material id="player1" >
+           <emission r="0.6" g="0.08" b="0.1" a="1" />
+           <ambient r="0.6" g="0.08" b="0.1" a="1" />
+           <diffuse r="1" g="0.2" b="0.3" a="1" />
+           <specular r="1" g="0.2" b="0.3" a="1" />
+           <shininess value="200" />
+       </material>
+
+       <material id="player2" >
+          <emission r="0.82" g="0.72" b="0.4" a="1" />
+          <ambient r="0.82" g="0.72" b="0.4" a="1" />
+          <diffuse r="1" g="0.9" b="0.6" a="1" />
+          <specular r="1" g="0.9" b="0.6" a="1" />
+          <shininess value="200" />
+      </material>
+
     </materials>
 
 
@@ -184,6 +200,14 @@
         <piece type="0" />
     </primitive>
 
+    <primitive id="pieceM">
+        <piece type="1" />
+    </primitive>
+
+    <primitive id="pieceL">
+        <piece type="2" />
+    </primitive>
+
     </primitives>
 
 
@@ -211,6 +235,8 @@
     		    <componentref id="chess1" />
             <componentref id="table" />
             <componentref id="piece1" />
+            <componentref id="piece2" />
+            <componentref id="piece3" />
             </children>
 
         </component>
@@ -223,7 +249,7 @@
           </transformation>
 
           <materials>
-              <material id="base" />
+              <material id="player1" />
           </materials>
 
           <texture id="none" />
@@ -231,6 +257,48 @@
           <children>
 
           <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="piece2">
+
+          <transformation>
+            <translate x="45" y="15" z="50" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="player2" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceM" />
+
+          </children>
+
+        </component>
+
+        <component id="piece3">
+
+          <transformation>
+            <translate x="55" y="15" z="50" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceL" />
 
           </children>
 
