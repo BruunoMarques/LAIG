@@ -58,7 +58,7 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 						prim = new MyCube(this.scene, primitive[1]);
 						break;
 				case "piece":
-						prim = new MyPiece(this.scene, primitive[1]);
+						prim = new MyNewPiece(this.scene, primitive[1]);
 						break;
     }
     vertex.component.primitivess.push(prim);

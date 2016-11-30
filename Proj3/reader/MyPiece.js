@@ -1,8 +1,6 @@
-function MyPiece(scene, type) {
+function MyPiece(scene) {
 	CGFobject.call(this, scene);
 
-
-	this.type = type;
 
 	this.controlPoints = [[-1.549	,-1.258,	-0.575],
 												[-1.378,	-0.439,	-0.528],
@@ -40,19 +38,19 @@ MyPiece.prototype.initBuffers = function() {
 
 MyPiece.prototype.display = function(){
 
-	this.scene.pushMatrix();
-	this.scene.rotate(-Math.PI/2,1,0,0);
-	this.scene.rotate(Math.PI/25,0,0,1);
-	this.scene.rotate(Math.PI/30,0,1,0);
-	this.scene.scale(4,4,4);
-	this.patch.display();
-	this.scene.popMatrix();
+		this.scene.pushMatrix();
+		this.scene.rotate(-Math.PI/2,1,0,0);
+		this.scene.rotate(Math.PI/25,0,0,1);
+		this.scene.rotate(Math.PI/30,0,1,0);
+		this.scene.scale(4,4,4);
+		this.patch.display();
+		this.scene.popMatrix();
 
-	this.scene.pushMatrix();
-	this.scene.translate(-6,-2.5,-6);
-	this.scene.scale(14,1,12);
-	this.base.display();
-	this.scene.popMatrix();
+		this.scene.pushMatrix();
+		this.scene.translate(-6,-2.5,-6);
+		this.scene.scale(14,1,12);
+		this.base.display();
+		this.scene.popMatrix();
 
 
 }
