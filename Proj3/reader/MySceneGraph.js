@@ -410,6 +410,7 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.vehicles = [];
 	this.chessboards = [];
 	this.cubes = [];
+	this.pieces = [];
 
 	var obj = {
 		size_r : 0,
@@ -421,7 +422,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 		size_pl : 0,
 		size_v : 0,
 		size_ch : 0,
-		size_cs : 0
+		size_cs : 0,
+		size_p : 0
 	};
 
 
@@ -564,6 +566,13 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 					this.cubes[obj.size_cs][1] = this.reader.getFloat(e.children[index],'dim',true);
 					obj.size_cs+=1;
 					break;
+
+					case "piece":
+						this.pieces[obj.size_p] = [];
+						this.pieces[obj.size_p][0] = id;
+						this.pieces[obj.size_p][1] = this.reader.getFloat(e.children[index],'type',true);
+						obj.size_p+=1;
+						break;
 	}
 
 }
@@ -581,6 +590,7 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
 		if((emptyvar = this.isPrimitive(types[7], id, vertex, "vehicle")) == null)
 		if((emptyvar = this.isPrimitive(types[8], id, vertex, "chessboard")) == null)
 		if((emptyvar = this.isPrimitive(types[9], id, vertex, "cube")) == null)
+		if((emptyvar = this.isPrimitive(types[10], id, vertex, "piece")) == null)
 
                         return;
 
@@ -618,7 +628,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 
     var types = [];
     types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
-		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards); types.push(this.cubes);
+		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards); types.push(this.cubes); types.push(this.pieces);
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];
