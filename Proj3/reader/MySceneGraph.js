@@ -349,7 +349,6 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 	for(var i = 0; i < size; i++){
 		var e = elems[0].children[i];
 
-
 		var numRef = this.reader.getString(e,'id',true);
 		if(this.animationsList.indexOf(numRef) != -1)return "numRef repeated!";
 
@@ -358,7 +357,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		var type = this.reader.getString(e,'type',true);
 
 		if(type == "linear"){
-			var elems1 = elems[0].getElementsByTagName('controlpoint');
+			var elems1 = elems[0].children[i].getElementsByTagName('controlpoint');
 			var size1 = elems1.length;
 			this.controlPoints = [];
 
@@ -387,7 +386,6 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 		}else
 			return "animation type invalid!";
 	}
-
 	return 	this.parsePrimitives(rootElement);
 }
 
@@ -689,12 +687,11 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
 						animationref.duration(originalvec);
 						}
 						else{
-
 						var previousref = type.animations[type.animations.length -1].controlPoints;
-						console.log(previousref.length-1);
-						var originalvec = vec3.fromValues(previousref[previousref.length-1][0],
-						previousref[previousref.length-1][1],
-						previousref[previousref.length-1][2]);
+						var originalvec = vec3.fromValues(previousref[0].x,
+						previousref[0].y,
+						previousref[0].z);
+						console.log(originalvec);
 						var startpoint = animationref.controlPoints[0];
 						animationref.distance +=  vec3.distance(vec3.fromValues(startpoint[0],startpoint[1],startpoint[2]), originalvec);
 						animationref.speed = animationref.distance/animationref.span;

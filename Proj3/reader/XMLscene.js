@@ -377,7 +377,6 @@ XMLscene.prototype.animation = function(vertex){
 	var animate = vertex.component.animations[index];
 	
 	if(animate instanceof MyLinearAnimation){
-		console.log(animate.rotangle);
         this.translate(animate.translation.x,animate.translation.y,animate.translation.z);
         this.translate(originPoint.x,originPoint.y,originPoint.z);
         this.rotate(animate.rotate,0,1,0);

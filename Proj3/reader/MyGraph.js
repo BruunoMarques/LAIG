@@ -66,6 +66,7 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 
 //funcao responsavel por invocar a inicializacao das primitivas de um vertice/componente
 MyGraph.prototype.initiatePrimitives = function (vertex) {
+
 	if (vertex.component.animations.length !=0){
 		this.scene.animComps.push(vertex.component);
 	}
@@ -74,7 +75,6 @@ MyGraph.prototype.initiatePrimitives = function (vertex) {
         this.getPrimitives(vertex,vertex.primitives[i],vertex.primitive_types[i]);
     }
     for(var i = 0; i < vertex.derivates.length; i++){
-		console.log(vertex.derivates[i]);
         this.initiatePrimitives(vertex.derivates[i]);
     }
  }

@@ -44,7 +44,7 @@ function MyVehicle(scene) {
 											[0.015,	-0.620,	1.564],
 											[0.012,	-0.612,	1.554]];
 
-console.log(this.controlPoints);
+
 
 	this.initBuffers();
 };
@@ -59,7 +59,6 @@ MyVehicle.prototype.initBuffers = function() {
 }
 
 MyVehicle.prototype.display = function(){
-
 	this.scene.pushMatrix();
 	this.scene.scale(4,4,8);
 	this.patch.display();

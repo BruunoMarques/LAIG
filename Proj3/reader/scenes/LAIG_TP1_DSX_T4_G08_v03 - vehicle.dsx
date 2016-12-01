@@ -137,12 +137,19 @@
     <!-- os angulos sao expressos em graus  -->
 
     <animation id="linanime" span="2" type="linear">
-         <controlpoint xx="6" yy="0" zz="0" />
-		 <controlpoint xx="5" yy="0" zz="1" />
-		 <controlpoint xx="4" yy="0" zz="2" />
-		 <controlpoint xx="3" yy="0" zz="3" />
-		 
+         <controlpoint xx="6" yy="0" zz="0"/>
+		 <controlpoint xx="7" yy="0" zz="1" />
+		 <controlpoint xx="8" yy="0" zz="4" />
+
+		
    </animation>
+   
+   
+     <animation id="cenas1" span="2" type="linear">
+         <controlpoint xx="2" yy="0" zz="0"/>
+		 <controlpoint xx="0" yy="0" zz="1" />
+   </animation>
+   
 
     <animation id="animation1orbital1" span="5" type="circular" centerx="9" centery="0" centerz="0" radius="0" startang="90" rotang="360" />
    
@@ -272,16 +279,16 @@
 
             <transformation>
 
-                <scale x="1" y="1" z="1" />
+                <scale x="0.2" y="0.2" z="0.2" />
 
             </transformation>
 			
-			<animation>
-         
+			<animation>         
 				<animationref id ="linanime"/>
 				<animationref id ="animation1orbital1"/>
+				<animationref id ="cenas1" />
+				<animationref id ="animation1orbital1"/>
 				<animationref id ="linanime"/>
-
             </animation>           
 
             <materials>

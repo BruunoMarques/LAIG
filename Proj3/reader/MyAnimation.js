@@ -6,6 +6,7 @@ class MyAnimation {
 		
 	
 AngleCalc(x,z,dirZ){
+
 	var anglevec = vec3.fromValues(x,0,z);
 	var cosvar = vec3.dot(anglevec,dirZ) / Math.sqrt( x*x+z*z);
 	var angle = Math.acos(cosvar);
@@ -35,6 +36,7 @@ class MyLinearAnimation extends MyAnimation{
 		
 		
 		this.animRefBool = [];
+		
 		for(var i = 1; i < this.controlPoints.length ; i++){
           var OriginPoint= this.controlPoints[i-1];
           var destination = vec3.fromValues(this.controlPoints[i][0],this.controlPoints[i][1],this.controlPoints[i][2]);
@@ -53,7 +55,7 @@ duration(matrix){
 	var vy = vec3.fromValues(0, 1, 0);
     var vz = vec3.fromValues(0, 0, 1);
 	var time = 0;
-	
+
 	for(var i = 0;i < this.controlPoints.length;i++){
 		
           var currpoint = this.controlPoints[i];
@@ -65,10 +67,10 @@ duration(matrix){
           this.intervals.push(time);
 		  
           vec3.subtract(nextpoint, nextpoint, original);
+		  console.log(nextpoint);
           var x = vec3.dot(nextpoint, vx);
           var y = vec3.dot(nextpoint, vy);
           var z = vec3.dot(nextpoint, vz);
-		  
           var move = [(x/interval), (y/interval), (z/interval)];
 		  
           this.moveDistance.push(move);

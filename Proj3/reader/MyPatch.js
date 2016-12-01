@@ -7,7 +7,7 @@ function MyPatch(scene, orderU, orderV, partsU, partsV, controlPoints) {
 	this.partsV = partsV;
 	this.ControlPoints = [];
 
-	console.log(controlPoints);
+
 
 	for(var i = 0; i <= this.orderU; i++)
 	{
