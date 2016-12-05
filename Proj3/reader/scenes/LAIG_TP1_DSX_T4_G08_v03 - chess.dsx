@@ -165,7 +165,7 @@
         </primitive>
 
     <primitive id="chess1">
-      <chessboard du="9" dv="9" textureref="wood" su="3" sv="6">
+      <chessboard du="9" dv="9" textureref="wood" su="10" sv="10">
                      <c1 r="1.0" g="0.75" b="0.5" a="1" />
                      <c2 r="0.33" g="0.17" b="0.07" a="1" />
                      <cs r="1.0" g="0.0" b="0.0" a="1" />
@@ -231,25 +231,103 @@
 
             <children>
 
-			      <componentref id="Square" />
-    		    <componentref id="chess1" />
-            <componentref id="table" />
-            <componentref id="piece1" />
-            <componentref id="piece2" />
-            <componentref id="piece3" />
+			      <componentref id="Room" />
+    		    <componentref id="TableBoard" />
             </children>
 
         </component>
 
-        <component id="piece1">
+        <component id="TableBoard">
 
           <transformation>
-            <translate x="50" y="15" z="50" />
-            <scale x="0.15" y="0.15" z="0.15" />
+
+              <scale x="1" y="1" z="1" />
+
+          </transformation>
+
+
+          <materials>
+              <material id="base" />
+          </materials>
+
+
+          <texture id="none" />
+
+          <children>
+            <componentref id="Board" />
+            <componentref id="Table" />
+            <componentref id="Player1" />
+            <componentref id="Player2" />
+          </children>
+
+        </component>
+
+        <component id="Player1">
+
+          <transformation>
+            <translate x="49.9" y="13.8" z="50" />
           </transformation>
 
           <materials>
               <material id="player1" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <componentref id="p1piece1" />
+          <componentref id="p1piece2" />
+          <componentref id="p1piece3" />
+          <componentref id="p1piece4" />
+          <componentref id="p1piece5" />
+          <componentref id="p1piece6" />
+          <componentref id="p1piece7" />
+          <componentref id="p1piece8" />
+
+          </children>
+
+
+        </component>
+
+        <component id="Player2">
+
+          <transformation>
+            <translate x="49.9" y="13.8" z="50" />
+          </transformation>
+
+          <materials>
+              <material id="player2" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <componentref id="p2piece1" />
+          <componentref id="p2piece2" />
+          <componentref id="p2piece3" />
+          <componentref id="p2piece4" />
+          <componentref id="p2piece5" />
+          <componentref id="p2piece6" />
+          <componentref id="p2piece7" />
+          <componentref id="p2piece8" />
+
+          </children>
+
+
+        </component>
+
+
+        <component id="p1piece1">
+
+          <transformation>
+            <translate x="0" y="0" z="5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
           </materials>
 
           <texture id="none" />
@@ -262,15 +340,78 @@
 
         </component>
 
-        <component id="piece2">
+        <component id="p1piece2">
 
           <transformation>
-            <translate x="45" y="15" z="50" />
+            <translate x="0" y="0" z="7.5" />
             <scale x="0.15" y="0.15" z="0.15" />
           </transformation>
 
           <materials>
-              <material id="player2" />
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p1piece3">
+
+          <transformation>
+            <translate x="2.5" y="0" z="7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p1piece4">
+
+          <transformation>
+            <translate x="-2.5" y="0" z="7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p1piece5">
+
+          <transformation>
+            <translate x="5" y="0" z="7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
           </materials>
 
           <texture id="none" />
@@ -283,15 +424,36 @@
 
         </component>
 
-        <component id="piece3">
+        <component id="p1piece6">
 
           <transformation>
-            <translate x="55" y="15" z="50" />
+            <translate x="-5" y="0" z="7.5" />
             <scale x="0.15" y="0.15" z="0.15" />
           </transformation>
 
           <materials>
-              <material id="base" />
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceM" />
+
+          </children>
+
+        </component>
+
+        <component id="p1piece7">
+
+          <transformation>
+            <translate x="10" y="0" z="10" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
           </materials>
 
           <texture id="none" />
@@ -304,7 +466,222 @@
 
         </component>
 
-        <component id="table">
+        <component id="p1piece8">
+
+          <transformation>
+            <translate x="-10" y="0" z="10" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceL" />
+
+          </children>
+
+        </component>
+
+
+        <component id="p2piece1">
+
+          <transformation>
+            <translate x="0" y="0" z="-5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece2">
+
+          <transformation>
+            <translate x="0" y="0" z="-7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece3">
+
+          <transformation>
+            <translate x="2.5" y="0" z="-7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece4">
+
+          <transformation>
+            <translate x="-2.5" y="0" z="-7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceS" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece5">
+
+          <transformation>
+            <translate x="-5" y="0" z="-7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceM" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece6">
+
+          <transformation>
+            <translate x="5" y="0" z="-7.5" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceM" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece7">
+
+          <transformation>
+            <translate x="-10" y="0" z="-10" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceL" />
+
+          </children>
+
+        </component>
+
+        <component id="p2piece8">
+
+          <transformation>
+            <translate x="10" y="0" z="-10" />
+            <scale x="0.15" y="0.15" z="0.15" />
+          </transformation>
+
+          <materials>
+              <material id="inherit" />
+          </materials>
+
+          <texture id="none" />
+
+          <children>
+
+          <primitiveref id="pieceL" />
+
+          </children>
+
+        </component>
+
+
+        <component id="Board">
+
+            <transformation>
+
+                <translate x="50" y="13.1" z="50" />
+                <scale x="2.5" y="1" z="2.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="base" />
+            </materials>
+
+
+            <texture id="none" />
+
+            <children>
+
+            <primitiveref id="chess1" />
+
+            </children>
+
+        </component>
+
+        <component id="Table">
 
           <transformation>
             <translate x="37.5" y="0" z="37.5" />
@@ -318,7 +695,7 @@
 
           <children>
 
-          <componentref id="tableup" />
+          <componentref id="tabletop" />
           <componentref id="tableleg1" />
           <componentref id="tableleg2" />
           <componentref id="tableleg3" />
@@ -328,7 +705,7 @@
 
         </component>
 
-        <component id="tableup">
+        <component id="tabletop">
 
           <transformation>
             <scale x="5" y="2" z="5" />
@@ -434,32 +811,9 @@
         </component>
 
 
-        <component id="chess1">
-
-            <transformation>
-
-                <translate x="50" y="13.1" z="50" />
-                <scale x="2.5" y="1" z="2.5" />
-            </transformation>
 
 
-            <materials>
-                <material id="base" />
-            </materials>
-
-
-            <texture id="none" />
-
-            <children>
-
-            <primitiveref id="chess1" />
-
-            </children>
-
-        </component>
-
-
-  <component id="Square" >
+      <component id="Room" >
 
             <transformation>
 
