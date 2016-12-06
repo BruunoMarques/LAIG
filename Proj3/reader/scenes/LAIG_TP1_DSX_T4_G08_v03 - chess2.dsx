@@ -76,10 +76,11 @@
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
     <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
-    <texture id="wood2" file="./resources/images/bar.jpg" length_s="1" length_t="1" />
+    <texture id="wood3" file="./resources/images/wood3.jpg" length_s="1" length_t="1" />
+    <texture id="wood2" file="./resources/images/wall4.png" length_s="1" length_t="1" />
     <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
     <texture id="floor" file="./resources/images/woodenfloor.jpg" length_s="1" length_t="1" />
-    <texture id="wall" file="./resources/images/wall2.jpg" length_s="1" length_t="1" />
+    <texture id="wall" file="./resources/images/wall3.jpg" length_s="1" length_t="1" />
 
     </textures>
 
@@ -248,7 +249,7 @@
 
           <transformation>
 
-              <scale x="1" y="1" z="1" />
+              <translate x="0" y="5" z="0" />
 
           </transformation>
 
@@ -691,14 +692,14 @@
         <component id="Table">
 
           <transformation>
-            <translate x="37.5" y="0" z="37.5" />
+            <translate x="37.5" y="6.5" z="37.5" />
           </transformation>
 
           <materials>
               <material id="base" />
           </materials>
 
-          <texture id="wood" />
+          <texture id="wood3" />
 
           <children>
 
@@ -715,8 +716,9 @@
         <component id="tabletop">
 
           <transformation>
-            <scale x="5" y="2" z="5" />
-            <translate x="0" y="1.5" z="0" />
+
+            <translate x="0" y="5" z="0" />
+            <scale x="5" y="0.3" z="5" />
           </transformation>
 
           <materials>
@@ -736,8 +738,9 @@
         <component id="tableleg1">
 
           <transformation>
-            <translate x="5" y="5" z="5" />
+            <translate x="2" y="5" z="2" />
             <rotate axis="x" angle="90" />
+            <scale x="0.3" y="0.3" z="3.5" />
           </transformation>
 
           <materials>
@@ -748,7 +751,7 @@
 
           <children>
 
-          <primitiveref id="cil" />
+          <primitiveref id="cube" />
 
           </children>
 
@@ -757,8 +760,9 @@
         <component id="tableleg2">
 
           <transformation>
-            <translate x="20" y="5" z="5" />
+            <translate x="22" y="5" z="2" />
             <rotate axis="x" angle="90" />
+            <scale x="0.3" y="0.3" z="3.5" />
           </transformation>
 
           <materials>
@@ -769,7 +773,7 @@
 
           <children>
 
-          <primitiveref id="cil" />
+          <primitiveref id="cube" />
 
           </children>
 
@@ -778,8 +782,9 @@
         <component id="tableleg3">
 
           <transformation>
-            <translate x="20" y="5" z="20" />
+            <translate x="22" y="5" z="22" />
             <rotate axis="x" angle="90" />
+            <scale x="0.3" y="0.3" z="3.5" />
           </transformation>
 
           <materials>
@@ -790,7 +795,7 @@
 
           <children>
 
-          <primitiveref id="cil" />
+          <primitiveref id="cube" />
 
           </children>
 
@@ -799,8 +804,9 @@
         <component id="tableleg4">
 
           <transformation>
-            <translate x="5" y="5" z="20" />
+            <translate x="2" y="5" z="22" />
             <rotate axis="x" angle="90" />
+            <scale x="0.3" y="0.3" z="3.5" />
           </transformation>
 
           <materials>
@@ -811,7 +817,7 @@
 
           <children>
 
-          <primitiveref id="cil" />
+          <primitiveref id="cube" />
 
           </children>
 
