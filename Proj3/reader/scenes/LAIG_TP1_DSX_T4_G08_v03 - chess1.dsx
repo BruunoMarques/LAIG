@@ -4,16 +4,21 @@
     <scene root="root" axis_length="4" />
 
 
-    <views default="view1" >
+    <views default="view3" >
 
         <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
             <to x="0" y="0" z="0" />
         </perspective>
 
-		<perspective id="perspective2" near="1" far="250" angle="30">
+		    <perspective id="view2" near="1" far="250" angle="30">
             <from x="100" y="40" z="80" />
             <to x="30" y="10" z="30" />
+        </perspective>
+
+        <perspective id="view3" near="1" far="250" angle="75">
+            <from x="50" y="40" z="50" />
+            <to x="49" y="10" z="50" />
         </perspective>
 
     </views>
@@ -56,6 +61,7 @@
             <diffuse r="1" g="1" b="1" a="1" />
             <specular r="1" g="1" b="1" a="1" />
         </omni>
+
 <!--
 		 <spot id="luz5" enabled="1" angle="0" exponent="0.1">
 			<target z="0" y="2" x="2"/>
@@ -161,6 +167,25 @@
     <animation id="animation2orbital2" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="26" startang="0" rotang="Math.PI*2" />
     <animation id="animation1orbital3" span="5" type="circular" centerx="2" centery="4" centerz="4.5" radius="36.3" startang="0" rotang="Math.PI*2" />
 
+    <animation id="front" span="1" type="linear">
+        <controlpoint xx="0" yy="0" zz="5" />
+        <controlpoint xx="0" yy="0" zz="2.5" />
+    </animation>
+
+    <animation id="back" span="1" type="linear">
+        <controlpoint xx="0" yy="0" zz="5" />
+        <controlpoint xx="0" yy="0" zz="7.5" />
+    </animation>
+
+    <animation id="left" span="1" type="linear">
+        <controlpoint xx="0" yy="0" zz="5" />
+        <controlpoint xx="-2.5" yy="0" zz="5" />
+    </animation>
+
+    <animation id="right" span="1" type="linear">
+        <controlpoint xx="0" yy="0" zz="5" />
+        <controlpoint xx="2.5" yy="0" zz="5" />
+    </animation>
 
 
 </animations>
