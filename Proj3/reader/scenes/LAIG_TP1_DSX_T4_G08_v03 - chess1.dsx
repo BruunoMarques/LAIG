@@ -4,7 +4,7 @@
     <scene root="root" axis_length="4" />
 
 
-    <views default="view3" >
+    <views default="view1" >
 
         <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
@@ -240,6 +240,10 @@
         <piece type="2" />
     </primitive>
 
+    <primitive id="easel">
+        <easel />
+    </primitive>
+    
     </primitives>
 
 
@@ -265,6 +269,7 @@
 
 			      <componentref id="Room" />
     		    <componentref id="TableBoard" />
+            <primitiveref id="easel" />
             </children>
 
         </component>
