@@ -44,12 +44,13 @@ MyEasel.prototype.display = function(){
 	this.scene.scale(13,3,1);
 	this.cube.display();
 	this.scene.popMatrix();
-/*
+
 	this.scene.pushMatrix();
-	this.scene.translate(-3.50,-3,8);
-	this.scene.rotate(Math.PI/2,0,1,0);
+	this.scene.translate(12,0,-21.7);
+	this.scene.rotate(Math.PI/5.5,1,0,0);
+	this.scene.scale(3,33,1);
 	this.cube.display();
-	this.scene.popMatrix();*/
+	this.scene.popMatrix();
 
 
 }
