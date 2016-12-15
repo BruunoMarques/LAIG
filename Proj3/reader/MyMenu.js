@@ -9,6 +9,7 @@ function MyMenu(scene, dimX, dimY, partsX, partsY)
 	this.controlPoints = this.getControlPoints();
 
 	this.patch = new MyPatch(this.scene,1,1,partsX,partsY,this.controlPoints);
+	this.cube = new MyCube(this.scene,1);
 };
 
 MyMenu.prototype = Object.create(CGFobject.prototype);
