@@ -9,6 +9,7 @@ function MyScoreBoard(scene, dimX, dimY, partsX, partsY)
 	this.controlPoints = this.getControlPoints();
 
 	this.patch = new MyPatch(this.scene,1,1,partsX,partsY,this.controlPoints);
+	this.cube = new MyCube(this.scene,2);
 };
 
 MyScoreBoard.prototype = Object.create(CGFobject.prototype);
@@ -35,5 +36,12 @@ MyScoreBoard.prototype.getControlPoints = function () {
 
 MyScoreBoard.prototype.display = function ()
 {
-	this.patch.display();
+	this.scene.pushMatrix();
+	//this.marble.apply();
+	this.scene.translate(20,5,43);
+	this.scene.rotate(Math.PI/4,0,1,0);
+	this.scene.rotate(-Math.PI/15,1,0,0);
+	this.scene.scale(15,23,0.5);
+	this.cube.display();
+	this.scene.popMatrix();
 };

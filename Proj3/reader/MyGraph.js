@@ -61,9 +61,11 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 						prim = new MyNewPiece(this.scene, primitive[1]);
 						break;
 				case "easel":
-						prim = new MyEasel(this.scene);/*
+						prim = new MyEasel(this.scene);
+						break;
 				case "menu":
 						prim = new MyMenu(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);
+						break;/*
 				case "scoreboard":
 						prim = new MyScoreBoard(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);*/
     }

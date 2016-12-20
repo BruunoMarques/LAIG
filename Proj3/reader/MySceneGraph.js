@@ -410,7 +410,7 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.cubes = [];
 	this.pieces = [];
 	this.easels = [];
-/*	this.menus = [];
+	this.menus = [];/*
 	this.scoreboards = []:*/
 
 	var obj = {
@@ -425,8 +425,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 		size_ch : 0,
 		size_cs : 0,
 		size_p : 0,
-		size_e : 0/*
-		size_m : 0,
+		size_e : 0,
+		size_m : 0/*,
 		size_sc : 0*/
 	};
 
@@ -539,61 +539,61 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			obj.size_pt+=1;
 			break;
 
-			case "vehicle":
-				this.vehicles[obj.size_v] = [];
-				this.vehicles[obj.size_v][0] = id;
-				obj.size_v+=1;
-				break;
+		case "vehicle":
+			this.vehicles[obj.size_v] = [];
+			this.vehicles[obj.size_v][0] = id;
+			obj.size_v+=1;
+			break;
 
-			case "chessboard":
-				this.chessboards[obj.size_ch] = [];
-				this.chessboards[obj.size_ch][0] = id;
-				this.chessboards[obj.size_ch][1] = this.reader.getFloat(e.children[index],'du',true);
-				this.chessboards[obj.size_ch][2] = this.reader.getFloat(e.children[index],'dv',true);
-				var texture = this.reader.getString(e.children[index],'textureref',true);
-				var it = this.textID.indexOf(texture);
-				this.chessboards[obj.size_ch][3] = this.TextureList[it][0];
-				this.chessboards[obj.size_ch][4] = this.reader.getFloat(e.children[index],'su',true);
-				this.chessboards[obj.size_ch][5] = this.reader.getFloat(e.children[index],'sv',true);
-				this.chessboards[obj.size_ch][6] = [];
-				this.getRGBA(this.chessboards[obj.size_ch][6], e.children[index].children[0]);
-				this.chessboards[obj.size_ch][7] = [];
-				this.getRGBA(this.chessboards[obj.size_ch][7], e.children[index].children[1]);
-				this.chessboards[obj.size_ch][8] = [];
-				this.getRGBA(this.chessboards[obj.size_ch][8], e.children[index].children[2]);
-				obj.size_ch+=1;
-				break;
+		case "chessboard":
+			this.chessboards[obj.size_ch] = [];
+			this.chessboards[obj.size_ch][0] = id;
+			this.chessboards[obj.size_ch][1] = this.reader.getFloat(e.children[index],'du',true);
+			this.chessboards[obj.size_ch][2] = this.reader.getFloat(e.children[index],'dv',true);
+			var texture = this.reader.getString(e.children[index],'textureref',true);
+			var it = this.textID.indexOf(texture);
+			this.chessboards[obj.size_ch][3] = this.TextureList[it][0];
+			this.chessboards[obj.size_ch][4] = this.reader.getFloat(e.children[index],'su',true);
+			this.chessboards[obj.size_ch][5] = this.reader.getFloat(e.children[index],'sv',true);
+			this.chessboards[obj.size_ch][6] = [];
+			this.getRGBA(this.chessboards[obj.size_ch][6], e.children[index].children[0]);
+			this.chessboards[obj.size_ch][7] = [];
+			this.getRGBA(this.chessboards[obj.size_ch][7], e.children[index].children[1]);
+			this.chessboards[obj.size_ch][8] = [];
+			this.getRGBA(this.chessboards[obj.size_ch][8], e.children[index].children[2]);
+			obj.size_ch+=1;
+			break;
 
-				case "cube":
-					this.cubes[obj.size_cs] = [];
-					this.cubes[obj.size_cs][0] = id;
-					this.cubes[obj.size_cs][1] = this.reader.getFloat(e.children[index],'dim',true);
-					obj.size_cs+=1;
-					break;
+		case "cube":
+			this.cubes[obj.size_cs] = [];
+			this.cubes[obj.size_cs][0] = id;
+			this.cubes[obj.size_cs][1] = this.reader.getFloat(e.children[index],'dim',true);
+			obj.size_cs+=1;
+			break;
 
-				case "piece":
-					this.pieces[obj.size_p] = [];
-					this.pieces[obj.size_p][0] = id;
-					this.pieces[obj.size_p][1] = this.reader.getFloat(e.children[index],'type',true);
-					obj.size_p+=1;
-					break;
+		case "piece":
+			this.pieces[obj.size_p] = [];
+			this.pieces[obj.size_p][0] = id;
+			this.pieces[obj.size_p][1] = this.reader.getFloat(e.children[index],'type',true);
+			obj.size_p+=1;
+			break;
 
-					case "easel":
-						this.easels[obj.size_e] = [];
-						this.easels[obj.size_e][0] = id;
-						obj.size_e+=1;
-						break;
+		case "easel":
+			this.easels[obj.size_e] = [];
+			this.easels[obj.size_e][0] = id;
+			obj.size_e+=1;
+			break;
+
+		case "menu":
+			this.menus[obj.size_m] = [];
+			this.menus[obj.size_m][0] = id;
+			this.menus[obj.size_m][1] = this.reader.getFloat(e.children[index],'dimX',true);
+			this.menus[obj.size_m][2] = this.reader.getFloat(e.children[index],'dimY',true);
+			this.menus[obj.size_m][3] = this.reader.getFloat(e.children[index],'partsX',true);
+			this.menus[obj.size_m][4] = this.reader.getFloat(e.children[index],'partsY',true);
+			obj.size_m+=1;
+			break;
 /*
-				case "menu":
-					this.menus[obj.size_m] = [];
-					this.menus[obj.size_m][0] = id;
-					this.menus[obj.size_m][1] = this.reader.getFloat(e.children[index],'dimX',true);
-					this.menus[obj.size_m][2] = this.reader.getFloat(e.children[index],'dimY',true);
-					this.menus[obj.size_m][3] = this.reader.getFloat(e.children[index],'partsX',true);
-					this.menus[obj.size_m][4] = this.reader.getFloat(e.children[index],'partsY',true);
-					obj.size_m+=1;
-					break;
-
 				case "scoreboard":
 					this.scoreboards[obj.size_sc] = [];
 					this.scoreboards[obj.size_sc][0] = id;
@@ -622,8 +622,8 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
 		if((emptyvar = this.isPrimitive(types[9], id, vertex, "cube")) == null)
 		if((emptyvar = this.isPrimitive(types[10], id, vertex, "piece")) == null)
 	if((emptyvar = this.isPrimitive(types[11], id, vertex, "easel")) == null)
-/*		if((emptyvar = this.isPrimitive(types[12], id, vertex, "menu")) == null)
-		if((emptyvar = this.isPrimitive(types[13], id, vertex, "scoreboard")) == null)*/
+		if((emptyvar = this.isPrimitive(types[12], id, vertex, "menu")) == null)
+/*		if((emptyvar = this.isPrimitive(types[13], id, vertex, "scoreboard")) == null)*/
                         return;
 
 
@@ -661,7 +661,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
     var types = [];
     types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
 		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards); types.push(this.cubes); types.push(this.pieces);
-		types.push(this.easels);/*	types.push(this.menus); types.push(this.scoreboards);*/
+		types.push(this.easels);	types.push(this.menus);/* types.push(this.scoreboards);*/
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];

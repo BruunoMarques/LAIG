@@ -61,7 +61,34 @@
             <diffuse r="1" g="1" b="1" a="1" />
             <specular r="1" g="1" b="1" a="1" />
         </omni>
+<!--
+    <omni id="luz5" enabled="1" >
+            <location x="43" y="15" z="33" w="1" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
+            <specular r="1" g="1" b="1" a="1" />
+        </omni>
 
+    <omni id="luz6" enabled="1" >
+            <location x="30" y="15" z="43" w="1" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
+            <specular r="1" g="1" b="1" a="1" />
+        </omni>
+-->
+    <omni id="luz7" enabled="1" >
+            <location x="40" y="60" z="30" w="1" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
+            <specular r="1" g="1" b="1" a="1" />
+        </omni>
+
+    <omni id="luz8" enabled="1" >
+            <location x="30" y="60" z="40" w="1" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="1" g="1" b="1" a="1" />
+            <specular r="1" g="1" b="1" a="1" />
+        </omni>
 <!--
 		 <spot id="luz5" enabled="1" angle="0" exponent="0.1">
 			<target z="0" y="2" x="2"/>
@@ -95,8 +122,8 @@
         <material id="base" >
             <emission r="0.2" g="0.2" b="0.2" a="0.2" />
             <ambient r="0.3" g="0.3" b="0.3" a="0.3" />
-            <diffuse r="0.1" g="0.1" b="0.1" a="1" />
-            <specular r="1" g="1" b="1.0" a="1" />
+            <diffuse r="0.1" g="0.1" b="0.1" a="0.2" />
+            <specular r="1" g="1" b="1.0" a="0.2" />
             <shininess value="5" />
         </material>
 
@@ -109,18 +136,18 @@
         </material>
 
         <material id="player1" >
-           <emission r="0.6" g="0.08" b="0.1" a="1" />
-           <ambient r="0.6" g="0.08" b="0.1" a="1" />
-           <diffuse r="1" g="0.2" b="0.3" a="1" />
-           <specular r="1" g="0.2" b="0.3" a="1" />
+           <emission r="0.5" g="0" b="0" a="1" />
+           <ambient r="0.5" g="0" b="0" a="1" />
+           <diffuse r="0.9" g="0.1" b="0.2" a="1" />
+           <specular r="0.9" g="0.1" b="0.2" a="1" />
            <shininess value="200" />
        </material>
 
        <material id="player2" >
-          <emission r="0.82" g="0.72" b="0.4" a="1" />
-          <ambient r="0.82" g="0.72" b="0.4" a="1" />
-          <diffuse r="1" g="0.9" b="0.6" a="1" />
-          <specular r="1" g="0.9" b="0.6" a="1" />
+          <emission r="0.72" g="0.62" b="0.3" a="1" />
+          <ambient r="0.72" g="0.62" b="0.3" a="1" />
+          <diffuse r="0.9" g="0.8" b="0.5" a="1" />
+          <specular r="0.9" g="0.8" b="0.5" a="1" />
           <shininess value="200" />
       </material>
 
@@ -244,6 +271,10 @@
         <easel />
     </primitive>
 
+    <primitive id="menu">
+        <menu dimX="3" dimY="2" partsX="10" partsY="7"/>
+    </primitive>
+
     </primitives>
 
 
@@ -269,7 +300,8 @@
 
 			      <componentref id="Room" />
     		    <componentref id="TableBoard" />
-            <componentref id="Easel" />
+           <componentref id="Easel" />
+            <primitivered id="menu" />
             </children>
 
         </component>
