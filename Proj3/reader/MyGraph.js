@@ -65,9 +65,10 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 						break;
 				case "menu":
 						prim = new MyMenu(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);
-						break;/*
+						break;
 				case "scoreboard":
-						prim = new MyScoreBoard(this.scene, primitive[1],primitive[2], primitive[3], primitive[4]);*/
+						prim = new MyScoreBoard(this.scene, primitive[1],primitive[2], primitive[3], primitive[4], primitive[5], primitive[6]);
+						break;
     }
     vertex.component.primitivess.push(prim);
 }

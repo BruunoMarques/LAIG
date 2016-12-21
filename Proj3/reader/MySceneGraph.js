@@ -410,8 +410,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 	this.cubes = [];
 	this.pieces = [];
 	this.easels = [];
-	this.menus = [];/*
-	this.scoreboards = []:*/
+	this.menus = [];
+	this.scoreboards = [];
 
 	var obj = {
 		size_r : 0,
@@ -426,8 +426,8 @@ MySceneGraph.prototype.parsePrimitives = function(rootElement){
 		size_cs : 0,
 		size_p : 0,
 		size_e : 0,
-		size_m : 0/*,
-		size_sc : 0*/
+		size_m : 0,
+		size_sc : 0
 	};
 
 
@@ -593,7 +593,7 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 			this.menus[obj.size_m][4] = this.reader.getFloat(e.children[index],'partsY',true);
 			obj.size_m+=1;
 			break;
-/*
+
 				case "scoreboard":
 					this.scoreboards[obj.size_sc] = [];
 					this.scoreboards[obj.size_sc][0] = id;
@@ -601,8 +601,10 @@ MySceneGraph.prototype.readPrimitives = function (e, index, obj, IDstack){
 					this.scoreboards[obj.size_sc][2] = this.reader.getFloat(e.children[index],'dimY',true);
 					this.scoreboards[obj.size_sc][3] = this.reader.getFloat(e.children[index],'partsX',true);
 					this.scoreboards[obj.size_sc][4] = this.reader.getFloat(e.children[index],'partsY',true);
+					this.scoreboards[obj.size_sc][5] = this.reader.getFloat(e.children[index],'red',true);
+					this.scoreboards[obj.size_sc][6] = this.reader.getFloat(e.children[index],'white',true);
 					obj.size_sc+=1;
-					break;*/
+					break;
 	}
 
 }
@@ -623,7 +625,7 @@ MySceneGraph.prototype.runPrimitives = function(vertex, types, id){
 		if((emptyvar = this.isPrimitive(types[10], id, vertex, "piece")) == null)
 	if((emptyvar = this.isPrimitive(types[11], id, vertex, "easel")) == null)
 		if((emptyvar = this.isPrimitive(types[12], id, vertex, "menu")) == null)
-/*		if((emptyvar = this.isPrimitive(types[13], id, vertex, "scoreboard")) == null)*/
+		if((emptyvar = this.isPrimitive(types[13], id, vertex, "scoreboard")) == null)
                         return;
 
 
@@ -661,7 +663,7 @@ MySceneGraph.prototype.parseComponents = function(rootElement){
     var types = [];
     types.push(this.rectangles); types.push(this.triangles); types.push(this.cylinders); types.push(this.spheres); types.push(this.donuts);
 		types.push(this.planes);	types.push(this.patches); types.push(this.vehicles); types.push(this.chessboards); types.push(this.cubes); types.push(this.pieces);
-		types.push(this.easels);	types.push(this.menus);/* types.push(this.scoreboards);*/
+		types.push(this.easels);	types.push(this.menus); types.push(this.scoreboards);
 
 		for(var i = 0;i < size; i++){
 		var e = elems[0].children[i];

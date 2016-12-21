@@ -275,6 +275,10 @@
         <menu dimX="3" dimY="2" partsX="10" partsY="7"/>
     </primitive>
 
+    <primitive id="scoreboard">
+        <scoreboard dimX="3" dimY="4" partsX="10" partsY="7" red="3" white="1"/>
+    </primitive>
+
     </primitives>
 
 
@@ -301,7 +305,7 @@
 			      <componentref id="Room" />
     		    <componentref id="TableBoard" />
            <componentref id="Easel" />
-            <primitivered id="menu" />
+            <primitivered id="scoreboard" />
             </children>
 
         </component>
