@@ -69,6 +69,9 @@ MyGraph.prototype.getPrimitives = function (vertex,primitive, info) {
 				case "scoreboard":
 						prim = new MyScoreBoard(this.scene, primitive[1],primitive[2], primitive[3], primitive[4], primitive[5], primitive[6]);
 						break;
+				case "boardpieces":
+						prim = new MyGameBoard(this.scene);
+						break;		
     }
     vertex.component.primitivess.push(prim);
 }
@@ -101,4 +104,5 @@ MyGraph.prototype.DepthSearch = function(vertexID,scene){
 
 
 	this.initiatePrimitives(this.vertexSet[indice]);
+		console.log(this.vertexSet);
 }

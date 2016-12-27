@@ -28,9 +28,11 @@ XMLscene.prototype.init = function (application) {
 	this.gl.enable(this.gl.CULL_FACE);
     this.gl.depthFunc(this.gl.LEQUAL);
 
+	this.setPickEnabled(true);
     this.enableTextures(true);
 	this.setUpdatePeriod(1);
-
+	
+	this.game = new MyGameBoard(this);
 
 	this.axis=new CGFaxis(this);
 };
@@ -217,6 +219,7 @@ XMLscene.prototype.displayMaterial = function (vertex) {
     else if(indice == "inherit")
         return false;
     else
+		console.log(vertex.component);
         console.log("abort mission");
     return false;
 }
@@ -300,6 +303,7 @@ XMLscene.prototype.displaySceneGraph = function () {
     this.matQueue = [];
     this.texQueue = [];
     this.RecursiveSearch(graphScene.vertexSet[indice]);
+
 }
 
 
@@ -311,7 +315,10 @@ XMLscene.prototype.updateLights = function(index){
 
 XMLscene.prototype.display = function () {
 	// ---- BEGIN Background, camera and axis setup
-
+	
+	this.logPicking();
+	this.clearPickRegistration();
+	
 	// Clear image and depth buffer everytime we update the scene
     this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
     this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
@@ -337,10 +344,13 @@ XMLscene.prototype.display = function () {
 	if (this.graph.loadedOk)
 	{
         this.displaySceneGraph();
+		this.game.display();
 		for(var i = 0;i < this.LightCount; i++){
 			this.updateLights(i);
 		}
 	};
+	
+
 };
 
 XMLscene.prototype.update = function(currTime){
@@ -393,3 +403,23 @@ XMLscene.prototype.animation = function(vertex){
         this.translate(-originPoint.x,-originPoint.y,-originPoint.z);
     }
 }
+
+
+XMLscene.prototype.logPicking = function()
+ {
+	if (this.pickMode == false) {
+		if (this.pickResults != null && this.pickResults.length > 0) {
+			for (var i=0; i< this.pickResults.length; i++) {
+				var obj = this.pickResults[i][0];
+				console.log(this.pickResults);
+				if (obj)
+				{
+					var customId = this.pickResults[i][1];				
+					console.log("Picked object: " + obj + ", with pick id " + customId);
+					this.game.updatePick(customId);
+				}
+			}
+			this.pickResults.splice(0,this.pickResults.length);
+		}		
+	}
+} 

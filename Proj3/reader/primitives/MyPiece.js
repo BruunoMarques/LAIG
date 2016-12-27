@@ -22,7 +22,6 @@ function MyPiece(scene) {
 												[1.944,	0.320	,-0.249],
 												[2.143,	1.091,	-0.355]];
 
-console.log(this.controlPoints);
 
 	this.initBuffers();
 };
@@ -38,6 +37,7 @@ MyPiece.prototype.initBuffers = function() {
 
 MyPiece.prototype.display = function(){
 
+	
 		this.scene.pushMatrix();
 		this.scene.rotate(-Math.PI/2,1,0,0);
 		this.scene.rotate(Math.PI/25,0,0,1);
@@ -51,6 +51,8 @@ MyPiece.prototype.display = function(){
 		this.scene.scale(14,1,12);
 		this.base.display();
 		this.scene.popMatrix();
+		
+	
 
 
 }
