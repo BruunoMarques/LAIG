@@ -7,8 +7,21 @@ function MyGameBoard(scene) {
 	this.whitepieces = [];
 	this.globalId = 0;
 
+	this.initialboard = [[3,0,0,0,0,0,0,0,3],
+    [0,0,2,1,1,1,2,0,0],
+    [0,0,0,0,1,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,5,0,0,0,0],
+    [0,0,6,5,5,5,6,0,0],
+    [7,0,0,0,0,0,0,0,7]];
+	
+	
+	
     this.createPieces();
 	this.createBoard();
+
 
 
 
@@ -109,81 +122,30 @@ MyGameBoard.prototype.createBoard = function() {
 
 
 MyGameBoard.prototype.createPieces = function() {	
-
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4,-4);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
+	var sz = this.initialboard.length;
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-2);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2,-3);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1,-3);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-3);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,1,-3);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-		
-
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2,-3);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);
-	
-	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4,-4);
-	this.globalId++;
-    this.redpieces.push(piecetoadd);	
-	
-
-	
-	
-	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4,4);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,2);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2,3);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1,3);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,3);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,1,3);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-		
-
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2,3);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);
-	
-	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4,4);
-	this.globalId++;
-    this.whitepieces.push(piecetoadd);	
-	
+				for (var i = 0; i < sz;i++){
+					for (var j = 0; j < sz;j++){
+						
+							var tp = this.initialboard[i][j];
+							
+							if(tp==0){
+								
+							}
+							else if (tp < 4 ){
+							var piecetoadd = new MyNewPiece(this.scene,tp,this.globalId + 1,-4 +i,-4+j);
+							this.globalId++;
+							this.redpieces.push(piecetoadd);								
+							}
+							else{
+							var piecetoadd = new MyNewPiece(this.scene,tp-4,this.globalId + 1,-4+i,-4+j);
+							this.globalId++;
+							this.whitepieces.push(piecetoadd);
+							}
 
 
+					}
+				}
 };
 
 

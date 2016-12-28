@@ -26,7 +26,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
     }
 
 		switch (this.type) {
-			case 0:
+			case 1:
 			this.scene.pushMatrix();
 			this.scene.translate(49.9 + this.x *2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
@@ -49,7 +49,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 			this.scene.popMatrix();	
 
 				break;
-			case 1:
+			case 2:
 			this.scene.pushMatrix();
 			this.scene.translate(49.9 + this.x*2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
@@ -76,7 +76,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 				this.scene.popMatrix();
 			this.scene.popMatrix();	
 				break;
-			case 2:
+			case 3:
 			this.scene.pushMatrix();
 			this.scene.translate(49.9 + this.x*2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
