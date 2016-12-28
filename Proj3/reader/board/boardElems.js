@@ -8,7 +8,7 @@ function MyGameBoard(scene) {
 	this.globalId = 0;
 
     this.createPieces();
-
+	this.createBoard();
 
 
 
@@ -86,51 +86,61 @@ MyGameBoard.prototype.display = function() {
 	for (var i = 0; i < this.whitepieces.length; i++) {
 			
             this.whitepieces[i].display(this.pick,this.materialBaseWhite, this.materialSelected, this.pickLock);
-        
     }
 
-
+	
 
     this.scene.popMatrix();
+	
+	    this.scene.pushMatrix();
+	
+		this.scene.translate(38.7,13.1,61.3);	
+		this.scene.scale(1.005,1,1.005);
+		this.board.display(this.pick,this.materialSelected);
+	this.scene.popMatrix();	
+};
+
+
+MyGameBoard.prototype.createBoard = function() {	
+	
+	this.board = new MyChessboard(this.scene);
 
 };
 
 
-
-
 MyGameBoard.prototype.createPieces = function() {	
 
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4*2.5,-4*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4,-4);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-2*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-2);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2*2.5,-3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2,-3);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1*2.5,-3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1,-3);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,-3);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,2.5,-3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,1,-3);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 		
 
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2*2.5,-3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2,-3);
 	this.globalId++;
     this.redpieces.push(piecetoadd);
 	
 	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4*2.5,-4*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4,-4);
 	this.globalId++;
     this.redpieces.push(piecetoadd);	
 	
@@ -138,37 +148,37 @@ MyGameBoard.prototype.createPieces = function() {
 	
 	
 	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4*2.5,4*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,-4,4);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,2*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,2);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2*2.5,3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,-2,3);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1*2.5,3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,-1,3);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,0,3);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 	
-	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,2.5,3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,0,this.globalId + 1,1,3);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 		
 
-	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2*2.5,3*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,1,this.globalId + 1,2,3);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);
 	
 	
-	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4*2.5,4*2.5);
+	var piecetoadd = new MyNewPiece(this.scene,2,this.globalId + 1,4,4);
 	this.globalId++;
     this.whitepieces.push(piecetoadd);	
 	
@@ -191,6 +201,10 @@ MyGameBoard.prototype.resetRegisterPick = function() {
 	for (var i = 0; i < this.whitepieces; i++) {
         this.registerPick.push(true);
     }
+	
+	for(var i = 0; i < this.board.cells.length; i++){
+		this.registerPick.push(true);
+	}
 }
 
 /**

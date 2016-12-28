@@ -1,29 +1,26 @@
-function MyChessboard(scene, du, dv, textureref, su, sv, c1, c2, cs) {
+function MyChessboard(scene) {
 	CGFobject.call(this, scene);
 
-//initialize variables
-	this.du = du;
-	this.dv = dv;
-	this.textureref = textureref;
-	this.su = su;
-	this.sv = sv;
-	this.c1 = c1;
-	this.c2 = c2;
-	this.cs = cs;
 
-//construct plane, texture, shader
-	this.plane = new MyPlane(this.scene,this.du,this.dv,this.du*10,this.dv*10);
-	this.texture = new CGFtexture(this.scene, textureref);
-	this.shader = new CGFshader(this.scene.gl, "shaders/chessboard.vert", "shaders/chessboard.frag");
+	this.scene= scene;
+	this.cells = [];
+	this.idCell = 16;
+	
+	this.even = new CGFappearance(this.scene);
+	this.even.setAmbient(0.3,0.3,0.3,0.3);
+	this.even.setDiffuse(0.1,0.1,0.1,0.2);
+	this.even.setSpecular(1,1,1,0.2);
+	this.even.setShininess(5);
+	this.even.loadTexture("./resources/images/wood.jpg");
 
-//sets the variables in the shader
-	this.shader.setUniformsValues({du : this.du});
-	this.shader.setUniformsValues({dv: this.dv});
-	this.shader.setUniformsValues({su: this.su});
-	this.shader.setUniformsValues({sv: this.sv});
-	this.shader.setUniformsValues({c1 : this.c1});
-	this.shader.setUniformsValues({c2 : this.c2});
-	this.shader.setUniformsValues({cs : this.cs});
+	this.odd = new CGFappearance(this.scene);
+	this.odd.setAmbient(0.3,0.3,0.3,0.3);
+	this.odd.setDiffuse(0.1,0.1,0.1,0.2);
+	this.odd.setSpecular(1,1,1,0.2);
+	this.odd.setShininess(5);
+	this.odd.loadTexture("./resources/images/woodu.jpg");
+
+	this.cells = this.createCells();
 
 	this.initBuffers();
 };
@@ -31,13 +28,39 @@ function MyChessboard(scene, du, dv, textureref, su, sv, c1, c2, cs) {
 MyChessboard.prototype = Object.create(CGFobject.prototype);
 MyChessboard.prototype.constructor=MyChessboard;
 
-//displays the board
-MyChessboard.prototype.display = function(){
-			this.scene.pushMatrix();
- 			this.texture.bind(0);
-	    this.scene.rotate(Math.PI/2,-1,0,0);
-	    this.scene.setActiveShader(this.shader);
-	    this.plane.display();
+MyChessboard.prototype.display = function(idpick,texture){
+		
+	
+
+	    this.scene.pushMatrix();
+		
+	    var n = this.cells.length;
+	    for (var i = 1; i < n+1; i++) {
+				if(i % 2 == 0){
+					this.even.apply();
+				}else {
+					this.odd.apply();
+				}
+	      this.cells[i-1].display(idpick,texture);
+	    }
+
 	    this.scene.popMatrix();
-	    this.scene.setActiveShader(this.scene.defaultShader);
+
+}
+
+MyChessboard.prototype.createCells = function(){
+	var inc = 2.5;
+	var x = 0;
+	var y = 0;
+	for(var i = 1; i <= 81; i++){
+			this.cell = new MyCell(this.scene,this.idCell + i,x,y);
+			x += inc;
+			if(i % 9 == 0){
+				x = 0;
+				y += inc;
+			}
+			this.cells.push(this.cell);
+	}
+
+	return this.cells;
 }

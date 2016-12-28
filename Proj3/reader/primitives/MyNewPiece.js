@@ -5,6 +5,7 @@ function MyNewPiece(scene, type, id, x, y) {
 	this.id = id;
 	this.x = x;
 	this.y = y;
+	this.positions = [this.x +4 ,Math.abs(this.y - 4)];
 	console.log(this.id);
 	this.initBuffers();
 };
@@ -17,15 +18,17 @@ MyNewPiece.prototype.initBuffers = function() {
 	this.part = new MyPiece(this.scene);
 }
 
+
 MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 	if (id == this.id) {
         nextmat.apply();
+		console.log(this.positions);
     }
 
 		switch (this.type) {
 			case 0:
 			this.scene.pushMatrix();
-			this.scene.translate(49.9 + this.x,13.8,50+ this.y);
+			this.scene.translate(49.9 + this.x *2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -48,7 +51,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 				break;
 			case 1:
 			this.scene.pushMatrix();
-			this.scene.translate(49.9 + this.x,13.8,50+ this.y);
+			this.scene.translate(49.9 + this.x*2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -75,7 +78,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 				break;
 			case 2:
 			this.scene.pushMatrix();
-			this.scene.translate(49.9 + this.x,13.8,50+ this.y);
+			this.scene.translate(49.9 + this.x*2.5,13.8,50+ this.y*2.5);
 			this.scene.scale(0.15,0.15,0.15);
 		  if (picklock) {
 			this.scene.registerForPick(this.id, this);

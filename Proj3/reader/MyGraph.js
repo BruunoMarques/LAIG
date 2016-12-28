@@ -104,5 +104,4 @@ MyGraph.prototype.DepthSearch = function(vertexID,scene){
 
 
 	this.initiatePrimitives(this.vertexSet[indice]);
-		console.log(this.vertexSet);
 }

@@ -108,8 +108,9 @@
 		<texture id="neutral" file="./resources/images/neutral.png" length_s="1" length_t="1" />
 		<texture id="negative" file="./resources/images/negative.jpg" length_s="1" length_t="1" />
 		<texture id="orbit" file="./resources/images/orbit.jpg" length_s="1" length_t="1" />
-    <texture id="wood" file="./resources/images/wood.jpg" length_s="1" length_t="1" />
+    <texture id="wood" file="./resources/images/woodu.jpg" length_s="1" length_t="1" />
     <texture id="wood2" file="./resources/images/wood2.jpg" length_s="1" length_t="1" />
+	<texture id="wood3" file="./resources/images/wood3.jpg" length_s="1" length_t="1" />
     <texture id="marble" file="./resources/images/marble.jpg" length_s="1" length_t="1" />
     <texture id="floor" file="./resources/images/floor.jpg" length_s="1" length_t="1" />
     <texture id="wall" file="./resources/images/wall2.jpg" length_s="1" length_t="1" />
@@ -353,7 +354,7 @@
           <texture id="none" />
 
           <children>
-            <componentref id="Board" />
+
             <componentref id="Table" />
 			
           </children>
@@ -789,7 +790,7 @@
               <material id="base" />
           </materials>
 
-          <texture id="wood" />
+          <texture id="wood3" />
 
           <children>
 
