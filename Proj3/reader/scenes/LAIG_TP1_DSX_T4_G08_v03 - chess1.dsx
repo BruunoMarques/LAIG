@@ -279,7 +279,7 @@
     <primitive id="scoreboard">
         <scoreboard dimX="3" dimY="4" partsX="10" partsY="7" red="3" white="1"/>
     </primitive>
-	
+
 	  <primitive id="boardpieces">
         <boardpieces />
     </primitive>
@@ -310,7 +310,7 @@
 			<componentref id="Room" />
 			<componentref id="TableBoard" />
             <componentref id="Easel" />
-            <primitivered id="scoreboard" />
+            <!-- <primitivered id="scoreboard" /> -->
             </children>
 
         </component>
@@ -356,7 +356,7 @@
           <children>
 
             <componentref id="Table" />
-			
+
           </children>
 
         </component>
