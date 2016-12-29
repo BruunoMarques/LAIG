@@ -1,6 +1,6 @@
 function MyGameBoard(scene) {
-	
-	
+
+
     CGFobject.call(this, scene);
     this.scene = scene;
     this.redpieces = [];
@@ -8,8 +8,8 @@ function MyGameBoard(scene) {
 	this.globalId = 0;
 
 	this.story = [];
-	
-	
+
+
 	this.initialboard = [[3,0,0,0,0,0,0,0,3],
     [0,0,2,1,1,1,2,0,0],
     [0,0,0,0,1,0,0,0,0],
@@ -19,7 +19,7 @@ function MyGameBoard(scene) {
     [0,0,0,0,5,0,0,0,0],
     [0,0,6,5,5,5,6,0,0],
     [7,0,0,0,0,0,0,0,7]];
-	
+
 	this.stringedboard = "[[3,0,0,0,0,0,0,0,3],"+
     "[0,0,2,1,1,1,2,0,0],"+
     "[0,0,0,0,1,0,0,0,0],"+
@@ -29,10 +29,10 @@ function MyGameBoard(scene) {
     "[0,0,0,0,5,0,0,0,0],"+
     "[0,0,6,5,5,5,6,0,0],"+
     "[7,0,0,0,0,0,0,0,7]]";
-	
-    this.createPieces();
-	this.createBoard();
 
+    this.createPieces();
+		this.createBoard();
+		this.createPot();
 
 
 
@@ -96,57 +96,64 @@ MyGameBoard.prototype.display = function() {
 
     this.materialBaseRed.apply();
 
-	
+
 
     for (var i = 0; i < this.redpieces.length; i++) {
-			
+
             this.redpieces[i].display(this.pick,this.materialBaseRed, this.materialSelected, this.pickLock);
-        
+
     }
 
-	 
+
 	this.materialBaseWhite.apply();
 
 	for (var i = 0; i < this.whitepieces.length; i++) {
-			
+
             this.whitepieces[i].display(this.pick,this.materialBaseWhite, this.materialSelected, this.pickLock);
     }
 
-	
+
 
     this.scene.popMatrix();
-	
+
 	    this.scene.pushMatrix();
-	
-		this.scene.translate(38.7,13.1,61.3);	
+
+		this.scene.translate(38.7,13.1,61.3);
 		this.scene.scale(1.005,1,1.005);
 		this.board.display(this.pick,this.materialSelected);
-	this.scene.popMatrix();	
+		this.pot.display();
+	this.scene.popMatrix();
 };
 
 
-MyGameBoard.prototype.createBoard = function() {	
-	
+MyGameBoard.prototype.createBoard = function() {
+
 	this.board = new MyChessboard(this.scene);
 
 };
 
+MyGameBoard.prototype.createPot = function() {
 
-MyGameBoard.prototype.createPieces = function() {	
+	this.pot = new MyPot(this.scene);
+
+};
+
+
+MyGameBoard.prototype.createPieces = function() {
 	var sz = this.initialboard.length;
-	
+
 				for (var i = 0; i < sz;i++){
 					for (var j = 0; j < sz;j++){
-						
+
 							var tp = this.initialboard[i][j];
-							
+
 							if(tp==0){
-								
+
 							}
 							else if (tp < 4 ){
 							var piecetoadd = new MyNewPiece(this.scene,tp,this.globalId + 1,-4 +i,-4+j);
 							this.globalId++;
-							this.whitepieces.push(piecetoadd);								
+							this.whitepieces.push(piecetoadd);
 							}
 							else{
 							var piecetoadd = new MyNewPiece(this.scene,tp-4,this.globalId + 1,-4+i,-4+j);
@@ -174,7 +181,7 @@ MyGameBoard.prototype.resetRegisterPick = function() {
 	for (var i = 0; i < this.whitepieces; i++) {
         this.registerPick.push(true);
     }
-	
+
 	for(var i = 0; i < this.board.cells.length; i++){
 		this.registerPick.push(true);
 	}
@@ -206,7 +213,7 @@ MyGameBoard.prototype.parseclicks = function(id) {
 			}
 		}
 	}
-	
+
 	else if (id < 98){
 		for(var i = 0; i < this.board.cells.length;i++){
 			if(id == this.board.cells[i].id){

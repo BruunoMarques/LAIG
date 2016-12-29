@@ -12,13 +12,13 @@ function getUrlVars() {
 }
 
 
-serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyComponent.js', 'Node.js', 
-	'MyGraph.js','primitives/MyRectangle.js', 'primitives/MyCylinder.js' , 'primitives/MySphere.js' , 'primitives/MyTriangle.js', 
+serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyInterface.js', 'MyComponent.js', 'Node.js',
+	'MyGraph.js','primitives/MyRectangle.js', 'primitives/MyCylinder.js' , 'primitives/MySphere.js' , 'primitives/MyTriangle.js',
 	'primitives/MyTorus.js',  'primitives/MyCylinderWithTops.js', 'primitives/MyCircle.js',
      'MyAnimation.js', 'primitives/MyPlane.js', 'primitives/MyPatch.js','primitives/MyPoint.js','primitives/MyVehicle.js','primitives/MyChessboard.js',
 	 'primitives/MyCube.js','primitives/MyPiece.js','primitives/MyNewPiece.js',
      'primitives/MyMenu.js', 'primitives/MyScoreBoard.js','primitives/MyEasel.js',
-	 'board/boardElems.js', 'primitives/MyCell.js','board/game.js','primitives/MyPlay.js','client.js',
+	 'board/boardElems.js', 'primitives/MyCell.js','board/game.js','primitives/MyPlay.js','client.js','primitives/MyPot.js',
 
 
 main=function()
