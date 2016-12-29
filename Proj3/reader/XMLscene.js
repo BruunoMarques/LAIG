@@ -341,6 +341,8 @@ XMLscene.prototype.display = function () {
 	// only get executed after the graph has loaded correctly.
 	// This is one possible way to do it
 
+
+
 	if (this.graph.loadedOk)
 	{
         this.displaySceneGraph();
@@ -348,6 +350,8 @@ XMLscene.prototype.display = function () {
 		for(var i = 0;i < this.LightCount; i++){
 			this.updateLights(i);
 		}
+
+
 	};
 
 
@@ -375,8 +379,29 @@ XMLscene.prototype.update = function(currTime){
 		}
 	}
 
+	this.updateClock(currTime);
+
 }
 
+
+XMLscene.prototype.updateClock = function(currTime){
+
+	this.bii=this.game.gamestart.clock;
+
+	if (this.bii.lastUpdate == -1) {
+	this.bii.lastUpdate = currTime;
+	secInc = 0.6;
+}
+else {
+	var diff = currTime - this.bii.lastUpdate;
+	this.bii.lastUpdate = currTime;
+	secInc = diff * (360 / (60 * 1000));
+}
+
+this.bii.seconds.setAngle(this.bii.seconds.angle - secInc);
+this.bii.minutes.setAngle(this.bii.minutes.angle - secInc / 60);
+this.bii.hours.setAngle(this.bii.hours.angle - secInc / 3600);
+}
 
 XMLscene.prototype.animation = function(vertex){
 

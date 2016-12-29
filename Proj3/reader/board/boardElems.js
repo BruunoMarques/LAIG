@@ -83,7 +83,6 @@ function MyGameBoard(scene) {
     this.materialSelected.setSpecular(0.1, 0.1, 0.1, 0.2);
     //set shininess
     this.materialSelected.setShininess(30);
-
 };
 
 MyGameBoard.prototype = Object.create(CGFobject.prototype);
@@ -148,7 +147,7 @@ MyGameBoard.prototype.createPot = function() {
 
 MyGameBoard.prototype.createClock = function() {
 
-	this.clock = new MyClock(this.scene,15,15);
+	this.clock = new MyClock(this.scene,12,1);
 
 };
 

@@ -15,33 +15,24 @@ function MyClock(scene, slices, stacks) {
 
     this.lastUpdate = -1;
 
-
-    this.face = new MyCircle(scene, slices);
-    this.clock = new MyCylinder(scene,5,5,1,slices, stacks);
-    this.seconds = new MyClockHand(scene, 4.6, 270);
-    this.minutes = new MyClockHand(scene, 3.3, 180);
-    this.hours = new MyClockHand(scene, 2.3, 90);
-
-
-    // Board Appearance
-    this.faceAppearance = new CGFappearance(this.scene);
-    this.faceAppearance.setAmbient(0.3, 0.3, 0.3, 1);
-    this.faceAppearance.setDiffuse(0.5,0.5,0.5, 1);
-    this.faceAppearance.setSpecular(0.8, 0.8, 0.8, 1);
-    this.faceAppearance.setShininess(100);
-    this.faceAppearance.loadTexture("./resources/images/clock.png");
+    this.clockface = new CGFappearance(this.scene);
+    this.clockface.setAmbient(0.3,0.3,0.3,1);
+    this.clockface.setDiffuse(0.5,0.5,0.5,1);
+    this.clockface.setSpecular(0.8,0.8,0.8,1);
+    this.clockface.setShininess(100);
+    this.clockface.loadTexture("./resources/images/clock.png");
 
     this.handleAppearance = new CGFappearance(this.scene);
-	this.handleAppearance.setAmbient(0,0,0,0);
-	this.handleAppearance.setDiffuse(0,0,0,0);
-	this.handleAppearance.setSpecular(0,0,0,0);
-	this.handleAppearance.setShininess(0);
+    this.handleAppearance.setAmbient(0,0,0,0);
+    this.handleAppearance.setDiffuse(0,0,0,0);
+    this.handleAppearance.setSpecular(0,0,0,0);
+    this.handleAppearance.setShininess(0);
 
     this.secondsAppearance = new CGFappearance(this.scene);
     this.secondsAppearance.setAmbient(1,0,0,0);
-	this.secondsAppearance.setDiffuse(0,0,0,0);
-	this.secondsAppearance.setSpecular(0,0,0,0);
-	this.secondsAppearance.setShininess(0);
+    this.secondsAppearance.setDiffuse(0,0,0,0);
+    this.secondsAppearance.setSpecular(0,0,0,0);
+    this.secondsAppearance.setShininess(0);
 
     this.initBuffers();
 };
@@ -49,47 +40,56 @@ function MyClock(scene, slices, stacks) {
 MyClock.prototype = Object.create(CGFobject.prototype);
 MyClock.prototype.constructor = MyClock;
 
+MyClock.prototype.initBuffers = function() {
 
+  this.face = new MyCircle(this.scene, this.slices);
+  this.clock = new MyCylinder(this.scene,5,5,1,this.slices, this.stacks);
+  this.seconds = new MyClockHand(this.scene, 4.6, 270);
+  this.minutes = new MyClockHand(this.scene, 3.3, 180);
+  this.hours = new MyClockHand(this.scene, 2.3, 90);
+}
 
 MyClock.prototype.setEnabled = function (state) {
 
     this.enabled = state;
 }
 
-MyClock.prototype.display = function () {
+MyClock.prototype.display = function(){
  	var degToRad = Math.PI / 180.0;
-
 
     this.scene.pushMatrix();
 	   this.clock.display();
     this.scene.popMatrix();
 
+
     this.scene.pushMatrix();
     this.scene.translate(0,0,1);
-    this.faceAppearance.apply();
+    this.clockface.apply();
 	  this.face.display();
-    this.scene.popMatrix();
 
-	this.handleAppearance.apply();
 
 	this.scene.pushMatrix();
 	this.scene.translate(0,0,0.1);
 	this.scene.rotate(this.hours.angle * degToRad, 0, 0, 1);
+  this.handleAppearance.apply();
 	this.hours.display();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
 	this.scene.translate(0,0,0.1);
 	this.scene.rotate(this.minutes.angle * degToRad, 0, 0, 1);
+  this.handleAppearance.apply();
 	this.minutes.display();
 	this.scene.popMatrix();
 
-    this.secondsAppearance.apply();
+
 	this.scene.pushMatrix();
 	this.scene.translate(0,0,0.1);
 	this.scene.rotate(this.seconds.angle * degToRad, 0, 0, 1);
+  this.secondsAppearance.apply();
 	this.seconds.display();
 	this.scene.popMatrix();
+  this.scene.popMatrix();
 }
 
 MyClock.prototype.update = function (currTime) {
