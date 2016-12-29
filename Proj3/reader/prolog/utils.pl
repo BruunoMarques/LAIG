@@ -132,7 +132,9 @@ check([H|T],P,V,N,I):-
 	N =< 0.
 
 /* Move */
-
+movehelpme(B,PR,PC,N,D,NB):-
+	move(B,PR,PC,N,D,NB).
+	
 move(B,PR,PC,N,D,NB):-
 	D1 is D//2,
 	D1 = 0,

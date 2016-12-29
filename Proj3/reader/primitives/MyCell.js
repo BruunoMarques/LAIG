@@ -7,7 +7,7 @@ function MyCell(scene, id, x, y) {
 	this.x = x;
 	this.y = y;
 	this.square = new MyRectangle(this.scene,0,0,2.5,2.5);
-	this.positions = [this.x/2.5,this.y/2.5];
+	this.positions = [this.x/2.5 +1,this.y/2.5 +1];
 	console.log(this.id);
 	this.initBuffers();
 };

@@ -5,7 +5,7 @@ function MyNewPiece(scene, type, id, x, y) {
 	this.id = id;
 	this.x = x;
 	this.y = y;
-	this.positions = [this.x +4 ,Math.abs(this.y - 4)];
+	this.positions = [this.x +5 ,Math.abs(this.y - 5)];
 	console.log(this.id);
 	this.initBuffers();
 };

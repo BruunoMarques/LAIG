@@ -1,10 +1,11 @@
 :-use_module(library(sockets)).
 :-use_module(library(lists)).
 :-use_module(library(codesio)).
-:-consult(board.pl).
-:-consult(main.pl).
-:-consult(utils.pl).
-:-consult(oshi.pl).
+
+:-ensure_loaded(main).
+:-ensure_loaded(oshi).
+:-ensure_loaded(board).
+:-ensure_loaded(utils).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%                                        Server                                                   %%%%
@@ -113,3 +114,12 @@ parse_input(quit, goodbye).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
+
+
+parse_input(movehelpme(Board,X,Y,Num,Dir),Res):-
+	movehelpme(Board,X,Y,Num,Dir,Res);
+	Res = "Error".
+	
+parse_input(count_total(Board),C):-
+	count_total(Board,C);
+	C = "error".

@@ -6,6 +6,8 @@ function MyGame(scene) {
 	this.pickCount = 0;
 	
 	this.thePlay = new MyPlay([],[]);
+	
+	this.client = new Client();
 };
 
 MyGame.prototype = Object.create(CGFobject.prototype);
@@ -20,14 +22,6 @@ MyGame.prototype.display = function(){
 	this.scene.popMatrix();
 
 };
-
-MyGame.prototype.registerPick = function(customId){
-	this.gamestart.updatePick(customId);
-	this.gamestart.parseclicks(customId);
-	
-	this.createplay(customId);
-}
-
 
 MyGame.prototype.registerPick = function(customId){
 	
@@ -47,6 +41,7 @@ MyGame.prototype.startTurn = function(customId){
 		this.checkPlay(this.thePlay);
 	}
 	this.pickCount++;
+	this.turn++;
 }
 
 MyGame.prototype.checkPlay = function(play){
@@ -65,8 +60,6 @@ MyGame.prototype.checkPlay = function(play){
 			direction = 0;
 			ammount =  play.target[1] - play.piece[1];
 		}
-		console.log(direction);
-		console.log(ammount);
 	}
 	else if (play.piece[1] == play.target[1]){
 		if(play.piece[0] > play.target[0]){
@@ -77,8 +70,31 @@ MyGame.prototype.checkPlay = function(play){
 			direction = 2;
 			ammount = play.target[0] - play.piece[0];
 		}
-		console.log(direction);
-		console.log(ammount);
 	
 	}
+	//this.doPlay(play,direction,ammount);
+	//this.getCount();	
+		console.log("Next turn");
+}
+
+MyGame.prototype.getCount = function (){
+	var boardtosend = this.gamestart.stringedboard;
+	var stringtosend = "count_total("+boardtosend+")";	
+	var onS=null;
+	var onE= null;
+	this.client.getPrologRequest(stringtosend,onS,onE);
+}
+MyGame.prototype.doPlay = function(play, direction,ammount){
+	var boardtosend = this.gamestart.stringedboard;
+	
+	var stringtosend = "movehelpme("+boardtosend+","+play.piece[0]+","+play.piece[1]+","+ammount+","+direction+")";
+	console.log(stringtosend);
+	var onS=null;
+	var onE= null;
+	/*
+	var bananas = this.client.sendRequest(stringtosend);
+
+	console.log(bananas);
+*/ 
+	this.client.getPrologRequest(stringtosend,onS,onE);
 }
