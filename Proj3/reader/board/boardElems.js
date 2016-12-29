@@ -10,6 +10,7 @@ function MyGameBoard(scene) {
 	this.story = [];
 
 
+
 	this.initialboard = [[3,0,0,0,0,0,0,0,3],
     [0,0,2,1,1,1,2,0,0],
     [0,0,0,0,1,0,0,0,0],
@@ -19,21 +20,13 @@ function MyGameBoard(scene) {
     [0,0,0,0,5,0,0,0,0],
     [0,0,6,5,5,5,6,0,0],
     [7,0,0,0,0,0,0,0,7]];
-
-	this.stringedboard = "[[3,0,0,0,0,0,0,0,3],"+
-    "[0,0,2,1,1,1,2,0,0],"+
-    "[0,0,0,0,1,0,0,0,0],"+
-    "[0,0,0,0,0,0,0,0,0],"+
-    "[0,0,0,0,0,0,0,0,0],"+
-    "[0,0,0,0,0,0,0,0,0],"+
-    "[0,0,0,0,5,0,0,0,0],"+
-    "[0,0,6,5,5,5,6,0,0],"+
-    "[7,0,0,0,0,0,0,0,7]]";
+	
+	this.stringedboard = this.boardConvert(this.initialboard);
 
     this.createPieces();
-		this.createBoard();
-		this.createPot();
-		this.createClock();
+	this.createBoard();
+	this.createPot();
+	this.createClock();
 
 
 
@@ -133,9 +126,28 @@ MyGameBoard.prototype.display = function() {
 };
 
 
-MyGameBoard.prototype.createBoard = function() {
 
+
+MyGameBoard.prototype.createBoard = function() {	
+	
 	this.board = new MyChessboard(this.scene);
+
+};
+
+MyGameBoard.prototype.updateBoard = function(board) {	
+	this.stringedboard = this.boardConvert(this.initialboard);
+};
+
+
+MyGameBoard.prototype.boardConvert = function(board) {	
+	
+	var arr = "["+board[0]+"]";
+	for(var i =1; i < board.length;i++){
+		arr = ""+arr+",["+board[i]+"]"; 
+	}
+	
+	
+	return "["+arr+"]";
 
 };
 
