@@ -20,7 +20,7 @@ function MyGameBoard(scene) {
     [0,0,0,0,5,0,0,0,0],
     [0,0,6,5,5,5,6,0,0],
     [7,0,0,0,0,0,0,0,7]];
-	
+
 	this.stringedboard = this.boardConvert(this.initialboard);
 
     this.createPieces();
@@ -121,6 +121,7 @@ MyGameBoard.prototype.display = function() {
 
 	this.scene.pushMatrix();
 	this.scene.translate(50,50,0);
+	this.scene.scale(5,5,1);
 	this.clock.display();
 	this.scene.popMatrix();
 };
@@ -128,25 +129,25 @@ MyGameBoard.prototype.display = function() {
 
 
 
-MyGameBoard.prototype.createBoard = function() {	
-	
+MyGameBoard.prototype.createBoard = function() {
+
 	this.board = new MyChessboard(this.scene);
 
 };
 
-MyGameBoard.prototype.updateBoard = function(board) {	
+MyGameBoard.prototype.updateBoard = function(board) {
 	this.stringedboard = this.boardConvert(this.initialboard);
 };
 
 
-MyGameBoard.prototype.boardConvert = function(board) {	
-	
+MyGameBoard.prototype.boardConvert = function(board) {
+
 	var arr = "["+board[0]+"]";
 	for(var i =1; i < board.length;i++){
-		arr = ""+arr+",["+board[i]+"]"; 
+		arr = ""+arr+",["+board[i]+"]";
 	}
-	
-	
+
+
 	return "["+arr+"]";
 
 };

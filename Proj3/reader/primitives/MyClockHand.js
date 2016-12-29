@@ -28,8 +28,8 @@
 	//Desenho da base do cilindro
 
 	this.vertices.push(0,this.length,0);
-	this.vertices.push(0.15,0,0);
-	this.vertices.push(-0.15,0,0);
+	this.vertices.push(0.02,0,0);
+	this.vertices.push(-0.02,0,0);
 
 	this.normals.push(0,0,1);
 	this.normals.push(0,0,1);
