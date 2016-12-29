@@ -13,7 +13,8 @@ function MyGame(scene) {
 	this.whiteScore = 1;
 
 
- //depois é preciso por isto noutro sitio senao nao vai atualizar
+
+ //depois é preciso por isto noutro sitio, onde vai ser atualizados os scores, senao nao vai atualizar
 	this.scoreboard = new MyScoreBoard(scene,3,4,10,7,this.redScore,this.whiteScore);
 };
 
@@ -26,7 +27,6 @@ MyGame.prototype.display = function(){
 
 	this.scene.pushMatrix();
 	this.gamestart.display();
-	this.redScore = 4;
 	this.scoreboard.display();
 	this.scene.popMatrix();
 

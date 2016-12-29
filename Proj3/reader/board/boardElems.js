@@ -33,7 +33,7 @@ function MyGameBoard(scene) {
     this.createPieces();
 		this.createBoard();
 		this.createPot();
-
+		this.createClock();
 
 
 
@@ -121,7 +121,15 @@ MyGameBoard.prototype.display = function() {
 		this.scene.translate(38.7,13.1,61.3);
 		this.scene.scale(1.005,1,1.005);
 		this.board.display(this.pick,this.materialSelected);
-		this.pot.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.pot.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.translate(50,50,0);
+	this.clock.display();
 	this.scene.popMatrix();
 };
 
@@ -135,6 +143,12 @@ MyGameBoard.prototype.createBoard = function() {
 MyGameBoard.prototype.createPot = function() {
 
 	this.pot = new MyPot(this.scene);
+
+};
+
+MyGameBoard.prototype.createClock = function() {
+
+	this.clock = new MyClock(this.scene,15,15);
 
 };
 
@@ -166,6 +180,10 @@ MyGameBoard.prototype.createPieces = function() {
 				}
 };
 
+
+MyGameBoard.prototype.udpateClock = function(currTime){
+		this.clock.update(currTime);
+}
 
 MyGameBoard.prototype.updatePick = function(id) {
     this.pick = id;

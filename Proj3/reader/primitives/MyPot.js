@@ -121,7 +121,7 @@ MyPot.prototype.display = function(){
 
 
 		this.scene.pushMatrix();
-		this.scene.translate(10,-15.7,6);
+		this.scene.translate(50,-3,67);
 		this.scene.rotate(-Math.PI/2,1,0,0);
 		this.scene.scale(7,7,7);
 		this.basket.apply();
@@ -129,7 +129,7 @@ MyPot.prototype.display = function(){
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.scene.translate(10,-15.7,6);
+		this.scene.translate(50,-3,67);
 		this.scene.rotate(Math.PI/2,1,0,0);
 		this.scene.scale(7,7,7);
 		this.basket.apply();
@@ -137,9 +137,9 @@ MyPot.prototype.display = function(){
 		this.scene.popMatrix();
 
 		this.scene.pushMatrix();
-		this.scene.translate(10,-12.8,8);
+		this.scene.translate(50,0.1,69);
 		this.scene.rotate(Math.PI/2,1,0,0);
-		this.scene.scale(3.2,3.2,1);
+		this.scene.scale(3.2,4,1);
 		this.basketbase.apply();
 		this.base.display();
 		this.scene.popMatrix();
