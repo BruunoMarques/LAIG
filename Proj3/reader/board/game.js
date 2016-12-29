@@ -48,9 +48,11 @@ MyGame.prototype.checkPlay = function(play){
 	var direction;
 	var ammount;
 	if(play.piece[0] == play.target[0] && play.piece[1] == play.target[1]){
-		console.log("no move");
-	}
-	
+		return;
+		}
+	else if(play.piece[0] != play.target[0] && play.piece[1] != play.target[1]){
+			return;	
+	 }
 	else if (play.piece[0] == play.target[0]){
 		if(play.piece[1] > play.target[1]){
 			direction = 1;
