@@ -8,7 +8,7 @@ function MyCell(scene, id, x, y) {
 	this.y = y;
 	this.square = new MyRectangle(this.scene,0,0,2.5,2.5);
 	this.positions = [this.x/2.5,this.y/2.5];
-	console.log(this.positions);
+	console.log(this.id);
 	this.initBuffers();
 };
 
@@ -21,7 +21,6 @@ MyCell.prototype.display = function(id,texture) {
 	
 		if(id == this.id){
 		texture.apply();
-		console.log(this.positions);
 		}
 
 	this.scene.pushMatrix();

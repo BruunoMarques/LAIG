@@ -135,12 +135,12 @@ MyGameBoard.prototype.createPieces = function() {
 							else if (tp < 4 ){
 							var piecetoadd = new MyNewPiece(this.scene,tp,this.globalId + 1,-4 +i,-4+j);
 							this.globalId++;
-							this.redpieces.push(piecetoadd);								
+							this.whitepieces.push(piecetoadd);								
 							}
 							else{
 							var piecetoadd = new MyNewPiece(this.scene,tp-4,this.globalId + 1,-4+i,-4+j);
 							this.globalId++;
-							this.whitepieces.push(piecetoadd);
+							this.redpieces.push(piecetoadd);
 							}
 
 
@@ -176,3 +176,33 @@ MyGameBoard.prototype.lockCell = function(id) {
     this.registerPick[id] = false;
 }
 
+MyGameBoard.prototype.parseclicks = function(id) {
+
+	var clickedon;
+    if (id < 9){
+		for(var i = 0; i < this.whitepieces.length;i++){
+			if(id == this.whitepieces[i].id){
+				clickedon = this.whitepieces[i].positions;
+				console.log(clickedon);
+			}
+		}
+	}
+	else if (id < 17){
+		for(var i = 0; i < this.redpieces.length;i++){
+			if(id == this.redpieces[i].id){
+				clickedon = this.redpieces[i].positions;
+				console.log(clickedon);
+			}
+		}
+	}
+	
+	else if (id < 98){
+		for(var i = 0; i < this.board.cells.length;i++){
+			if(id == this.board.cells[i].id){
+				clickedon = this.board.cells[i].positions;
+				console.log(clickedon);
+			}
+		}
+	}
+	return clickedon;
+}

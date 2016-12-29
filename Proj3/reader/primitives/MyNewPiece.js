@@ -22,7 +22,6 @@ MyNewPiece.prototype.initBuffers = function() {
 MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 	if (id == this.id) {
         nextmat.apply();
-		console.log(this.positions);
     }
 
 		switch (this.type) {

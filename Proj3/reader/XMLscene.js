@@ -32,7 +32,7 @@ XMLscene.prototype.init = function (application) {
     this.enableTextures(true);
 	this.setUpdatePeriod(1);
 	
-	this.game = new MyGameBoard(this);
+	this.game = new MyGame(this);
 
 	this.axis=new CGFaxis(this);
 };
@@ -411,12 +411,11 @@ XMLscene.prototype.logPicking = function()
 		if (this.pickResults != null && this.pickResults.length > 0) {
 			for (var i=0; i< this.pickResults.length; i++) {
 				var obj = this.pickResults[i][0];
-				console.log(this.pickResults);
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];				
 					console.log("Picked object: " + obj + ", with pick id " + customId);
-					this.game.updatePick(customId);
+					this.game.registerPick(customId);
 				}
 			}
 			this.pickResults.splice(0,this.pickResults.length);
