@@ -169,6 +169,7 @@ MyGameBoard.prototype.createPieces = function() {
 	var sz = this.initialboard.length;
 
 				for (var i = 0; i < sz;i++){
+					this.initialboard[i].reverse();
 					for (var j = 0; j < sz;j++){
 
 							var tp = this.initialboard[i][j];
