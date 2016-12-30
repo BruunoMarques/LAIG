@@ -17,8 +17,8 @@
         </perspective>
 
         <perspective id="viewwhiteside" near="1" far="250" angle="75">
-            <from x="30" y="30" z="30" />
-            <to x="90" y="0" z="80" />
+            <from x="30" y="27" z="70" />
+            <to x="90" y="-20" z="35" />
           </perspective>
 <!--
           <perspective id="viewendgame" near="1" far="250" angle="75">
@@ -40,21 +40,21 @@
 
     <lights>
       <omni id="luz1" enabled="1" >
-            <location x="0" y="50" z="60" w="1" />
+            <location x="30" y="50" z="60" w="1" />
             <ambient r="0" g="0" b="0" a="1" />
             <diffuse r="1" g="1" b="1" a="1" />
             <specular r="1" g="1" b="1" a="1" />
         </omni>
 
 
-		 <omni id="luz2" enabled="1" >
+		 <omni id="luz2" enabled="0" >
             <location x="0" y="4" z="60" w="1" />
             <ambient r="0" g="0" b="0" a="1" />
             <diffuse r="1" g="1" b="1" a="1" />
             <specular r="1" g="1" b="1" a="1" />
         </omni>
 
-		<omni id="luz3" enabled="1" >
+		<omni id="luz3" enabled="0" >
             <location x="10.5" y="50" z="30" w="1" />
             <ambient r="0" g="0" b="0" a="1" />
             <diffuse r="1" g="1" b="1" a="1" />
@@ -62,26 +62,12 @@
         </omni>
 
     <omni id="luz4" enabled="1" >
-            <location x="10.5" y="8" z="30" w="1" />
-            <ambient r="0" g="0" b="0" a="1" />
-            <diffuse r="1" g="1" b="1" a="1" />
-            <specular r="1" g="1" b="1" a="1" />
-        </omni>
-<!--
-    <omni id="luz5" enabled="1" >
-            <location x="43" y="15" z="33" w="1" />
+            <location x="30" y="60" z="30" w="1" />
             <ambient r="0" g="0" b="0" a="1" />
             <diffuse r="1" g="1" b="1" a="1" />
             <specular r="1" g="1" b="1" a="1" />
         </omni>
 
-    <omni id="luz6" enabled="1" >
-            <location x="30" y="15" z="43" w="1" />
-            <ambient r="0" g="0" b="0" a="1" />
-            <diffuse r="1" g="1" b="1" a="1" />
-            <specular r="1" g="1" b="1" a="1" />
-        </omni>
--->
     <omni id="luz7" enabled="1" >
             <location x="40" y="60" z="30" w="1" />
             <ambient r="0" g="0" b="0" a="1" />
@@ -163,7 +149,10 @@
 
     <transformations>
 
-
+    <transformation id="side1">
+      <translate x="2" y="0" z="2" />
+      <rotate axis="y" angle="180" />
+    </transformation>
 
 		<transformation id="side2">
 			<translate x="0" y="0" z="0" />
@@ -179,6 +168,11 @@
 		 	<rotate axis="y" angle="90" />
 		</transformation>
 
+    <transformation id="side3">
+
+        <translate x="2" y="0" z="0" />
+          <rotate axis="y" angle="-90" />
+    </transformation>
 
     </transformations>
 
@@ -934,7 +928,9 @@
             <children>
 				<componentref id="side2" />
 				<componentref id="side4" />
-				<componentref id="side5" />
+        <componentref id="side1" />
+				<componentref id="side3" />
+        <componentref id="side5" />
             </children>
 
         </component>
@@ -964,6 +960,29 @@
 
         </component>
 
+        <component id="side1">
+
+            <transformation>
+
+                <transformationref id="side1" />
+
+            </transformation>
+
+
+            <materials>
+                <material id="base" />
+            </materials>
+
+
+              <texture id="wood2" />
+
+            <children>
+
+                <primitiveref id="back" />
+
+            </children>
+
+        </component>
 
         <component id="side4">
 
@@ -1013,6 +1032,29 @@
 
         </component>
 
+                <component id="side3">
+
+                  <transformation>
+
+                        <transformationref id="side3" />
+
+                    </transformation>
+
+
+                    <materials>
+                        <material id="base" />
+                    </materials>
+
+
+                  <texture id="wall" />
+
+                    <children>
+
+                        <primitiveref id="back" />
+
+                    </children>
+
+                </component>
 
 
     </components>
