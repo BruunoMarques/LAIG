@@ -118,8 +118,8 @@ MyMenu.prototype.display = function ()
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
-	this.scene.translate(55,20,-20.1);
-	this.scene.scale(20,20,4.5);
+	this.scene.translate(50,20,-20.1);
+	this.scene.scale(25,20,4.5);
 	this.play5.apply();
 	this.patch.display();
 	this.scene.popMatrix();

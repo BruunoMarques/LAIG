@@ -3,8 +3,8 @@ class MyAnimation {
 		this.id = id;
 		this.span = span;
 	}
-		
-	
+
+
 AngleCalc(x,z,dirZ){
 
 	var anglevec = vec3.fromValues(x,0,z);
@@ -20,23 +20,23 @@ AngleCalc(x,z,dirZ){
 
 class MyLinearAnimation extends MyAnimation{
 	constructor(id,span,controlPoints){
-		
+
 		super(id,span);
 		this.controlPoints = controlPoints;
 		this.speed = 0;
 		this.distance = 0;
 		this.rotate = 0;
 		this.translation = new MyPoint(0,0,0);
-		
+
 		this.angles = [];
 		this.distances = [];
 		this.moveDistance = [];
 		this.intervals = [];
-		
-		
-		
+
+
+
 		this.animRefBool = [];
-		
+
 		for(var i = 1; i < this.controlPoints.length ; i++){
           var OriginPoint= this.controlPoints[i-1];
           var destination = vec3.fromValues(this.controlPoints[i][0],this.controlPoints[i][1],this.controlPoints[i][2]);
@@ -44,7 +44,7 @@ class MyLinearAnimation extends MyAnimation{
           this.distance += vec3.distance(destination, origin);
           this.animRefBool.push(false);
       }
-	  
+
 		this.animRefBool[0] = true;
 		this.animRefBool.push(false);
 	}
@@ -57,7 +57,7 @@ duration(matrix){
 	var time = 0;
 
 	for(var i = 0;i < this.controlPoints.length;i++){
-		
+
           var currpoint = this.controlPoints[i];
           var nextpoint = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var distance = vec3.distance(nextpoint, original);
@@ -65,26 +65,26 @@ duration(matrix){
           var interval = distance/this.speed;
           time += interval;
           this.intervals.push(time);
-		  
+
           vec3.subtract(nextpoint, nextpoint, original);
 		  console.log(nextpoint);
           var x = vec3.dot(nextpoint, vx);
           var y = vec3.dot(nextpoint, vy);
           var z = vec3.dot(nextpoint, vz);
           var move = [(x/interval), (y/interval), (z/interval)];
-		  
+
           this.moveDistance.push(move);
           original = vec3.fromValues(currpoint[0],currpoint[1],currpoint[2]);
           var angle = this.AngleCalc(x, z, vz);
           this.angles.push(angle);
       }
-			 this.rotate = this.angles[0];     
-	
-	
-}	
-	
+			 this.rotate = this.angles[0];
 
-	
+
+}
+
+
+
 duplicate(){
       var dup = new MyLinearAnimation(this.id, this.span, this.controlPoints);
       return dup;
@@ -99,37 +99,84 @@ class MyCircularAnimation extends MyAnimation{
 		this.radius = radius;
 		this.startang = startang;
 		this.rotang = rotang;
-	
+
 
 		this.prevAngle =0;
 		this.currangle = 0;
-		
+
 		this.controlPoints = [];
 		this.rotspeed = this.rotang / span;
 		this.lastpoint = new MyPoint(0,0,0);
 		this.getLastPoint();
-	
+
 	}
-	
+
 	getLastPoint(){
-	  this.y1 = 0;			
+	  this.y1 = 0;
 	  this.x1 = Math.cos(this.currangle) * this.radius;
       this.z1 = Math.sin(this.currangle) * this.radius;
-	  
+
       var x = this.center.x + Math.cos(this.rotang+this.startang) * this.radius;
       var z = this.center.z + Math.sin(-this.rotang+this.startang) * this.radius;
-	
-	  
+
+
       this.lastpoint = new MyPoint(x,this.center.y, z);
       this.controlPoints.push(this.lastpoint);
 	}
-	
+
 	duplicate(){
       var dup = new MyCircularAnimation(this.id, this.span,this.radius,this.center.x,this.center.y,this.center.z,this.startang,this.rotang);
 	  return dup;
   }
 }
 
+class MyCamAnimation extends MyAnimation{
+	constructor(id,xi,yi,xf,yf){
+		var span = 1.5;
+		super(id,span)
+
+		this.ipoint = new MyPoint(xi,yi,0.5);
+		this.fpoint = new MyPoint(xf,yf,0.5);
+
+		this.dist = Math.sqrt((xf - xi)*(xf - xi) + (yf - yi)*(yf - yi));
+	  this.mov_per_it_x = (xf - xi) / span;
+		this.mov_per_it_z = (yf - y1) / span;
+	  this.movement_per_it = 2 / span;
+	  this.heigth = 1;
+
+	  this.des = -1;
+	  this.currentx = 0;
+	  this.currenty = 0;
+	  this.currentz = 0;
+		/*
+		this.radius = radius;
+		this.startang = startang;
+		this.rotang = rotang;
 
 
+		this.prevAngle =0;
+		this.currangle = 0;
 
+		this.controlPoints = [];
+		this.rotspeed = this.rotang / span;
+		this.lastpoint = new MyPoint(0,0,0);
+		this.getLastPoint();*/
+
+	}
+
+	update(currTime, tempovar){
+		if (this.span > currTime){
+				 this.currentx += this.mov_per_it_x * tempovar;
+				 this.currentz += this.mov_per_it_z * tempovar;
+				 this.des += this.movement_per_it * tempovar;
+				 this.currenty = (-(this.des * this.des) + 1) * this.heigth;
+				 return true;
+		 }
+		 else return false;
+	}
+
+	duplicate(){
+      var dup = new MyCamAnimation(this.id, this.ipoint.x,this.ipoint.y,this.fpoint.x,this.fpoint.y);
+	  return dup;
+  }
+}

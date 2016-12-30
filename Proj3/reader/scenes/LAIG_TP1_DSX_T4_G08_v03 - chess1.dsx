@@ -4,29 +4,32 @@
     <scene root="root" axis_length="4" />
 
 
-    <views default="view4" >
+    <views default="viewmenu" >
 
         <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
             <to x="0" y="0" z="0" />
         </perspective>
 
-		    <perspective id="view2" near="1" far="250" angle="30">
+		    <perspective id="viewredside" near="1" far="250" angle="30">
             <from x="100" y="40" z="80" />
             <to x="30" y="10" z="30" />
         </perspective>
 
-        <perspective id="view3" near="1" far="250" angle="75">
+        <perspective id="viewtop" near="1" far="250" angle="75">
             <from x="50" y="40" z="50" />
             <to x="49" y="10" z="50" />
         </perspective>
 
-
-      <perspective id="view4" near="1" far="250" angle="75">
+      <perspective id="viewmenu" near="1" far="250" angle="75">
             <from x="50" y="24" z="0" />
             <to x="50" y="24" z="-20" />
         </perspective>
 
+        <perspective id="viewwhiteside" near="1" far="250" angle="75">
+            <from x="30" y="30" z="30" />
+            <to x="90" y="0" z="80" />
+          </perspective>
     </views>
 
 
