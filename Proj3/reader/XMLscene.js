@@ -507,7 +507,7 @@ XMLscene.prototype.logPicking = function()
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
-					console.log("Picked object: " + obj + ", with pick id " + customId);
+					//console.log("Picked object: " + obj + ", with pick id " + customId);
 					this.game.registerPick(customId);
 				}
 			}

@@ -10,9 +10,9 @@ function MyGame(scene) {
 	this.client = new Client();
 	this.resultOf = null;
 
-	this.redScore = 0;
-	this.whiteScore = 0;
-	this.timevar = 10;
+	this.redScore = 7;
+	this.whiteScore = 7;
+	this.timevar = 30;
 
 	this.currID = null;
 	this.lastPlayTime = 0;
@@ -135,7 +135,8 @@ MyGame.prototype.checkPlay = function(play,piece){
 	if (this.scene.totalTime - this.lastPlayTime > this.timevar){
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
-			console.log("Next turn");
+			this.scene.myInterface.changeView();
+			console.log("Play TimedOut, Next turn");
 		}
 
 	else {
@@ -200,10 +201,10 @@ MyGame.prototype.updateScore= function(){
 
 MyGame.prototype.setScoreWhite= function(data){
 	var num = JSON.parse(data);
-	this.whiteScore =  num +1;
+	this.whiteScore =  num -1;
 }
 
 MyGame.prototype.setScoreRed= function(data){
 	var num = JSON.parse(data);
-	this.redScore = num+1;
+	this.redScore = num-1;
 }

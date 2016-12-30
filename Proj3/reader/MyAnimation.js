@@ -167,3 +167,37 @@ class MyCamAnimation extends MyAnimation{
 	  return dup;
   }
 }
+
+
+class MygameAnimation extends MyAnimation{
+  constructor(id, xInicial, yInicial, xFinal, yInicial){
+      var time = 1.5;//lmao quele hardcode xD
+      super(id, time);
+      this.initialPoint = new Point(xInicial, yInicial, 0.5);
+      this.finalPoint = new Point(xFinal, yFinal, 0.5);
+      this.dist = Math.sqrt((xFinal - xInicial)*(xFinal - xInicial) + (yFinal - yInicial)*(yFinal - yInicial));
+      this.mov_per_it_x = (xFinal - xInicial) / time;
+      this.mov_per_it_z = (yFinal - yInicial) / time;
+      this.movement_per_it = 2 / time;
+      this.heigth = 1;
+
+      this.des = -1;
+      this.x_atual = 0;
+      this.y_atual = 0;
+      this.z_atual = 0;
+  }
+  duplicate(){
+      var dup = new gameAnimation(this.id, this.initialPoint.x, this.initialPoint.y, this.finalPoint.x, this.finalPoint.y);
+      return dup;
+  }
+  updateAnimation(currTime, tempovar){
+      if (this.time > currTime){
+          this.x_atual += this.mov_per_it_x * tempovar;
+          this.z_atual += this.mov_per_it_z * tempovar;
+          this.des += this.movement_per_it * tempovar;
+          this.y_atual = (-(this.des * this.des) + 1) * this.heigth;
+          return true;
+      }
+      else return false;
+  }
+}
