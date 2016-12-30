@@ -6,7 +6,7 @@ function MyGame(scene) {
 	this.pickCount = 0;
 
 	this.thePlay = new MyPlay([],[]);
-	
+
 	this.client = new Client();
 	this.resultOf = null;
 
@@ -17,6 +17,7 @@ function MyGame(scene) {
 
  //depois é preciso por isto noutro sitio, onde vai ser atualizados os scores, senao nao vai atualizar
 	this.scoreboard = new MyScoreBoard(scene,3,4,10,7,this.redScore,this.whiteScore);
+	this.menu = new MyMenu(scene,3,2,10,7);
 };
 
 MyGame.prototype = Object.create(CGFobject.prototype);
@@ -29,6 +30,7 @@ MyGame.prototype.display = function(){
 	this.scene.pushMatrix();
 	this.gamestart.display();
 	this.scoreboard.display();
+	this.menu.display();
 	this.scene.popMatrix();
 
 };
@@ -85,15 +87,15 @@ MyGame.prototype.checkPlay = function(play){
 
 	}
 	this.doPlay(play,direction,ammount);
-	
+
 		console.log("Next turn");
 }
 
 MyGame.prototype.getCountWhite = function (){
 	var boardtosend = this.gamestart.stringedboard;
-	var stringtosend = "count_white("+boardtosend+")";	
+	var stringtosend = "count_white("+boardtosend+")";
 	var cenas = this;
-	
+
 	this.client.getPrologRequest(stringtosend,function(data){
 		cenas.setScoreWhite(data.target.response);
 	});
@@ -102,9 +104,9 @@ MyGame.prototype.getCountWhite = function (){
 
 MyGame.prototype.getCountRed = function (){
 	var boardtosend = this.gamestart.stringedboard;
-	var stringtosend = "count_red("+boardtosend+")";	
+	var stringtosend = "count_red("+boardtosend+")";
 	var cenas = this;
-	
+
 	this.client.getPrologRequest(stringtosend,function(data){
 		cenas.setScoreRed(data.target.response);
 	});
@@ -114,7 +116,7 @@ MyGame.prototype.doPlay = function(play, direction,ammount){
 	var boardtosend = this.gamestart.stringedboard;
 	var stringtosend = "movehelpme("+boardtosend+","+play.piece[0]+","+play.piece[1]+","+ammount+","+direction+")";
 	console.log(stringtosend);
-	
+
 	var cenas = this;
 	this.client.getPrologRequest(stringtosend,function(data){
 		console.log(data.target.response);
@@ -149,4 +151,3 @@ MyGame.prototype.setScoreRed= function(data){
 	var num = JSON.parse(data);
 	this.redScore = num-1;
 }
-

@@ -4,7 +4,7 @@
     <scene root="root" axis_length="4" />
 
 
-    <views default="view1" >
+    <views default="view4" >
 
         <perspective id="view1" near="0.4" far="300" angle="60">
             <from x="150" y="100" z="100" />
@@ -19,6 +19,12 @@
         <perspective id="view3" near="1" far="250" angle="75">
             <from x="50" y="40" z="50" />
             <to x="49" y="10" z="50" />
+        </perspective>
+
+
+      <perspective id="view4" near="1" far="250" angle="75">
+            <from x="50" y="24" z="0" />
+            <to x="50" y="24" z="-20" />
         </perspective>
 
     </views>
