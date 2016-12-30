@@ -52,6 +52,9 @@ function MyMenu(scene, dimX, dimY, partsX, partsY)
 
 
 	this.patch = new MyPatch(this.scene,1,1,partsX,partsY,this.controlPoints);
+	this.patch1 = new MyButton(this.scene,1,1,partsX,partsY,this.controlPoints,100);
+	this.patch2 = new MyButton(this.scene,1,1,partsX,partsY,this.controlPoints,101);
+	this.patch3 = new MyButton(this.scene,1,1,partsX,partsY,this.controlPoints,102);
 	this.cube = new MyCube(this.scene,2);
 };
 
@@ -79,21 +82,12 @@ MyMenu.prototype.getControlPoints = function () {
 
 
 MyMenu.prototype.display = function ()
-{/*
-	this.scene.pushMatrix();
-	this.marble.apply();
-	this.scene.translate(14,5,49);
-	this.scene.rotate(Math.PI/4,0,1,0);
-	this.scene.rotate(-Math.PI/15,1,0,0);
-	this.scene.scale(23,15,0.5);
-	this.cube.display();
-	this.scene.popMatrix();*/
-
+{
 	this.scene.pushMatrix();
 	this.scene.translate(50,30,-20);
 	this.scene.scale(5,5,5);
 	this.play1.apply();
-	this.patch.display();
+	this.patch1.display(true);
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
@@ -107,14 +101,14 @@ MyMenu.prototype.display = function ()
 	this.scene.translate(40,15,-20);
 	this.scene.scale(3,3,4.5);
 	this.play3.apply();
-	this.patch.display();
+	this.patch2.display(true);
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
 	this.scene.translate(60,15,-20);
 	this.scene.scale(3,3,4.5);
 	this.play4.apply();
-	this.patch.display();
+	this.patch3.display(true);
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();

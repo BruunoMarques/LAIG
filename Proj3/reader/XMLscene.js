@@ -90,9 +90,9 @@ XMLscene.prototype.changeCamera = function(){
 								vec3.fromValues(this.cameras[this.cam][7],this.cameras[this.cam][8],this.cameras[this.cam][9]));
 
 	console.log(this.cameras);
-
+	console.log(this.cameras[this.cam][0]);
 	if(this.cameras[this.cam][0]=='viewmenu')
-			this.cameras.splice(3,1);
+			this.cameras.splice(1,1);
 
 	this.myInterface.setActiveCamera(this.camera);
 };

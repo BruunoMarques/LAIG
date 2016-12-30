@@ -39,8 +39,9 @@ MyInterface.prototype.addLightsGroup = function(){
 
 MyInterface.prototype.changeView = function (){
 	this.scene.cam += 1;
-    if(this.scene.cam == this.scene.cameras.length)
-    this.scene.cam = 0;
+    if(this.scene.cam == this.scene.cameras.length){
+		this.scene.cam = 0;
+	}
     this.scene.changeCamera();
     this.setActiveCamera(this.scene.camera);
     console.log("Switched Camera");

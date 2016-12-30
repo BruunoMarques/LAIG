@@ -39,8 +39,24 @@ MyGame.prototype.registerPick = function(customId){
 
 
 	this.gamestart.updatePick(customId);
+	this.checkGame(customId);
 	this.startTurn(customId);
 }
+
+
+MyGame.prototype.checkGame = function(id){
+	if (id == 100){
+		this.scene.myInterface.changeView();
+	}
+	else if (id == 101){
+		this.timevar = 15;
+	}
+	else if (id == 102){
+		this.timevar = 30;
+	}
+	
+}
+
 
 MyGame.prototype.startTurn = function(customId){
 	if(this.pickCount % 2 == 0){
@@ -69,7 +85,6 @@ MyGame.prototype.checkPlay = function(play,piece){
 	var ammount;
 	var check = false;
 	var checkplayer = false;
-	console.log(this.turn);
 	if(play.piece[0] == play.target[0] && play.piece[1] == play.target[1]){
 		return;
 		}
@@ -128,7 +143,7 @@ MyGame.prototype.checkPlay = function(play,piece){
 			this.doPlay(play,direction,ammount);
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
-			//this.scene.myInterface.changeView();
+			this.scene.myInterface.changeView();
 			console.log("Next turn");			
 		}
 	}
