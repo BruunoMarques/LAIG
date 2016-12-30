@@ -10,8 +10,8 @@ function MyGame(scene) {
 	this.client = new Client();
 	this.resultOf = null;
 
-	this.redScore = 3;
-	this.whiteScore = 1;
+	this.redScore = 7;
+	this.whiteScore = 7;
 
 
 
@@ -85,17 +85,31 @@ MyGame.prototype.checkPlay = function(play){
 
 	}
 	this.doPlay(play,direction,ammount);
-	//this.getCount();
+	
 		console.log("Next turn");
 }
 
-MyGame.prototype.getCount = function (){
+MyGame.prototype.getCountWhite = function (){
 	var boardtosend = this.gamestart.stringedboard;
-	var stringtosend = "count_total("+boardtosend+")";	
-	var onS=null;
-	var onE= null;
-	this.client.getPrologRequest(stringtosend,onS,onE);
+	var stringtosend = "count_white("+boardtosend+")";	
+	var cenas = this;
+	
+	this.client.getPrologRequest(stringtosend,function(data){
+		cenas.setScoreWhite(data.target.response);
+	});
 }
+
+
+MyGame.prototype.getCountRed = function (){
+	var boardtosend = this.gamestart.stringedboard;
+	var stringtosend = "count_red("+boardtosend+")";	
+	var cenas = this;
+	
+	this.client.getPrologRequest(stringtosend,function(data){
+		cenas.setScoreRed(data.target.response);
+	});
+}
+
 MyGame.prototype.doPlay = function(play, direction,ammount){
 	var boardtosend = this.gamestart.stringedboard;
 	var stringtosend = "movehelpme("+boardtosend+","+play.piece[0]+","+play.piece[1]+","+ammount+","+direction+")";
@@ -116,7 +130,23 @@ MyGame.prototype.parseData= function(info){
 	this.gamestart.whitepieces=[];
 	this.gamestart.updateBoard();
 	this.gamestart.createPieces();
+	this.updateScore();
 }
 
+MyGame.prototype.updateScore= function(){
+	this.getCountRed();
+	this.getCountWhite();
+	this.scoreboard.white =this.whiteScore;
+	this.scoreboard.red = this.redScore;
+}
 
+MyGame.prototype.setScoreWhite= function(data){
+	var num = JSON.parse(data);
+	this.whiteScore =  num -1;
+}
+
+MyGame.prototype.setScoreRed= function(data){
+	var num = JSON.parse(data);
+	this.redScore = num-1;
+}
 

@@ -120,6 +120,10 @@ parse_input(movehelpme(Board,X,Y,Num,Dir),Res):-
 	movehelpme(Board,X,Y,Num,Dir,Res);
 	Res = "Error".
 	
-parse_input(count_total(Board),C):-
-	count_total(Board,C);
+parse_input(count_white(Board),C):-
+	count_white(Board,C);
 	C = "error".
+	
+parse_input(count_red(Board),C):-
+	count_red(Board,C);
+	C = "error".	
