@@ -10,8 +10,8 @@ function MyGame(scene) {
 	this.client = new Client();
 	this.resultOf = null;
 
-	this.redScore = 7;
-	this.whiteScore = 7;
+	this.redScore = 0;
+	this.whiteScore = 0;
 	this.timevar = 30;
 	
 	this.timeBy = 0;
