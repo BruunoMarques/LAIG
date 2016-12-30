@@ -13,7 +13,13 @@ function MyGame(scene) {
 	this.redScore = 7;
 	this.whiteScore = 7;
 	this.timevar = 30;
-
+	
+	this.timeBy = 0;
+	this.animation = null;
+	this.animationStart = false;
+	this.rotateAng = 0;
+	this.sizeP = 1;
+	
 	this.currID = null;
 	this.lastPlayTime = 0;
 	this.scoreboard = new MyScoreBoard(scene,3,4,10,7,this.redScore,this.whiteScore);
@@ -195,8 +201,8 @@ MyGame.prototype.parseData= function(info){
 MyGame.prototype.updateScore= function(){
 	this.getCountRed();
 	this.getCountWhite();
-	this.scoreboard.white =this.whiteScore;
-	this.scoreboard.red = this.redScore;
+	this.scoreboard.white =7 - this.redScore;
+	this.scoreboard.red = 7 - this.whiteScore;
 }
 
 MyGame.prototype.setScoreWhite= function(data){
