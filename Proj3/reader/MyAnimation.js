@@ -173,8 +173,8 @@ class MygameAnimation extends MyAnimation{
   constructor(id, xInicial, yInicial, xFinal, yFinal){
       var time = 1.5;//lmao quele hardcode xD
       super(id, time);
-      this.initialPoint = new Point(xInicial, yInicial, 0.5);
-      this.finalPoint = new Point(xFinal, yFinal, 0.5);
+      this.initialPoint = new MyPoint(xInicial, yInicial, 0.5);
+      this.finalPoint = new MyPoint(xFinal, yFinal, 0.5);
       this.dist = Math.sqrt((xFinal - xInicial)*(xFinal - xInicial) + (yFinal - yInicial)*(yFinal - yInicial));
       this.mov_per_it_x = (xFinal - xInicial) / time;
       this.mov_per_it_z = (yFinal - yInicial) / time;

@@ -3,8 +3,8 @@ function MyNewPiece(scene, type, id, x, y) {
 
 	this.type = type;
 	this.id = id;
-	this.x = x;
-	this.y = y;
+	this.x = x*2.5 + 49.9;
+	this.y = y*2.5 + 50.0;
 	this.positions = [this.x +5 ,Math.abs(this.y - 5)];
 
 	
@@ -62,7 +62,7 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 			case 1:
 			
 			this.scene.pushMatrix();
-			this.scene.translate(49.9 + this.x *2.5,13.8,50+ this.y*2.5);
+			this.scene.translate(this.x,13.8,this.y);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {

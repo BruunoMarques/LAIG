@@ -214,3 +214,7 @@ MyGame.prototype.setScoreRed= function(data){
 	var num = JSON.parse(data);
 	this.redScore = num-1;
 }
+
+MyGame.prototype.startAnimation = function(){
+	
+}
