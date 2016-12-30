@@ -16,6 +16,7 @@ XMLscene.prototype.init = function (application) {
 	this.waitTime = 1;
 	this.stop_anim = true;
 	this.animComps = [];
+	this.cam_start = false;
 
     this.initCameras();
 
@@ -80,6 +81,7 @@ XMLscene.prototype.startViews = function (){
 	this.cameras = this.graph.views;
 	this.camNum = this.cameras.length;
 	this.cam = this.graph.first_view;
+	this.next_cam = null;
 	this.changeCamera();
 };
 
@@ -89,10 +91,15 @@ XMLscene.prototype.changeCamera = function(){
 								vec3.fromValues(this.cameras[this.cam][4],this.cameras[this.cam][5],this.cameras[this.cam][6]),
 								vec3.fromValues(this.cameras[this.cam][7],this.cameras[this.cam][8],this.cameras[this.cam][9]));
 
-	console.log(this.cameras);
-	console.log(this.cameras[this.cam][0]);
+/*
+	if(this.cameras[this.cam][0]=='viewendgame')
+			var finalview = this.cameras[this.cam];
+*/
+
 	if(this.cameras[this.cam][0]=='viewmenu')
-			this.cameras.splice(1,1);
+			this.cameras.splice(this.cam,1);
+
+
 
 	this.myInterface.setActiveCamera(this.camera);
 };
@@ -340,11 +347,13 @@ XMLscene.prototype.display = function () {
 
 	this.setDefaultAppearance();
 
+	this.updateCamera();
 	// ---- END Background, camera and axis setup
 
 	// it is important that things depending on the proper loading of the graph
 	// only get executed after the graph has loaded correctly.
 	// This is one possible way to do it
+
 
 
 
@@ -357,9 +366,48 @@ XMLscene.prototype.display = function () {
 		}
 
 
-	};
+	}
 
 
+};
+
+XMLscene.prototype.changeViewHome = function(){
+	if(this.cam == 0 || this.cam == 1)
+    this.next_cam = 2;
+	if(this.cam == 2)
+		this.next_cam = 0;
+
+    this.changeView(this.cam,this.next_cam);
+};
+
+XMLscene.prototype.changeView = function (view1, view2){
+    var tmp1 = this.cameras[view1];
+    var tmp2 = this.cameras[view2];
+    this.cam_animation = new MyCamAnimation(1,tmp1[4],tmp1[6],tmp2[4],tmp2[6]);
+    this.cam_animation2 = new MyCamAnimation(2,tmp1[7],tmp1[9],tmp2[7],tmp2[9]);
+		console.log(tmp1);	console.log(tmp2);
+    this.cam_animation.heigth = 10;
+    this.cam_animation2.heigth = 10;
+    this.cam_start = true;
+    this.totalTime = 0;
+};
+
+XMLscene.prototype.updateCamera = function () {
+    if(this.cam_start){
+        var tmp = this.cam_animation;
+        var x = tmp.currentx + this.cameras[this.cam][4];
+        var y = tmp.currenty + this.cameras[this.cam][5];
+        var z = tmp.currentz + this.cameras[this.cam][6];
+        this.camera.position = vec3.fromValues(x,y,z);
+
+        var tmp2 = this.cam_animation2;
+        var x2 = tmp2.currentx + this.cameras[this.next_cam][7];
+        var y2 = tmp2.currenty + this.cameras[this.next_cam][8];
+        var z2 = tmp2.currentz + this.cameras[this.next_cam][9];
+        this.camera.target = vec3.fromValues(x2,y2,z2);
+
+        this.myInterface.setActiveCamera(this.camera);
+    }
 };
 
 XMLscene.prototype.update = function(currTime){
@@ -382,9 +430,23 @@ XMLscene.prototype.update = function(currTime){
 		for(var i =0; i <this.animComps.length; i++){
 			this.animComps[i].update(this.actualTime);
 		}
+		if(this.cam_animation != null){
+					 if(this.cam_start){
+							 if(!this.cam_animation.update(this.totalTime,this.actualTime))
+							 {
+									 this.cam_animation2.update(this.totalTime,this.actualTime);
+									 this.cam_start = false;
+									 this.cam = this.next_cam;
+									 this.changeCamera();
+									 this.myInterface.setActiveCamera(this.camera);
+							 }
+					 }
+			 }
 	}
 
 	this.updateClock(currTime);
+
+//	console.log(this.cameras);
 
 }
 

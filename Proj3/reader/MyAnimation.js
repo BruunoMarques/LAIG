@@ -140,7 +140,7 @@ class MyCamAnimation extends MyAnimation{
 
 		this.dist = Math.sqrt((xf - xi)*(xf - xi) + (yf - yi)*(yf - yi));
 	  this.mov_per_it_x = (xf - xi) / span;
-		this.mov_per_it_z = (yf - y1) / span;
+		this.mov_per_it_z = (yf - yi) / span;
 	  this.movement_per_it = 2 / span;
 	  this.heigth = 1;
 
@@ -148,19 +148,6 @@ class MyCamAnimation extends MyAnimation{
 	  this.currentx = 0;
 	  this.currenty = 0;
 	  this.currentz = 0;
-		/*
-		this.radius = radius;
-		this.startang = startang;
-		this.rotang = rotang;
-
-
-		this.prevAngle =0;
-		this.currangle = 0;
-
-		this.controlPoints = [];
-		this.rotspeed = this.rotang / span;
-		this.lastpoint = new MyPoint(0,0,0);
-		this.getLastPoint();*/
 
 	}
 
