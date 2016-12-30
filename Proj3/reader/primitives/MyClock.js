@@ -45,9 +45,9 @@ MyClock.prototype.initBuffers = function() {
 
   this.face = new MyCircle(this.scene, this.slices);
   this.clock = new MyCylinder(this.scene,1,1,1,this.slices, this.stacks);
-  this.seconds = new MyClockHand(this.scene, 0.9, 270);
-  this.minutes = new MyClockHand(this.scene, 0.65, 180);
-  this.hours = new MyClockHand(this.scene, 0.4, 90);
+  this.seconds = new MyClockHand(this.scene, 0.9, 0);
+  this.minutes = new MyClockHand(this.scene, 0.65, 0);
+  this.hours = new MyClockHand(this.scene, 0.4, 0);
 }
 
 MyClock.prototype.setEnabled = function (state) {
@@ -72,7 +72,7 @@ MyClock.prototype.display = function(){
 	this.scene.pushMatrix();
 	this.scene.translate(0,0,0.1);
 	this.scene.rotate(this.hours.angle * degToRad, 0, 0, 1);
-  this.handleAppearance.apply();
+	this.handleAppearance.apply();
 	this.hours.display();
 	this.scene.popMatrix();
 

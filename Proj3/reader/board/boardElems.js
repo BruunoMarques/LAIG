@@ -3,12 +3,13 @@ function MyGameBoard(scene) {
 
     CGFobject.call(this, scene);
     this.scene = scene;
-    this.redpieces = [];
-	this.whitepieces = [];
+    this.pieces = [];
+	this.offpieces = [];
 	this.globalId = 0;
 
 	this.story = [];
 
+	this.diffArray = [];
 
 
 	this.initialboard = [[3,0,0,0,0,0,0,0,3],
@@ -81,38 +82,30 @@ function MyGameBoard(scene) {
 MyGameBoard.prototype = Object.create(CGFobject.prototype);
 MyGameBoard.prototype.constructor = MyGameBoard;
 
+
 MyGameBoard.prototype.display = function() {
-	this.scene.clearPickRegistration();
     this.scene.pushMatrix();
 
 
-    this.materialBaseRed.apply();
 
+    for (var i = 0; i < this.pieces.length; i++) {
 
-
-    for (var i = 0; i < this.redpieces.length; i++) {
-
-            this.redpieces[i].display(this.pick,this.materialBaseRed, this.materialSelected, this.pickLock);
+            this.pieces[i].display(this.pick,this.materialBaseRed, this.materialSelected, this.pickLock);
 
     }
+	
+	  for (var i = 0; i < this.offpieces.length; i++) {
 
+            this.offpieces[i].display(1,this.materialBaseRed, this.materialSelected, false);
 
-	this.materialBaseWhite.apply();
-
-	for (var i = 0; i < this.whitepieces.length; i++) {
-
-            this.whitepieces[i].display(this.pick,this.materialBaseWhite, this.materialSelected, this.pickLock);
     }
-
-
-
     this.scene.popMatrix();
 
-	    this.scene.pushMatrix();
+	this.scene.pushMatrix();
 
-		this.scene.translate(38.7,13.1,61.3);
-		this.scene.scale(1.005,1,1.005);
-		this.board.display(this.pick,this.materialSelected);
+	this.scene.translate(38.7,13.1,61.3);
+	this.scene.scale(1.005,1,1.005);
+	this.board.display(this.pick,this.materialSelected);
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
@@ -124,9 +117,116 @@ MyGameBoard.prototype.display = function() {
 	this.scene.scale(5,5,1);
 	this.clock.display();
 	this.scene.popMatrix();
+	
+	this.scene.clearPickRegistration();
 };
 
 
+
+MyGameBoard.prototype.checkDifference = function(board) {
+	var recieved;
+	var current;
+	var count1 = 0;
+	var count2 = 0;
+	var count3 = 0;
+	var count5 = 0;
+	var count6 = 0;
+	var count7 = 0;
+	var countL1 = 0;
+	var countL2 = 0;
+	var countL3 = 0;
+	var countL5 = 0;
+	var countL6 = 0;
+	var countL7 = 0;
+
+	for(var i = 0; i < board.length; i++){
+		for(var j = 0; j < board.length; j++){
+			recieved = board[i][j];
+			if(recieved != 0){			
+				}
+			 if (recieved == 1){
+				count1++;
+			}	
+			if (recieved == 2){
+				count2++;
+			}	
+			if (recieved == 3){
+				count3++;
+			}	
+			if (recieved == 5){
+				count5++;
+			}	
+			if (recieved == 6){
+				count6++;
+			}
+			if (recieved == 7){
+				count7++;
+			}				
+		}
+	}
+	
+	for(var i = 0; i < this.initialboard.length; i++){
+		for(var j = 0; j < this.initialboard.length; j++){
+			current = this.initialboard[i][j];
+				if(current != 0){
+				}
+			if (current == 1){
+				countL1++;
+			}	
+			if (current == 2){
+				countL2++;
+			}	
+			if (current == 3){
+				countL3++;
+			}	
+			if (current == 5){
+				countL5++;
+			}	
+			if (current == 6){
+				countL6++;
+			}
+			if (current == 7){
+				countL7++;
+			}	
+		}
+	}	
+	var d1 =Math.abs(count1 - countL1);
+	while(d1 != 0){
+			this.diffArray.push(1);
+			d1--;
+		}	
+
+	var d2 =Math.abs(count2 - countL2);
+	while(d2 != 0){
+			this.diffArray.push(2);
+			d2--;
+		}	
+
+	var d3 =Math.abs(count3 - countL3);
+	while(d3 != 0){
+			this.diffArray.push(3);
+			d3--;
+		}	
+
+	var d5 =Math.abs(count5 - countL5);
+	while(d5 != 0){
+			this.diffArray.push(5);
+			d5--;
+		}	
+
+	var d6 =Math.abs(count6 - countL6);
+	while(d6 != 0){
+			this.diffArray.push(6);
+			d6--;
+		}	
+
+	var d7 =Math.abs(count7 - countL7);
+	while(d7 != 0){
+			this.diffArray.push(7);
+			d7--;
+		}	
+
+};
 
 
 MyGameBoard.prototype.createBoard = function() {
@@ -135,8 +235,17 @@ MyGameBoard.prototype.createBoard = function() {
 
 };
 
-MyGameBoard.prototype.updateBoard = function(board) {
+MyGameBoard.prototype.updateBoard = function() {
 	this.stringedboard = this.boardConvert(this.initialboard);
+};
+
+
+MyGameBoard.prototype.updateBoard2 = function() {
+	var converted = [];
+	for (var i = 0; i < this.initialboard.length;i++){
+			converted.push(this.initialboard[i].reverse());
+	}
+	this.stringedboard = this.boardConvert(converted);
 };
 
 
@@ -177,19 +286,17 @@ MyGameBoard.prototype.createPieces = function() {
 							if(tp==0){
 
 							}
-							else if (tp < 4 ){
+							else{
 							var piecetoadd = new MyNewPiece(this.scene,tp,this.globalId + 1,-4 +i,-4+j);
 							this.globalId++;
-							this.whitepieces.push(piecetoadd);
+							this.pieces.push(piecetoadd);
 							}
-							else{
-							var piecetoadd = new MyNewPiece(this.scene,tp-4,this.globalId + 1,-4+i,-4+j);
-							this.globalId++;
-							this.redpieces.push(piecetoadd);
-							}
-
-
 					}
+				}
+				
+				for(var i = 0; i < this.diffArray.length; i++){
+					var piecetoadd = new MyNewPiece(this.scene,this.diffArray[i],99,1,8);
+					this.offpieces.push(piecetoadd);
 				}
 };
 
@@ -200,16 +307,12 @@ MyGameBoard.prototype.udpateClock = function(currTime){
 
 MyGameBoard.prototype.updatePick = function(id) {
     this.pick = id;
-    this.lockCell(id);
 }
 
 MyGameBoard.prototype.resetRegisterPick = function() {
     this.registerPick = [];
 
-    for (var i = 0; i < this.redpieces; i++) {
-        this.registerPick.push(true);
-    }
-	for (var i = 0; i < this.whitepieces; i++) {
+    for (var i = 0; i < this.pieces; i++) {
         this.registerPick.push(true);
     }
 
@@ -221,37 +324,37 @@ MyGameBoard.prototype.resetRegisterPick = function() {
 /**
 Update already picked cell
 */
-MyGameBoard.prototype.lockCell = function(id) {
-    this.registerPick[id] = false;
+MyGameBoard.prototype.getPiece = function(id) {
+	
+		for(var i = 0; i < this.pieces.length;i++){
+			if(id == this.pieces[i].id){
+				return this.pieces[i];
+			}
+		}
+}
+
+MyGameBoard.prototype.getCell = function(id) {
+	
+		for(var i = 0; i < this.board.cells.length;i++){
+			if(id == this.board.cells[i].id){
+				return this.board.cells[i];
+			}
+		}
 }
 
 MyGameBoard.prototype.parseclicks = function(id) {
-
+	if(id <17){
 	var clickedon;
-    if (id < 9){
-		for(var i = 0; i < this.whitepieces.length;i++){
-			if(id == this.whitepieces[i].id){
-				clickedon = this.whitepieces[i].positions;
-				console.log(clickedon);
-			}
-		}
-	}
-	else if (id < 17){
-		for(var i = 0; i < this.redpieces.length;i++){
-			if(id == this.redpieces[i].id){
-				clickedon = this.redpieces[i].positions;
-				console.log(clickedon);
-			}
-		}
+	var p = this.getPiece(id);
+	clickedon = p.positions;
 	}
 
-	else if (id < 98){
-		for(var i = 0; i < this.board.cells.length;i++){
-			if(id == this.board.cells[i].id){
-				clickedon = this.board.cells[i].positions;
-				console.log(clickedon);
-			}
-		}
+
+	else if(id < 98){
+	var c = this.getCell(id);
+	clickedon = c.positions;
 	}
+
+	
 	return clickedon;
 }

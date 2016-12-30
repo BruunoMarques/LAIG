@@ -46,12 +46,32 @@ MyInterface.prototype.changeView = function (){
     console.log("Switched Camera");
 }
 
+
+MyInterface.prototype.undo = function (){
+	if(this.scene.game.gamestart.story.length != 0){
+		this.scene.game.gamestart.initialboard = this.scene.game.gamestart.story.pop();
+		this.scene.game.gamestart.globalId = 0;
+		this.scene.game.gamestart.pieces = [];
+		this.scene.game.gamestart.updateBoard2();
+		this.scene.game.gamestart.createPieces();
+		this.scene.game.updateScore();
+		console.log("Undid");
+	}
+
+	
+
+}
+
 MyInterface.prototype.processKeyboard = function(event) {
 		CGFinterface.prototype.processKeyboard.call(this,event);
 		switch (event.keyCode || event.which)
 	{
 		    case 118:
             this.changeView();
+            break;
+			
+			case 117:
+            this.undo();
             break;
 	}
 };
