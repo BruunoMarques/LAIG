@@ -187,7 +187,7 @@ class MygameAnimation extends MyAnimation{
       this.z_atual = 0;
   }
   duplicate(){
-      var dup = new gameAnimation(this.id, this.initialPoint.x, this.initialPoint.y, this.finalPoint.x, this.finalPoint.y);
+      var dup = new MygameAnimation(this.id, this.initialPoint.x, this.initialPoint.y, this.finalPoint.x, this.finalPoint.y);
       return dup;
   }
   updateAnimation(currTime, tempovar){
