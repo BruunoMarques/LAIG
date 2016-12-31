@@ -96,8 +96,8 @@ XMLscene.prototype.changeCamera = function(){
 			var finalview = this.cameras[this.cam];
 */
 
-	if(this.cameras[this.cam][0]=='viewmenu')
-			this.cameras.splice(this.cam,1);
+//	if(this.cameras[this.cam][0]=='viewmenu')
+	//		this.cameras.splice(this.cam,1);
 
 
 
@@ -372,10 +372,10 @@ XMLscene.prototype.display = function () {
 };
 
 XMLscene.prototype.changeViewHome = function(){
-	if(this.cam == 0 || this.cam == 1)
+	if(this.cam == 1||this.cam == 0)
     this.next_cam = 2;
 	if(this.cam == 2)
-		this.next_cam = 0;
+		this.next_cam = 1;
 
     this.changeView(this.cam,this.next_cam);
 };
@@ -383,13 +383,16 @@ XMLscene.prototype.changeViewHome = function(){
 XMLscene.prototype.changeView = function (view1, view2){
     var tmp1 = this.cameras[view1];
     var tmp2 = this.cameras[view2];
+		console.log(tmp1);	console.log(tmp2);
     this.cam_animation = new MyCamAnimation(1,tmp1[4],tmp1[6],tmp2[4],tmp2[6]);
     this.cam_animation2 = new MyCamAnimation(2,tmp1[7],tmp1[9],tmp2[7],tmp2[9]);
-		console.log(tmp1);	console.log(tmp2);
     this.cam_animation.heigth = 10;
     this.cam_animation2.heigth = 10;
     this.cam_start = true;
     this.totalTime = 0;
+
+	console.log(this.camera);
+
 };
 
 XMLscene.prototype.updateCamera = function () {
@@ -399,12 +402,13 @@ XMLscene.prototype.updateCamera = function () {
         var y = tmp.currenty + this.cameras[this.cam][5];
         var z = tmp.currentz + this.cameras[this.cam][6];
         this.camera.position = vec3.fromValues(x,y,z);
-
+				//console.log(this.camera.position);
         var tmp2 = this.cam_animation2;
-        var x2 = tmp2.currentx + this.cameras[this.next_cam][7];
-        var y2 = tmp2.currenty + this.cameras[this.next_cam][8];
-        var z2 = tmp2.currentz + this.cameras[this.next_cam][9];
+        var x2 = tmp2.currentx + this.cameras[this.cam][7];
+        var y2 = tmp2.currenty + this.cameras[this.cam][8];
+        var z2 = tmp2.currentz + this.cameras[this.cam][9];
         this.camera.target = vec3.fromValues(x2,y2,z2);
+				//console.log(this.camera.position);
 
         this.myInterface.setActiveCamera(this.camera);
     }

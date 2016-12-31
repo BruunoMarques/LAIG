@@ -13,13 +13,13 @@ function MyGame(scene) {
 	this.redScore = 0;
 	this.whiteScore = 0;
 	this.timevar = 30;
-	
+
 	this.timeBy = 0;
 	this.animation = null;
 	this.animationStart = false;
 	this.rotateAng = 0;
 	this.sizeP = 1;
-	
+
 	this.currID = null;
 	this.lastPlayTime = 0;
 	this.scoreboard = new MyScoreBoard(scene,3,4,10,7,this.redScore,this.whiteScore);
@@ -52,7 +52,7 @@ MyGame.prototype.registerPick = function(customId){
 
 MyGame.prototype.checkGame = function(id){
 	if (id == 100){
-		this.scene.myInterface.changeView();
+		this.scene.changeViewHome();
 	}
 	else if (id == 101){
 		this.timevar = 15;
@@ -141,7 +141,7 @@ MyGame.prototype.checkPlay = function(play,piece){
 	if (this.scene.totalTime - this.lastPlayTime > this.timevar){
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
-			this.scene.myInterface.changeView();
+			this.scene.changeViewHome();
 			console.log("Play TimedOut, Next turn");
 		}
 
@@ -150,7 +150,7 @@ MyGame.prototype.checkPlay = function(play,piece){
 			this.doPlay(play,direction,ammount);
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
-			this.scene.myInterface.changeView();
+			this.scene.changeViewHome();
 			console.log("Next turn");
 		}
 	}
@@ -216,5 +216,5 @@ MyGame.prototype.setScoreRed= function(data){
 }
 
 MyGame.prototype.startAnimation = function(){
-	
+
 }
