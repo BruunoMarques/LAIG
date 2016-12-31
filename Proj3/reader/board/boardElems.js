@@ -91,7 +91,6 @@ MyGameBoard.prototype.display = function() {
     for (var i = 0; i < this.pieces.length; i++) {
 
             this.pieces[i].display(this.pick,this.materialBaseRed, this.materialSelected, this.pickLock);
-
     }
 	
 	  for (var i = 0; i < this.offpieces.length; i++) {

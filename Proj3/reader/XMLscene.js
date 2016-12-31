@@ -449,8 +449,7 @@ XMLscene.prototype.update = function(currTime){
 	}
 
 	this.updateClock(currTime);
-
-//	console.log(this.cameras);
+	this.game.update(this.actualTime);
 
 }
 

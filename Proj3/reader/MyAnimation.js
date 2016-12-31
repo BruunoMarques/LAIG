@@ -191,7 +191,8 @@ class MygameAnimation extends MyAnimation{
       return dup;
   }
   updateAnimation(currTime, tempovar){
-      if (this.time > currTime){
+
+      if (this.span > currTime){
           this.x_atual += this.mov_per_it_x * tempovar;
           this.z_atual += this.mov_per_it_z * tempovar;
           this.des += this.movement_per_it * tempovar;

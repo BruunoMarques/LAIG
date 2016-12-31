@@ -8,7 +8,13 @@ function MyNewPiece(scene, type, id, x, y) {
 	this.px = x*2.5 + 49.9;
 	this.py = y*2.5 + 50.0;
 	this.positions = [this.x +5 ,Math.abs(this.y - 5)];
-
+	
+	this.timeBy = 0;
+	this.animation = null;
+	this.animationBool = false;
+	this.rotateAng = 0;
+	this.sizeP = 1;
+	this.ready = true;
 	
 	 this.materialBaseRed = new CGFappearance(scene);
     //set emission
@@ -50,12 +56,18 @@ MyNewPiece.prototype.initBuffers = function() {
 
 
 MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
+this.scene.pushMatrix();
+	if (this.animationBool){
+		this.scene.translate(this.animation.x_atual,this.animation.y_atual,this.animation.z_atual);
+	}
+
 	if (this.type > 3){
 		this.materialBaseRed.apply();
 	} else{
 		this.materialBaseWhite.apply();
 	}
-
+		
+	
 	if (id == this.id) {
         nextmat.apply();
     }
@@ -230,12 +242,31 @@ MyNewPiece.prototype.display = function(id, currmat,nextmat, picklock){
 			default:
 
 		}
-		
+this.scene.popMatrix();		
 		if (id == this.id){
 			        currmat.apply();
 				}
-
-		
-	
 this.scene.clearPickRegistration();
 }
+
+MyNewPiece.prototype.startAnimation = function(id,x,y,xf,yf){
+	this.animationBool = true;
+	this.ready = false;
+	this.animation = new MygameAnimation(id,x,y,xf,yf);
+    this.timeBy = 0;
+    this.sizeP = 1;
+
+}
+
+
+MyNewPiece.prototype.animationUpdate = function(tempovar){
+    if(this.animationBool){
+        this.timeBy += tempovar;
+        if(!this.animation.updateAnimation(this.timeBy,tempovar)){
+			console.log("did me");
+            this.animationBool = false;
+			this.ready = true;
+			this.scene.game.go();
+        }
+    }
+};
