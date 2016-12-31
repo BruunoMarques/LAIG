@@ -38,12 +38,12 @@ MyInterface.prototype.addLightsGroup = function(){
 }
 
 MyInterface.prototype.changeView = function (){
-/*	this.scene.cam += 1;
+	this.scene.cam += 1;
     if(this.scene.cam == this.scene.cameras.length)
     this.scene.cam = 0;
-    this.scene.changeViewHome();
+   this.scene.changeViewHome();
     this.setActiveCamera(this.scene.camera);
-    console.log("Switched Camera");*/
+    console.log("Switched Camera");
 }
 
 
@@ -52,6 +52,8 @@ MyInterface.prototype.undo = function (){
 		this.scene.game.gamestart.initialboard = this.scene.game.gamestart.story.pop();
 		this.scene.game.gamestart.globalId = 0;
 		this.scene.game.gamestart.pieces = [];
+		this.scene.game.gamestart.diffArray.pop();
+		this.scene.game.gamestart.offpieces.pop();
 		this.scene.game.gamestart.updateBoard2();
 		this.scene.game.gamestart.createPieces();
 		this.scene.game.updateScore();

@@ -171,7 +171,7 @@ class MyCamAnimation extends MyAnimation{
 
 class MygameAnimation extends MyAnimation{
   constructor(id, xInicial, yInicial, xFinal, yFinal){
-      var time = 1.5;//lmao quele hardcode xD
+      var time = 1.5
       super(id, time);
       this.initialPoint = new MyPoint(xInicial, yInicial, 0.5);
       this.finalPoint = new MyPoint(xFinal, yFinal, 0.5);

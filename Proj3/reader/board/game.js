@@ -18,7 +18,6 @@ function MyGame(scene) {
 	this.ammount = 0;
 	
 	this.toUpdate = null;
-	
 	this.currID = null;
 	this.lastPlayTime = 0;
 	this.scoreboard = new MyScoreBoard(scene,3,4,10,7,this.redScore,this.whiteScore);
@@ -139,6 +138,7 @@ MyGame.prototype.checkPlay = function(play,piece){
 	if (this.scene.totalTime - this.lastPlayTime > this.timevar){
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
+			//this.scene.myInterface.changeView();
 			this.scene.changeViewHome();
 			console.log("Play TimedOut, Next turn");
 		}
@@ -146,11 +146,10 @@ MyGame.prototype.checkPlay = function(play,piece){
 	else {
 		if (check && checkplayer){
 			this.doPlay(play,this.direction,this.ammount);
-			console.log(this.direction);
-			console.log(this.ammount);
 			this.lastPlayTime = this.scene.totalTime;
 			this.turn++;
-			this.scene.changeViewHome();
+			//this.scene.myInterface.changeView();
+			//this.scene.changeViewHome();
 			console.log("Next turn");
 		}
 	}
@@ -196,6 +195,7 @@ MyGame.prototype.parseData= function(info){
 
 
 MyGame.prototype.go= function(){
+		this.scene.changeViewHome();
 		this.gamestart.globalId = 0;
 		this.gamestart.pieces = [];
 		this.gamestart.updateBoard();
@@ -242,8 +242,9 @@ MyGame.prototype.animationcheck= function(id){
 		var ty = this.p.py;
 	}
 	
+	
+	
 	this.p.startAnimation(id,this.p.px,this.p.py,tx,ty);
-	console.log(this.p);
 	this.toUpdate = this.p;
 
 }
@@ -251,5 +252,6 @@ MyGame.prototype.animationcheck= function(id){
 MyGame.prototype.update= function(currTime){
 	if(this.toUpdate != null){
 		this.toUpdate.animationUpdate(currTime);
+		
 	}
 }

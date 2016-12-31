@@ -8,13 +8,12 @@ function MyNewPiece(scene, type, id, x, y) {
 	this.px = x*2.5 + 49.9;
 	this.py = y*2.5 + 50.0;
 	this.positions = [this.x +5 ,Math.abs(this.y - 5)];
-	
+	this.height = 13.8;
 	this.timeBy = 0;
 	this.animation = null;
 	this.animationBool = false;
-	this.rotateAng = 0;
-	this.sizeP = 1;
 	this.ready = true;
+
 	
 	 this.materialBaseRed = new CGFappearance(scene);
     //set emission
@@ -66,7 +65,9 @@ this.scene.pushMatrix();
 	} else{
 		this.materialBaseWhite.apply();
 	}
-		
+	if(this.id == 99){
+		this.height = 5;
+	}	
 	
 	if (id == this.id) {
         nextmat.apply();
@@ -76,7 +77,7 @@ this.scene.pushMatrix();
 			case 1:
 			
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -99,7 +100,7 @@ this.scene.pushMatrix();
 			case 2:
 			
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -126,7 +127,7 @@ this.scene.pushMatrix();
 				break;
 			case 3:
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 		  if (picklock) {
 			this.scene.registerForPick(this.id, this);
@@ -159,7 +160,7 @@ this.scene.pushMatrix();
 			
 			case 5:
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -182,7 +183,7 @@ this.scene.pushMatrix();
 				break;
 			case 6:
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 			
 		  if (picklock) {
@@ -209,7 +210,7 @@ this.scene.pushMatrix();
 				break;
 			case 7:
 			this.scene.pushMatrix();
-			this.scene.translate(this.px,13.8,this.py);
+			this.scene.translate(this.px,this.height,this.py);
 			this.scene.scale(0.15,0.15,0.15);
 		  if (picklock) {
 			this.scene.registerForPick(this.id, this);
@@ -263,7 +264,6 @@ MyNewPiece.prototype.animationUpdate = function(tempovar){
     if(this.animationBool){
         this.timeBy += tempovar;
         if(!this.animation.updateAnimation(this.timeBy,tempovar)){
-			console.log("did me");
             this.animationBool = false;
 			this.ready = true;
 			this.scene.game.go();

@@ -93,8 +93,7 @@ MyGameBoard.prototype.display = function() {
             this.pieces[i].display(this.pick,this.materialBaseRed, this.materialSelected, this.pickLock);
     }
 	
-	  for (var i = 0; i < this.offpieces.length; i++) {
-
+	for (var i = 0; i < this.offpieces.length; i++) {
             this.offpieces[i].display(1,this.materialBaseRed, this.materialSelected, false);
 
     }
@@ -292,11 +291,12 @@ MyGameBoard.prototype.createPieces = function() {
 							}
 					}
 				}
-				
 				for(var i = 0; i < this.diffArray.length; i++){
-					var piecetoadd = new MyNewPiece(this.scene,this.diffArray[i],99,1,8);
+					var inc=+0.3;	
+					var piecetoadd = new MyNewPiece(this.scene,this.diffArray[i],99,0.4+inc,8+inc);
 					this.offpieces.push(piecetoadd);
 				}
+					
 };
 
 

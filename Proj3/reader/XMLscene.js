@@ -94,11 +94,11 @@ XMLscene.prototype.changeCamera = function(){
 /*
 	if(this.cameras[this.cam][0]=='viewendgame')
 			var finalview = this.cameras[this.cam];
+
+
+	if(this.cameras[this.cam][0]=='viewmenu')
+			this.cameras.splice(this.cam,1);
 */
-
-//	if(this.cameras[this.cam][0]=='viewmenu')
-	//		this.cameras.splice(this.cam,1);
-
 
 
 	this.myInterface.setActiveCamera(this.camera);
@@ -383,15 +383,13 @@ XMLscene.prototype.changeViewHome = function(){
 XMLscene.prototype.changeView = function (view1, view2){
     var tmp1 = this.cameras[view1];
     var tmp2 = this.cameras[view2];
-		console.log(tmp1);	console.log(tmp2);
+	//console.log(tmp1);	console.log(tmp2);
     this.cam_animation = new MyCamAnimation(1,tmp1[4],tmp1[6],tmp2[4],tmp2[6]);
     this.cam_animation2 = new MyCamAnimation(2,tmp1[7],tmp1[9],tmp2[7],tmp2[9]);
     this.cam_animation.heigth = 10;
     this.cam_animation2.heigth = 10;
     this.cam_start = true;
     this.totalTime = 0;
-
-	console.log(this.camera);
 
 };
 
@@ -510,7 +508,7 @@ XMLscene.prototype.logPicking = function()
 				if (obj)
 				{
 					var customId = this.pickResults[i][1];
-					//console.log("Picked object: " + obj + ", with pick id " + customId);
+					console.log("Picked object: " + obj + ", with pick id " + customId);
 					this.game.registerPick(customId);
 				}
 			}
